@@ -1,0 +1,39 @@
+{
+  "name": "francy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--localstorage-file=./.next/localstorage' next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build",
+    "analyze-images": "node scripts/optimize-images.js",
+    "convert-images": "node scripts/convert-to-webp.js",
+    "optimize-all": "npm run analyze-images && npm run convert-images"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.9.7",
+    "gray-matter": "^4.0.3",
+    "lottie-react": "^2.4.1",
+    "next": "15.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "sharp": "^0.33.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

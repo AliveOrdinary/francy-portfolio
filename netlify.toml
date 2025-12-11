@@ -1,0 +1,60 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[dev]
+  command = "npm run dev"
+  port = 8888
+  targetPort = 3000
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    
+    # Content Security Policy for portfolio site
+    Content-Security-Policy = '''
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https: blob:;
+      media-src 'self' https: blob:;
+      connect-src 'self' https://api.netlify.com https://identity.netlify.com https://api.unsplash.com;
+      frame-src 'self' https://identity.netlify.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      upgrade-insecure-requests;
+    '''
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    # More permissive CSP for Netlify CMS admin
+    Content-Security-Policy = '''
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com https://cdn.jsdelivr.net;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https: blob:;
+      media-src 'self' https: blob:;
+      connect-src 'self' https://api.netlify.com https://identity.netlify.com https://api.github.com;
+      frame-src 'self' https://identity.netlify.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self' https://api.netlify.com;
+    ''' 
