@@ -52,7 +52,7 @@
       font-src 'self' https://fonts.gstatic.com;
       img-src 'self' data: https: blob:;
       media-src 'self' https: blob:;
-      connect-src 'self' https://api.netlify.com https://identity.netlify.com https://api.github.com;
+      connect-src 'self' https://api.netlify.com https://identity.netlify.com https://api.github.com https://www.netlifystatus.com https://unpkg.com blob:;
       frame-src 'self' https://identity.netlify.com;
       object-src 'none';
       base-uri 'self';
