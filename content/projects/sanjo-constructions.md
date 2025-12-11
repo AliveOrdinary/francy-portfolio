@@ -26,5 +26,5 @@ projectVideos:
     hasAudio: false
     video: /images/uploads/{{slug}}/grid-animation.mp4
 featured: true
-order: 1
+order: 2
 ---
