@@ -8,11 +8,11 @@ export default function Home() {
     <div className="w-full px-6"> 
       {/* Projects Grid */}
       {featuredProjects.length > 0 && (
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 pb-20">
+        <section className="grid grid-cols-1 gap-8 md:gap-12 pb-20">
           {featuredProjects.map((project, index) => (
             <div 
               key={project.slug} 
-              className={`${index % 3 === 0 ? 'md:col-span-2' : 'md:col-span-1'}`}
+              className="w-full"
             >
               <ProjectCard
                 title={project.title}

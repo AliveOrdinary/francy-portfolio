@@ -26,5 +26,5 @@ projectVideos:
     hasAudio: false
     video: /images/uploads/sanjo/grid-animation.mp4
 featured: true
-order: 4
+order: 2
 ---
