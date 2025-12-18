@@ -29,7 +29,7 @@ export default function ProjectCard({
         style={{ backgroundColor: color }}
       >
         {/* Content Overlay */}
-        <div className="absolute inset-0 z-10 flex flex-col justify-center items-center p-6 text-center mix-blend-difference text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {/* <div className="absolute inset-0 z-10 flex flex-col justify-center items-center p-6 text-center mix-blend-difference text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <h3 className="text-4xl md:text-6xl font-display font-black uppercase tracking-tighter mb-2">
             {title}
           </h3>
@@ -38,7 +38,7 @@ export default function ProjectCard({
               {category}
             </p>
           )}
-        </div>
+        </div> */}
 
         {/* Media */}
         <div className="w-full">

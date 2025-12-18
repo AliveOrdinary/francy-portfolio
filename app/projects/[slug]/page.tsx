@@ -84,11 +84,11 @@ export default async function Project(
           ) : null}
           
           {/* Title Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+          {/* <div className="absolute inset-0 flex items-center justify-center bg-black/20">
             <h1 className="text-5xl md:text-8xl font-display font-black text-white uppercase tracking-tighter mix-blend-difference">
               {projectData.title}
             </h1>
-          </div>
+          </div> */}
         </div>
       </div>
 
