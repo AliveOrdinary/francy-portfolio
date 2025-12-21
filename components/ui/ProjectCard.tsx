@@ -16,7 +16,6 @@ interface ProjectCardProps {
 export default function ProjectCard({
   title,
   slug,
-  category,
   image,
   video,
   color = '#B065FF', // Default purple from design
