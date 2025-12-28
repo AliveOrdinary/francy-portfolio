@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { ProjectMediaItem } from '@/lib/types';
 import HighResImageViewer from '@/components/HighResImageViewer';
+import { IMAGE_CONFIG } from '@/lib/constants';
 
 interface ProjectGalleryProps {
   media: ProjectMediaItem[];
@@ -35,9 +36,12 @@ export default function ProjectGallery({ media, projectTitle }: ProjectGalleryPr
                 <Image
                   src={item.src}
                   alt={item.caption || `${projectTitle} - ${index + 1}`}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
+                  width={1600}
+                  height={900}
+                  sizes={IMAGE_CONFIG.SIZES.PROJECT_GALLERY}
+                  quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
+                  loading={index < 2 ? 'eager' : 'lazy'}
+                  priority={index < 2}
                   className="w-full h-auto object-cover block transition-transform duration-500"
                 />
               </div>
