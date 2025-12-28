@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground`}>
         <Header />
-        <main className="pt-24 pb-20 min-h-screen">
+        <main className="pt-20 pb-20 min-h-screen">
           {children}
         </main>
         <BottomNav />

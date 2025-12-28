@@ -8,7 +8,7 @@ export default function Home() {
     <div className="w-full px-6"> 
       {/* Projects Grid */}
       {featuredProjects.length > 0 && (
-        <section className="grid grid-cols-1 gap-8 md:gap-12 pb-20">
+        <section className="grid grid-cols-1 gap-6 pb-20">
           {featuredProjects.map((project, index) => (
             <div 
               key={project.slug} 
@@ -17,7 +17,6 @@ export default function Home() {
               <ProjectCard
                 title={project.title}
                 slug={project.slug}
-                category={project.category as string | undefined}
                 image={project.featuredImage}
                 video={project.featuredVideo}
                 priority={index < 2}

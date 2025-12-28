@@ -62,7 +62,7 @@ export default async function Project(
     <article className="bg-background px-6 md:px-8 min-h-screen">
       {/* Hero Section */}
       <div className="w-full">
-        <div className="w-full h-[60vh] md:h-[80vh] relative overflow-hidden rounded-2xl">
+        <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
           {projectData.featuredVideo ? (
             <video
               src={projectData.featuredVideo}

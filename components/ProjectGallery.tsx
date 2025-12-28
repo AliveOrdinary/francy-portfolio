@@ -28,17 +28,17 @@ export default function ProjectGallery({ media, projectTitle }: ProjectGalleryPr
                 muted
                 loop
                 playsInline
-                className="w-full h-auto rounded-lg cursor-pointer transition-transform duration-500 hover:scale-[1.02]"
+                className="w-full h-auto rounded-2xl cursor-pointer transition-transform duration-500 "
               />
             ) : (
-              <div className="relative cursor-zoom-in overflow-hidden rounded-lg">
+              <div className="relative cursor-zoom-in overflow-hidden rounded-2xl">
                 <Image
                   src={item.src}
                   alt={item.caption || `${projectTitle} - ${index + 1}`}
                   width={0}
                   height={0}
                   sizes="100vw"
-                  className="w-full h-auto object-cover block transition-transform duration-500 hover:scale-[1.02]"
+                  className="w-full h-auto object-cover block transition-transform duration-500"
                 />
               </div>
             )}
