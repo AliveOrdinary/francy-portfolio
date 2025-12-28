@@ -41,6 +41,6 @@ projectVideos:
   - order: 4
     hasAudio: false
     video: /images/uploads/posters-02.mp4
-featured: false
+featured: true
 order: 1
 ---
