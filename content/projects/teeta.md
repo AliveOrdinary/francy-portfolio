@@ -32,15 +32,15 @@ projectVideos:
   - order: 1
     hasAudio: false
     video: /images/uploads/posters.mp4
-  - order: 1
+  - order: 2
     hasAudio: false
     video: /images/uploads/coz-teeta_long.mp4
-  - order: 1
+  - order: 3
     hasAudio: false
     video: /images/uploads/coz-teeta.mp4
-  - order: 1
+  - order: 4
     hasAudio: false
     video: /images/uploads/posters-02.mp4
-featured: true
-order: 2
+featured: false
+order: 1
 ---
