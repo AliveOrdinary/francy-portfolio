@@ -2,6 +2,7 @@ import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdo
 import { ProjectData, ProjectImageItem, ProjectVideoItem, ProjectMediaItem } from '@/lib/types';
 import Image from 'next/image';
 import ProjectGallery from '@/components/ProjectGallery';
+import ExpandableSummary from '@/components/ExpandableSummary';
 
 /**
  * Combines and sorts project images and videos into a unified media array
@@ -110,12 +111,14 @@ export default async function Project(
             </div>
           </div>
           
-          <div className="md:col-span-8">
-            <div 
-              className="prose prose-lg prose-neutral max-w-none font-sans"
-              dangerouslySetInnerHTML={{ __html: mainSummaryHtml }}
-            />
-          </div>
+          {projectData.mainSummary && (
+            <div className="md:col-span-8">
+              <ExpandableSummary 
+                shortSummary={projectData.shortSummary}
+                mainSummaryHtml={mainSummaryHtml}
+              />
+            </div>
+          )}
         </div>
 
         {/* Gallery */}
