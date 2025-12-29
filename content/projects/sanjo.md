@@ -35,24 +35,29 @@ galleryBlocks:
     leftHasAudio: false
     rightType: image
     rightHasAudio: false
-    order: 3
+    order: 4
     leftFile: /images/uploads/sanjo_letters-3.mp4
     rightFile: /images/uploads/cap.jpg
   - type: single
     mediaType: video
     hasAudio: false
-    order: 4
+    order: 5
     file: /images/uploads/colour-palette-60fps.mp4
   - type: single
     mediaType: image
     hasAudio: false
-    order: 5
+    order: 6
     file: /images/uploads/sanjo-business-card.jpg
   - type: single
     mediaType: video
     hasAudio: false
-    order: 6
+    order: 7
     file: /images/uploads/tiles.mp4
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 3
+    file: /images/uploads/type-motion.mp4
 featured: true
 order: 2
 ---
