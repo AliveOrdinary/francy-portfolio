@@ -4,38 +4,40 @@ slug: sanjo
 category: Branding
 featuredVideo: /images/uploads/sanjo/sanjo-logo.mp4
 featuredVideoHasAudio: false
-shortSummary: Test summary
+shortSummary: The SANJO logo is inspired by architectural blueprints and spatial
+  planning, reflecting the brand’s core focus on renovations. Each letter in the
+  wordmark is placed within a square, symbolizing rooms or structural modules —
+  much like a floor plan layout.
+mainSummary: ""
 year: 2025
 services:
   - Branding
   - Web Design
+  - Motion Graphics
 galleryBlocks:
   - type: single
     mediaType: image
-    file: /images/uploads/sanjo/01.jpg
+    hasAudio: false
     order: 1
+    file: /images/uploads/02.jpg
   - type: single
     mediaType: video
-    file: /images/uploads/sanjo/colour-palette-60fps.mp4
     hasAudio: false
-    order: 2
-  - type: single
-    mediaType: image
-    file: /images/uploads/sanjo/02.jpg
-    order: 3
+    order: 1
+    file: /images/uploads/grid-animation.mp4
   - type: single
     mediaType: video
-    file: /images/uploads/sanjo/grid-animation.mp4
     hasAudio: false
-    order: 4
-  - type: single
-    mediaType: image
-    file: /images/uploads/sanjo/04.jpg
-    order: 5
-  - type: single
-    mediaType: image
-    file: /images/uploads/sanjo/sanjo-business-card.jpg
-    order: 7
+    order: 1
+    file: /images/uploads/3-frames.mp4
+  - type: sideBySide
+    leftType: video
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 1
+    leftFile: /images/uploads/sanjo_letters-3.mp4
+    rightFile: /images/uploads/cap.jpg
 featured: true
 order: 2
 ---
