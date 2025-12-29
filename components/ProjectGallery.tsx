@@ -104,28 +104,60 @@ function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: Sea
   );
 }
 
-// Side by side - with gap
+// Side by side - with gap, equal heights using aspect ratio
 function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideBySideBlock; projectTitle: string; index: number }) {
+  const renderMedia = (type: 'image' | 'video', src: string, alt: string, hasAudio?: boolean, priority: boolean = false) => {
+    if (type === 'video') {
+      return (
+        <video
+          src={src}
+          autoPlay
+          muted={!hasAudio}
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+        />
+      );
+    }
+    
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="50vw"
+        quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
+        loading={priority ? 'eager' : 'lazy'}
+        priority={priority}
+        className="object-cover rounded-2xl"
+      />
+    );
+  };
+
   return (
     <div className="w-full">
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="w-full md:w-1/2">
-          <MediaItem
-            type={block.leftType}
-            src={block.leftFile}
-            alt={block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`}
-            hasAudio={block.leftHasAudio}
-            priority={index < 2}
-          />
+          <div className="relative aspect-square overflow-hidden rounded-2xl">
+            {renderMedia(
+              block.leftType,
+              block.leftFile,
+              block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`,
+              block.leftHasAudio,
+              index < 2
+            )}
+          </div>
         </div>
         <div className="w-full md:w-1/2">
-          <MediaItem
-            type={block.rightType}
-            src={block.rightFile}
-            alt={block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`}
-            hasAudio={block.rightHasAudio}
-            priority={index < 2}
-          />
+          <div className="relative aspect-square overflow-hidden rounded-2xl">
+            {renderMedia(
+              block.rightType,
+              block.rightFile,
+              block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`,
+              block.rightHasAudio,
+              index < 2
+            )}
+          </div>
         </div>
       </div>
       {block.caption && (

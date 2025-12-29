@@ -34,7 +34,7 @@ collections:
             name: "single"
             fields:
               - { label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video"], default: "image" }
-              - { label: "File", name: "file", widget: "image" }
+              - { label: "File", name: "file", widget: "file" }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Has Audio?", name: "hasAudio", widget: "boolean", default: false, required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
@@ -42,10 +42,10 @@ collections:
             name: "seamlessPair"
             fields:
               - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
-              - { label: "Left File", name: "leftFile", widget: "image", hint: "1:1 aspect ratio recommended" }
+              - { label: "Left File", name: "leftFile", widget: "file", hint: "1:1 aspect ratio recommended" }
               - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
-              - { label: "Right File", name: "rightFile", widget: "image", hint: "1:1 aspect ratio recommended" }
+              - { label: "Right File", name: "rightFile", widget: "file", hint: "1:1 aspect ratio recommended" }
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
@@ -53,10 +53,10 @@ collections:
             name: "sideBySide"
             fields:
               - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
-              - { label: "Left File", name: "leftFile", widget: "image" }
+              - { label: "Left File", name: "leftFile", widget: "file" }
               - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
-              - { label: "Right File", name: "rightFile", widget: "image" }
+              - { label: "Right File", name: "rightFile", widget: "file" }
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
