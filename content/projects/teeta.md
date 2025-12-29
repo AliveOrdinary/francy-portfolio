@@ -53,6 +53,14 @@ galleryBlocks:
     order: 1
     leftFile: /images/uploads/t-shirt.jpg
     rightFile: /images/uploads/teeta-cap.jpg
+  - type: seamlessPair
+    leftType: image
+    leftHasAudio: false
+    rightType: video
+    rightHasAudio: false
+    order: 1
+    leftFile: /images/uploads/coaster-mockup.jpg
+    rightFile: /images/uploads/colour-palette.mp4
 featured: true
 order: 1
 ---
