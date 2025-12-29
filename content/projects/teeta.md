@@ -45,6 +45,14 @@ galleryBlocks:
     file: /images/uploads/posters-02.mp4
     hasAudio: false
     order: 4
+  - type: sideBySide
+    leftType: image
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 1
+    leftFile: /images/uploads/t-shirt.jpg
+    rightFile: /images/uploads/teeta-cap.jpg
 featured: true
 order: 1
 ---
