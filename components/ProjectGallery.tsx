@@ -1,57 +1,162 @@
 'use client';
 
 import Image from 'next/image';
-import { ProjectMediaItem } from '@/lib/types';
-import HighResImageViewer from '@/components/HighResImageViewer';
+import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock } from '@/lib/types';
 import { IMAGE_CONFIG } from '@/lib/constants';
 
+
 interface ProjectGalleryProps {
-  media: ProjectMediaItem[];
+  blocks: GalleryBlock[];
   projectTitle: string;
 }
 
-export default function ProjectGallery({ media, projectTitle }: ProjectGalleryProps) {
+interface MediaItemProps {
+  type: 'image' | 'video';
+  src: string;
+  alt: string;
+  hasAudio?: boolean | undefined;
+  className?: string;
+  onClick?: () => void;
+  priority?: boolean;
+}
+
+// Reusable media item component for both images and videos
+function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, priority = false }: MediaItemProps) {
+  if (type === 'video') {
+    return (
+      <video
+        src={src}
+        autoPlay
+        muted={!hasAudio}
+        loop
+        playsInline
+        className={`w-full h-auto rounded-2xl cursor-pointer transition-transform duration-500 ${className}`}
+        onClick={onClick}
+      />
+    );
+  }
+  
+  return (
+    <div className={`relative cursor-zoom-in overflow-hidden rounded-2xl ${className}`} onClick={onClick}>
+      <Image
+        src={src}
+        alt={alt}
+        width={1600}
+        height={900}
+        sizes={IMAGE_CONFIG.SIZES.PROJECT_GALLERY}
+        quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
+        loading={priority ? 'eager' : 'lazy'}
+        priority={priority}
+        className="w-full h-auto object-cover block transition-transform duration-500"
+      />
+    </div>
+  );
+}
+
+// Single full-width block
+function SingleBlockComponent({ block, projectTitle, index }: { block: SingleBlock; projectTitle: string; index: number }) {
+  return (
+    <div className="w-full">
+      <MediaItem
+        type={block.mediaType}
+        src={block.file}
+        alt={block.caption || `${projectTitle} - ${index + 1}`}
+        hasAudio={block.hasAudio}
+        priority={index < 2}
+      />
+      {block.caption && (
+        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+      )}
+    </div>
+  );
+}
+
+// Seamless pair - no gap, merged on desktop
+function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: SeamlessPairBlock; projectTitle: string; index: number }) {
+  return (
+    <div className="w-full">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2">
+          <MediaItem
+            type={block.leftType}
+            src={block.leftFile}
+            alt={block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`}
+            hasAudio={block.leftHasAudio}
+            className="rounded-2xl md:rounded-r-none"
+            priority={index < 2}
+          />
+        </div>
+        <div className="w-full md:w-1/2 mt-4 md:mt-0">
+          <MediaItem
+            type={block.rightType}
+            src={block.rightFile}
+            alt={block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`}
+            hasAudio={block.rightHasAudio}
+            className="rounded-2xl md:rounded-l-none"
+            priority={index < 2}
+          />
+        </div>
+      </div>
+      {block.caption && (
+        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+      )}
+    </div>
+  );
+}
+
+// Side by side - with gap
+function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideBySideBlock; projectTitle: string; index: number }) {
+  return (
+    <div className="w-full">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+        <div className="w-full md:w-1/2">
+          <MediaItem
+            type={block.leftType}
+            src={block.leftFile}
+            alt={block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`}
+            hasAudio={block.leftHasAudio}
+            priority={index < 2}
+          />
+        </div>
+        <div className="w-full md:w-1/2">
+          <MediaItem
+            type={block.rightType}
+            src={block.rightFile}
+            alt={block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`}
+            hasAudio={block.rightHasAudio}
+            priority={index < 2}
+          />
+        </div>
+      </div>
+      {block.caption && (
+        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+      )}
+    </div>
+  );
+}
+
+export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryProps) {
+  // Sort blocks by order
+  const sortedBlocks = [...blocks].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  if (sortedBlocks.length === 0) {
+    return null;
+  }
+
   return (
     <div className="space-y-4 md:space-y-8">
-      {media.map((item, index) => (
-        <div key={index} className="w-full">
-          <HighResImageViewer
-            src={item.src}
-            alt={item.caption || `${projectTitle} - ${index + 1}`}
-            allProjectMedia={media}
-            currentIndex={index}
-            className="w-full"
-          >
-            {item.type === 'video' ? (
-              <video
-                src={item.src}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-auto rounded-2xl cursor-pointer transition-transform duration-500 "
-              />
-            ) : (
-              <div className="relative cursor-zoom-in overflow-hidden rounded-2xl">
-                <Image
-                  src={item.src}
-                  alt={item.caption || `${projectTitle} - ${index + 1}`}
-                  width={1600}
-                  height={900}
-                  sizes={IMAGE_CONFIG.SIZES.PROJECT_GALLERY}
-                  quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
-                  loading={index < 2 ? 'eager' : 'lazy'}
-                  priority={index < 2}
-                  className="w-full h-auto object-cover block transition-transform duration-500"
-                />
-              </div>
-            )}
-          </HighResImageViewer>
-          {item.caption && (
-            <p className="text-sm text-gray-500 mt-4 text-center font-mono">{item.caption}</p>
-          )}
-        </div>
-      ))}
+      {sortedBlocks.map((block, index) => {
+        switch (block.type) {
+          case 'single':
+            return <SingleBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
+          case 'seamlessPair':
+            return <SeamlessPairBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
+          case 'sideBySide':
+            return <SideBySideBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 }

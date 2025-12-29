@@ -1,40 +1,7 @@
 import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdown';
-import { ProjectData, ProjectImageItem, ProjectVideoItem, ProjectMediaItem } from '@/lib/types';
 import Image from 'next/image';
 import ProjectGallery from '@/components/ProjectGallery';
 import ExpandableSummary from '@/components/ExpandableSummary';
-
-/**
- * Combines and sorts project images and videos into a unified media array
- */
-function combineAndSortMedia(projectData: ProjectData): ProjectMediaItem[] { 
-  const combinedMedia: ProjectMediaItem[] = [];
-  
-  if (projectData.projectImages?.length) {
-    projectData.projectImages.forEach((item: ProjectImageItem, index: number) => {
-      combinedMedia.push({
-        type: 'image',
-        src: item.image,
-        caption: item.caption,
-        order: item.order ?? index + 1 
-      });
-    });
-  }
-  
-  if (projectData.projectVideos?.length) {
-    projectData.projectVideos.forEach((item: ProjectVideoItem, index: number) => {
-      combinedMedia.push({
-        type: 'video',
-        src: item.video,
-        caption: item.caption,
-        hasAudio: item.hasAudio ?? false, 
-        order: item.order ?? (projectData.projectImages?.length ?? 0) + index + 1 
-      });
-    });
-  }
-  
-  return combinedMedia.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-}
 
 /**
  * Generate static params for all projects at build time
@@ -57,39 +24,63 @@ export default async function Project(
   const projectData = getProjectData(slug);
   const mainSummaryHtml = await getMarkdownContent(projectData.mainSummary || '');
   
-  const sortedMedia = combineAndSortMedia(projectData);
+  // Sort gallery blocks by order
+  const sortedBlocks = projectData.galleryBlocks 
+    ? [...projectData.galleryBlocks].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    : [];
 
   return (
     <article className="bg-background px-6 md:px-8 min-h-screen">
       {/* Hero Section */}
       <div className="w-full">
         <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
-          {projectData.featuredVideo ? (
-            <video
-              src={projectData.featuredVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          ) : projectData.featuredImage ? (
-            <Image
-              src={projectData.featuredImage}
-              alt={projectData.title}
-              fill
-              className="object-cover"
-              priority
-              sizes="100vw"
-            />
-          ) : null}
+          {/* Mobile featured media */}
+          {(projectData.featuredVideoMobile || projectData.featuredImageMobile) && (
+            <div className="block md:hidden w-full h-full">
+              {projectData.featuredVideoMobile ? (
+                <video
+                  src={projectData.featuredVideoMobile}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : projectData.featuredImageMobile ? (
+                <Image
+                  src={projectData.featuredImageMobile}
+                  alt={projectData.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="100vw"
+                />
+              ) : null}
+            </div>
+          )}
           
-          {/* Title Overlay */}
-          {/* <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-            <h1 className="text-5xl md:text-8xl font-display font-black text-white uppercase tracking-tighter mix-blend-difference">
-              {projectData.title}
-            </h1>
-          </div> */}
+          {/* Desktop featured media (hidden on mobile if mobile variant exists) */}
+          <div className={`${(projectData.featuredVideoMobile || projectData.featuredImageMobile) ? 'hidden md:block' : 'block'} w-full h-full`}>
+            {projectData.featuredVideo ? (
+              <video
+                src={projectData.featuredVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            ) : projectData.featuredImage ? (
+              <Image
+                src={projectData.featuredImage}
+                alt={projectData.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="100vw"
+              />
+            ) : null}
+          </div>
         </div>
       </div>
 
@@ -122,8 +113,8 @@ export default async function Project(
         </div>
 
         {/* Gallery */}
-        <ProjectGallery media={sortedMedia} projectTitle={projectData.title} />
+        <ProjectGallery blocks={sortedBlocks} projectTitle={projectData.title} />
       </div>
     </article>
   );
-} 
+}

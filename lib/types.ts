@@ -1,21 +1,44 @@
-export interface ProjectImageItem {
-  image: string;
-  caption?: string | undefined;
-  order?: number;
-}
-
-export interface ProjectVideoItem {
-  video: string;
-  caption?: string | undefined;
-  order?: number;
+// Gallery block types
+export interface SingleBlock {
+  type: 'single';
+  mediaType: 'image' | 'video';
+  file: string;
+  caption?: string;
   hasAudio?: boolean;
+  order: number;
 }
 
-export interface ProjectMediaItem {
+export interface SeamlessPairBlock {
+  type: 'seamlessPair';
+  leftType: 'image' | 'video';
+  leftFile: string;
+  leftHasAudio?: boolean;
+  rightType: 'image' | 'video';
+  rightFile: string;
+  rightHasAudio?: boolean;
+  caption?: string;
+  order: number;
+}
+
+export interface SideBySideBlock {
+  type: 'sideBySide';
+  leftType: 'image' | 'video';
+  leftFile: string;
+  leftHasAudio?: boolean;
+  rightType: 'image' | 'video';
+  rightFile: string;
+  rightHasAudio?: boolean;
+  caption?: string;
+  order: number;
+}
+
+export type GalleryBlock = SingleBlock | SeamlessPairBlock | SideBySideBlock;
+
+// Helper type for the image viewer component
+export interface ViewerMediaItem {
   type: 'image' | 'video';
   src: string;
-  caption?: string | undefined;
-  order: number;
+  caption?: string;
   hasAudio?: boolean;
 }
 
@@ -26,12 +49,13 @@ export interface ProjectData {
   featuredImage?: string;
   featuredVideo?: string;
   featuredVideoHasAudio?: boolean;
+  featuredImageMobile?: string;
+  featuredVideoMobile?: string;
   shortSummary: string;
   mainSummary?: string;
   year: number;
   services?: string[];
-  projectImages?: ProjectImageItem[];
-  projectVideos?: ProjectVideoItem[];
+  galleryBlocks?: GalleryBlock[];
   featured: boolean;
   order: number;
   content?: string;

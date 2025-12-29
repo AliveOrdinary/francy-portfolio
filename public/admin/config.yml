@@ -18,29 +18,48 @@ collections:
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured Video", name: "featuredVideo", widget: "file", required: false }
       - { label: "Featured Video Has Audio?", name: "featuredVideoHasAudio", widget: "boolean", default: false, required: false }
+      - { label: "Featured Image (Mobile)", name: "featuredImageMobile", widget: "image", required: false, hint: "Vertical image for mobile devices" }
+      - { label: "Featured Video (Mobile)", name: "featuredVideoMobile", widget: "file", required: false, hint: "Vertical video for mobile devices" }
       - { label: "Short Summary", name: "shortSummary", widget: "string", pattern: ['.{1,160}', "Must be 160 characters or less"], hint: "Brief description (required for all types)" }
       - { label: "Main Summary", name: "mainSummary", widget: "markdown", required: false, hint: "Detailed description (optional for Photography/Illustration)" }
       - { label: "Year", name: "year", widget: "number" }
       - { label: "Services", name: "services", widget: "select", multiple: true, options: ["Branding", "Web Design", "Print", "Packaging", "UI/UX", "Illustration", "Naming", "Art Direction", "Motion Graphics", "Photography"], required: false, hint: "Not required for Photography/Illustration" }
-      - label: "Project Images"
-        name: "projectImages"
+      - label: "Gallery Blocks"
+        name: "galleryBlocks"
         widget: "list"
         required: false
-        hint: "Add multiple images (optional for simple Photography/Illustration posts)"
-        fields:
-          - { label: "Image", name: "image", widget: "image" }
-          - { label: "Caption", name: "caption", widget: "string", required: false }
-          - { label: "Display Order", name: "order", widget: "number", default: 1, required: false }
-      - label: "Project Videos"
-        name: "projectVideos"
-        widget: "list"
-        required: false
-        hint: "Add videos (mainly for Branding projects)"
-        fields:
-          - { label: "Video", name: "video", widget: "file" }
-          - { label: "Caption", name: "caption", widget: "string", required: false }
-          - { label: "Display Order", name: "order", widget: "number", default: 1, required: false }
-          - { label: "Has Audio?", name: "hasAudio", widget: "boolean", default: false, required: false }
+        hint: "Add media with flexible layouts"
+        types:
+          - label: "Single Media (Full Width)"
+            name: "single"
+            fields:
+              - { label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video"], default: "image" }
+              - { label: "File", name: "file", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Has Audio?", name: "hasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Display Order", name: "order", widget: "number", default: 1 }
+          - label: "Seamless Pair (Merged on Desktop)"
+            name: "seamlessPair"
+            fields:
+              - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
+              - { label: "Left File", name: "leftFile", widget: "image", hint: "1:1 aspect ratio recommended" }
+              - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
+              - { label: "Right File", name: "rightFile", widget: "image", hint: "1:1 aspect ratio recommended" }
+              - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Display Order", name: "order", widget: "number", default: 1 }
+          - label: "Side by Side (With Gap)"
+            name: "sideBySide"
+            fields:
+              - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
+              - { label: "Left File", name: "leftFile", widget: "image" }
+              - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
+              - { label: "Right File", name: "rightFile", widget: "image" }
+              - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 

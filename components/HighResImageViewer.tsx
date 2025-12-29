@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import OptimizedImage from './OptimizedImage';
-import { ProjectMediaItem } from '../lib/types';
+import { ViewerMediaItem } from '../lib/types';
 
 interface HighResImageViewerProps {
   src: string;
@@ -12,7 +12,7 @@ interface HighResImageViewerProps {
   quality?: number;
   sizes?: string;
   allProjectImages?: string[];
-  allProjectMedia?: ProjectMediaItem[];
+  allProjectMedia?: ViewerMediaItem[];
   currentIndex?: number;
   highResQuality?: number;
   children?: React.ReactNode;
@@ -57,8 +57,8 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   const highResImageRef = useRef<HTMLImageElement>(null);
 
   // Use mixed media if available, otherwise fall back to images only
-  const mediaArray = allProjectMedia.length > 0 ? allProjectMedia : allProjectImages.map(imgSrc => ({ type: 'image' as const, src: imgSrc, order: 0, hasAudio: false }));
-  const currentMedia = mediaArray.length > 0 ? mediaArray[activeImageIndex] : { type: 'image' as const, src, order: 0, hasAudio: false };
+  const mediaArray = allProjectMedia.length > 0 ? allProjectMedia : allProjectImages.map(imgSrc => ({ type: 'image' as const, src: imgSrc, hasAudio: false }));
+  const currentMedia = mediaArray.length > 0 ? mediaArray[activeImageIndex] : { type: 'image' as const, src, hasAudio: false };
   const currentImageSrc = currentMedia.src;
   
   // Helper function to check if current media is a video

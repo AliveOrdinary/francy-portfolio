@@ -10,8 +10,8 @@ shortSummary: Teeta is a Malayali café rooted in Kochi, built around everyday
   recognisable.
 mainSummary: >-
   The name itself became the starting point—drawing from the mathematical factor
-  theta (θ), a common connector, and the Malayalam word “തീറ്റാ,” meaning “just
-  eat.” This idea shaped the entire identity: food as the common factor that
+  theta (θ), a common connector, and the Malayalam word "തീറ്റാ," meaning "just
+  eat." This idea shaped the entire identity: food as the common factor that
   brings people together, without rules or pretence.
 
 
@@ -24,20 +24,27 @@ services:
   - Motion Graphics
   - Art Direction
   - Naming
-projectImages: []
-projectVideos:
-  - order: 1
+galleryBlocks:
+  - type: single
+    mediaType: video
+    file: /images/uploads/posters.mp4
     hasAudio: false
-    video: /images/uploads/posters.mp4
-  - order: 2
+    order: 1
+  - type: single
+    mediaType: video
+    file: /images/uploads/coz-teeta_long.mp4
     hasAudio: false
-    video: /images/uploads/coz-teeta_long.mp4
-  - order: 3
+    order: 2
+  - type: single
+    mediaType: video
+    file: /images/uploads/coz-teeta.mp4
     hasAudio: false
-    video: /images/uploads/coz-teeta.mp4
-  - order: 4
+    order: 3
+  - type: single
+    mediaType: video
+    file: /images/uploads/posters-02.mp4
     hasAudio: false
-    video: /images/uploads/posters-02.mp4
+    order: 4
 featured: true
 order: 1
 ---
