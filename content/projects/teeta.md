@@ -42,7 +42,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 3
-    file: /images/uploads/posters-02.mp4
+    file: /images/uploads/posters01.mp4
   - type: single
     mediaType: video
     hasAudio: false
