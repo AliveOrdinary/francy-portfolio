@@ -27,40 +27,48 @@ services:
 galleryBlocks:
   - type: single
     mediaType: video
-    file: /images/uploads/posters.mp4
     hasAudio: false
     order: 1
-  - type: single
-    mediaType: video
     file: /images/uploads/coz-teeta_long.mp4
-    hasAudio: false
-    order: 2
-  - type: single
-    mediaType: video
-    file: /images/uploads/coz-teeta.mp4
-    hasAudio: false
-    order: 3
-  - type: single
-    mediaType: video
-    file: /images/uploads/posters-02.mp4
-    hasAudio: false
-    order: 4
-  - type: sideBySide
-    leftType: image
-    leftHasAudio: false
-    rightType: image
-    rightHasAudio: false
-    order: 1
-    leftFile: /images/uploads/t-shirt.jpg
-    rightFile: /images/uploads/teeta-cap.jpg
   - type: seamlessPair
     leftType: image
     leftHasAudio: false
     rightType: video
     rightHasAudio: false
-    order: 1
+    order: 2
     leftFile: /images/uploads/coaster-mockup.jpg
-    rightFile: /images/uploads/colour-palette.mp4
+    rightFile: /images/uploads/illustration.mp4
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 3
+    file: /images/uploads/posters-02.mp4
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 4
+    file: /images/uploads/coz-teeta.mp4
+  - type: seamlessPair
+    leftType: video
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 5
+    leftFile: /images/uploads/colour-palette.mp4
+    rightFile: /images/uploads/tote-bag.jpg
+  - type: sideBySide
+    leftType: image
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 6
+    leftFile: /images/uploads/t-shirt02.jpg
+    rightFile: /images/uploads/teeta-cap.jpg
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 7
+    file: /images/uploads/posters-02.mov
 featured: true
 order: 1
 ---
