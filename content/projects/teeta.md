@@ -15,7 +15,7 @@ mainSummary: >-
   brings people together, without rules or pretence.
 
 
-  From there, the visual system took form. Expressive, custom-styled typography became the hero, designed to feel playful, human, and confident. A minimal palette led by a vibrant red added energy and appetite, while black-and-white photography captured real, unfiltered moments. Graphic repetition, hand-drawn food icons, and rhythmic motion extended the identity across print and digital, creating a flexible yet unmistakable brand. The result is a system that feels rooted in culture, alive in motion, and instantly Teeta—because cos Teeta is a common factor
+  From there, the visual system took form. Expressive, custom-styled typography became the hero, designed to feel playful, human, and confident. A minimal palette led by a vibrant red added energy and appetite, while black-and-white photography captured real, unfiltered moments. Graphic repetition, hand-drawn food icons, and rhythmic motion extended the identity across print and digital, creating a flexible yet unmistakable brand. The result is a system that feels rooted in culture, alive in motion, and instantly Teeta—because cos Teeta is a common factor.
 year: 2024
 services:
   - Branding
