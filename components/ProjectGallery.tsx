@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import LazyVideo from '@/components/LazyVideo';
 import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock } from '@/lib/types';
 import { IMAGE_CONFIG } from '@/lib/constants';
 
@@ -24,12 +25,9 @@ interface MediaItemProps {
 function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, priority = false }: MediaItemProps) {
   if (type === 'video') {
     return (
-      <video
+      <LazyVideo
         src={src}
-        autoPlay
-        muted={!hasAudio}
-        loop
-        playsInline
+        hasAudio={hasAudio}
         className={`w-full h-auto rounded-2xl cursor-pointer transition-transform duration-500 ${className}`}
         onClick={onClick}
       />
@@ -76,12 +74,9 @@ function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: Sea
   const renderMedia = (type: 'image' | 'video', src: string, alt: string, hasAudio?: boolean, priority: boolean = false) => {
     if (type === 'video') {
       return (
-        <video
+        <LazyVideo
           src={src}
-          autoPlay
-          muted={!hasAudio}
-          loop
-          playsInline
+          hasAudio={hasAudio}
           className="absolute inset-0 w-full h-full object-cover"
         />
       );
@@ -139,12 +134,9 @@ function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideB
   const renderMedia = (type: 'image' | 'video', src: string, alt: string, hasAudio?: boolean, priority: boolean = false) => {
     if (type === 'video') {
       return (
-        <video
+        <LazyVideo
           src={src}
-          autoPlay
-          muted={!hasAudio}
-          loop
-          playsInline
+          hasAudio={hasAudio}
           className="absolute inset-0 w-full h-full object-cover rounded-2xl"
         />
       );

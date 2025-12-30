@@ -2,7 +2,7 @@
 title: Teeta
 slug: teeta
 category: Branding
-featuredImage: /images/uploads/cover.jpg
+featuredImage: /images/uploads/teeta/cover.jpg
 featuredVideoHasAudio: false
 shortSummary: Teeta is a Malayali café rooted in Kochi, built around everyday
   food and everyday people. But the challenge was to turn something deeply
@@ -29,46 +29,46 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 1
-    file: /images/uploads/coz-teeta_long.mp4
+    file: /images/uploads/teeta/coz-teeta_long.mp4
   - type: seamlessPair
     leftType: image
     leftHasAudio: false
     rightType: video
     rightHasAudio: false
     order: 2
-    leftFile: /images/uploads/coaster-mockup.jpg
-    rightFile: /images/uploads/illustration.mp4
+    leftFile: /images/uploads/teeta/coaster-mockup.jpg
+    rightFile: /images/uploads/teeta/illustration.mp4
   - type: single
     mediaType: video
     hasAudio: false
     order: 3
-    file: /images/uploads/posters01.mp4
+    file: /images/uploads/teeta/posters01.mp4
   - type: single
     mediaType: video
     hasAudio: false
     order: 4
-    file: /images/uploads/coz-teeta.mp4
+    file: /images/uploads/teeta/coz-teeta.mp4
   - type: seamlessPair
     leftType: video
     leftHasAudio: false
     rightType: image
     rightHasAudio: false
     order: 5
-    leftFile: /images/uploads/colour-palette.mp4
-    rightFile: /images/uploads/tote-bag.jpg
+    leftFile: /images/uploads/teeta/colour-palette.mp4
+    rightFile: /images/uploads/teeta/tote-bag.jpg
   - type: sideBySide
     leftType: image
     leftHasAudio: false
     rightType: image
     rightHasAudio: false
     order: 6
-    leftFile: /images/uploads/t-shirt02.jpg
-    rightFile: /images/uploads/teeta-cap.jpg
+    leftFile: /images/uploads/teeta/t-shirt02.jpg
+    rightFile: /images/uploads/teeta/teeta-cap.jpg
   - type: single
     mediaType: video
     hasAudio: false
     order: 7
-    file: /images/uploads/posters-02.mov
+    file: /images/uploads/teeta/posters-02.mov
 featured: true
 order: 1
 ---

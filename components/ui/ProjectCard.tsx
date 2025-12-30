@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import LazyVideo from '@/components/LazyVideo';
 
 interface ProjectCardProps {
   title: string;
@@ -42,12 +43,8 @@ export default function ProjectCard({
         {/* Media */}
         <div className="w-full">
           {video ? (
-            <video
+            <LazyVideo
               src={video}
-              autoPlay
-              muted
-              loop
-              playsInline
               className="w-full h-auto object-cover block"
             />
           ) : image ? (

@@ -44,6 +44,7 @@ export default async function Project(
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                   className="w-full h-full object-cover"
                 />
               ) : projectData.featuredImageMobile ? (
@@ -68,6 +69,7 @@ export default async function Project(
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             ) : projectData.featuredImage ? (
