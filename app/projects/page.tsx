@@ -5,9 +5,9 @@ export default function Projects() {
   const allProjects = getAllProjects();
   
   return (
-    <div className="w-full px-6 py-8 md:py-12">
+    <div className="w-full px-4 md:px-6 py-8 md:py-12">
       {allProjects.length > 0 ? (
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-4 md:gap-6">
           {allProjects.map((project, index) => (
             <ProjectCard
               key={project.slug}

@@ -30,7 +30,7 @@ export default async function Project(
     : [];
 
   return (
-    <article className="bg-background px-6 md:px-8 min-h-screen">
+    <article className="bg-background px-4 md:px-6 min-h-screen">
       {/* Hero Section */}
       <div className="w-full">
         <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
@@ -86,9 +86,9 @@ export default async function Project(
         </div>
       </div>
 
-      <div className="w-full py-12 md:py-24">
+      <div className="w-full pt-8 md:pt-16">
         {/* Project Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4 space-y-8">
             <div>
               <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Services</h3>

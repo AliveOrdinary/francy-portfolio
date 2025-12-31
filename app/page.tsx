@@ -5,10 +5,10 @@ export default function Home() {
   const featuredProjects = getFeaturedProjects();
   
   return (
-    <div className="w-full px-6"> 
+    <div className="w-full px-4 md:px-6"> 
       {/* Projects Grid */}
       {featuredProjects.length > 0 && (
-        <section className="grid grid-cols-1 gap-6 pb-20">
+        <section className="grid grid-cols-1 gap-4 md:gap-6 pb-20">
           {featuredProjects.map((project, index) => (
             <div 
               key={project.slug} 
