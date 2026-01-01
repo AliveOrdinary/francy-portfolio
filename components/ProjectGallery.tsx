@@ -1,9 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import LazyVideo from '@/components/LazyVideo';
-import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock } from '@/lib/types';
+import HighResImageViewer from '@/components/HighResImageViewer';
+import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock, ViewerMediaItem } from '@/lib/types';
 import { IMAGE_CONFIG } from '@/lib/constants';
+import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 
 
 interface ProjectGalleryProps {
@@ -34,10 +37,13 @@ function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, 
     );
   }
   
+  // Use optimized path for images in gallery (faster loading)
+  const optimizedSrc = isImagePath(src) ? getOptimizedPath(src) : src;
+  
   return (
     <div className={`relative cursor-zoom-in overflow-hidden rounded-2xl ${className}`} onClick={onClick}>
       <Image
-        src={src}
+        src={optimizedSrc}
         alt={alt}
         width={1600}
         height={900}
@@ -52,7 +58,17 @@ function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, 
 }
 
 // Single full-width block
-function SingleBlockComponent({ block, projectTitle, index }: { block: SingleBlock; projectTitle: string; index: number }) {
+function SingleBlockComponent({ 
+  block, 
+  projectTitle, 
+  index,
+  onMediaClick 
+}: { 
+  block: SingleBlock; 
+  projectTitle: string; 
+  index: number;
+  onMediaClick: (mediaIndex: number) => void;
+}) {
   return (
     <div className="w-full">
       <MediaItem
@@ -61,6 +77,7 @@ function SingleBlockComponent({ block, projectTitle, index }: { block: SingleBlo
         alt={block.caption || `${projectTitle} - ${index + 1}`}
         hasAudio={block.hasAudio}
         priority={index < 2}
+        onClick={() => onMediaClick(index)}
       />
       {block.caption && (
         <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
@@ -70,29 +87,55 @@ function SingleBlockComponent({ block, projectTitle, index }: { block: SingleBlo
 }
 
 // Seamless pair - no gap, merged on desktop, equal heights
-function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: SeamlessPairBlock; projectTitle: string; index: number }) {
-  const renderMedia = (type: 'image' | 'video', src: string, alt: string, hasAudio?: boolean, priority: boolean = false) => {
+function SeamlessPairBlockComponent({ 
+  block, 
+  projectTitle, 
+  index,
+  onMediaClick,
+  mediaStartIndex 
+}: { 
+  block: SeamlessPairBlock; 
+  projectTitle: string; 
+  index: number;
+  onMediaClick: (mediaIndex: number) => void;
+  mediaStartIndex: number;
+}) {
+  const renderMedia = (
+    type: 'image' | 'video', 
+    src: string, 
+    alt: string, 
+    hasAudio?: boolean, 
+    priority: boolean = false,
+    mediaIndex: number = 0
+  ) => {
     if (type === 'video') {
       return (
-        <LazyVideo
-          src={src}
-          hasAudio={hasAudio}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <div className="absolute inset-0 cursor-pointer" onClick={() => onMediaClick(mediaIndex)}>
+          <LazyVideo
+            src={src}
+            hasAudio={hasAudio}
+            className="w-full h-full object-cover"
+          />
+        </div>
       );
     }
     
+    // Use optimized path for images in gallery
+    const optimizedSrc = isImagePath(src) ? getOptimizedPath(src) : src;
+    
     return (
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="50vw"
-        quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
-        loading={priority ? 'eager' : 'lazy'}
-        priority={priority}
-        className="object-cover"
-      />
+      <div className="absolute inset-0 cursor-zoom-in" onClick={() => onMediaClick(mediaIndex)}>
+        <Image
+          src={optimizedSrc}
+          alt={alt}
+          fill
+          sizes="50vw"
+          quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
+          loading={priority ? 'eager' : 'lazy'}
+          priority={priority}
+          className="object-cover"
+        />
+      </div>
     );
   };
 
@@ -106,7 +149,8 @@ function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: Sea
               block.leftFile,
               block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`,
               block.leftHasAudio,
-              index < 2
+              index < 2,
+              mediaStartIndex
             )}
           </div>
         </div>
@@ -117,7 +161,8 @@ function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: Sea
               block.rightFile,
               block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`,
               block.rightHasAudio,
-              index < 2
+              index < 2,
+              mediaStartIndex + 1
             )}
           </div>
         </div>
@@ -130,29 +175,55 @@ function SeamlessPairBlockComponent({ block, projectTitle, index }: { block: Sea
 }
 
 // Side by side - with gap, equal heights using aspect ratio
-function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideBySideBlock; projectTitle: string; index: number }) {
-  const renderMedia = (type: 'image' | 'video', src: string, alt: string, hasAudio?: boolean, priority: boolean = false) => {
+function SideBySideBlockComponent({ 
+  block, 
+  projectTitle, 
+  index,
+  onMediaClick,
+  mediaStartIndex 
+}: { 
+  block: SideBySideBlock; 
+  projectTitle: string; 
+  index: number;
+  onMediaClick: (mediaIndex: number) => void;
+  mediaStartIndex: number;
+}) {
+  const renderMedia = (
+    type: 'image' | 'video', 
+    src: string, 
+    alt: string, 
+    hasAudio?: boolean, 
+    priority: boolean = false,
+    mediaIndex: number = 0
+  ) => {
     if (type === 'video') {
       return (
-        <LazyVideo
-          src={src}
-          hasAudio={hasAudio}
-          className="absolute inset-0 w-full h-full object-cover rounded-2xl"
-        />
+        <div className="absolute inset-0 cursor-pointer" onClick={() => onMediaClick(mediaIndex)}>
+          <LazyVideo
+            src={src}
+            hasAudio={hasAudio}
+            className="w-full h-full object-cover rounded-2xl"
+          />
+        </div>
       );
     }
     
+    // Use optimized path for images in gallery
+    const optimizedSrc = isImagePath(src) ? getOptimizedPath(src) : src;
+    
     return (
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="50vw"
-        quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
-        loading={priority ? 'eager' : 'lazy'}
-        priority={priority}
-        className="object-cover rounded-2xl"
-      />
+      <div className="absolute inset-0 cursor-zoom-in" onClick={() => onMediaClick(mediaIndex)}>
+        <Image
+          src={optimizedSrc}
+          alt={alt}
+          fill
+          sizes="50vw"
+          quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
+          loading={priority ? 'eager' : 'lazy'}
+          priority={priority}
+          className="object-cover rounded-2xl"
+        />
+      </div>
     );
   };
 
@@ -166,7 +237,8 @@ function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideB
               block.leftFile,
               block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`,
               block.leftHasAudio,
-              index < 2
+              index < 2,
+              mediaStartIndex
             )}
           </div>
         </div>
@@ -177,7 +249,8 @@ function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideB
               block.rightFile,
               block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`,
               block.rightHasAudio,
-              index < 2
+              index < 2,
+              mediaStartIndex + 1
             )}
           </div>
         </div>
@@ -189,7 +262,53 @@ function SideBySideBlockComponent({ block, projectTitle, index }: { block: SideB
   );
 }
 
+// Helper to extract all media items from blocks for the viewer
+function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
+  const media: ViewerMediaItem[] = [];
+  
+  for (const block of blocks) {
+    switch (block.type) {
+      case 'single':
+        media.push({
+          type: block.mediaType,
+          src: block.file, // Use original path for high-res viewer
+          hasAudio: block.hasAudio || false
+        });
+        break;
+      case 'seamlessPair':
+        media.push({
+          type: block.leftType,
+          src: block.leftFile,
+          hasAudio: block.leftHasAudio || false
+        });
+        media.push({
+          type: block.rightType,
+          src: block.rightFile,
+          hasAudio: block.rightHasAudio || false
+        });
+        break;
+      case 'sideBySide':
+        media.push({
+          type: block.leftType,
+          src: block.leftFile,
+          hasAudio: block.leftHasAudio || false
+        });
+        media.push({
+          type: block.rightType,
+          src: block.rightFile,
+          hasAudio: block.rightHasAudio || false
+        });
+        break;
+    }
+  }
+  
+  return media;
+}
+
 export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryProps) {
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  
   // Sort blocks by order
   const sortedBlocks = [...blocks].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
@@ -197,20 +316,79 @@ export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryP
     return null;
   }
 
+  // Extract all media for the viewer (using original paths)
+  const allMedia = extractAllMedia(sortedBlocks);
+  
+  // Handle media click - open viewer at specific index
+  const handleMediaClick = (mediaIndex: number) => {
+    setActiveMediaIndex(mediaIndex);
+    setViewerOpen(true);
+  };
+
+  // Track media index across blocks
+  let currentMediaIndex = 0;
+
   return (
-    <div className="space-y-4 md:space-y-8">
-      {sortedBlocks.map((block, index) => {
-        switch (block.type) {
-          case 'single':
-            return <SingleBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
-          case 'seamlessPair':
-            return <SeamlessPairBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
-          case 'sideBySide':
-            return <SideBySideBlockComponent key={index} block={block} projectTitle={projectTitle} index={index} />;
-          default:
-            return null;
-        }
-      })}
-    </div>
+    <>
+      <div className="space-y-4 md:space-y-8">
+        {sortedBlocks.map((block, index) => {
+          const mediaStartIndex = currentMediaIndex;
+          
+          // Update current index based on block type
+          switch (block.type) {
+            case 'single':
+              currentMediaIndex += 1;
+              return (
+                <SingleBlockComponent 
+                  key={index} 
+                  block={block} 
+                  projectTitle={projectTitle} 
+                  index={mediaStartIndex}
+                  onMediaClick={handleMediaClick}
+                />
+              );
+            case 'seamlessPair':
+              currentMediaIndex += 2;
+              return (
+                <SeamlessPairBlockComponent 
+                  key={index} 
+                  block={block} 
+                  projectTitle={projectTitle} 
+                  index={index}
+                  onMediaClick={handleMediaClick}
+                  mediaStartIndex={mediaStartIndex}
+                />
+              );
+            case 'sideBySide':
+              currentMediaIndex += 2;
+              return (
+                <SideBySideBlockComponent 
+                  key={index} 
+                  block={block} 
+                  projectTitle={projectTitle} 
+                  index={index}
+                  onMediaClick={handleMediaClick}
+                  mediaStartIndex={mediaStartIndex}
+                />
+              );
+            default:
+              return null;
+          }
+        })}
+      </div>
+
+      {/* HighResImageViewer with external control */}
+      {allMedia.length > 0 && (
+        <HighResImageViewer
+          src={allMedia[activeMediaIndex]?.src || ''}
+          alt={`${projectTitle} - Media ${activeMediaIndex + 1}`}
+          allProjectMedia={allMedia}
+          currentIndex={activeMediaIndex}
+          isOpen={viewerOpen}
+          onClose={() => setViewerOpen(false)}
+          className="hidden"
+        />
+      )}
+    </>
   );
 }

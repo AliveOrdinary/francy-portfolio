@@ -17,6 +17,9 @@ interface HighResImageViewerProps {
   highResQuality?: number;
   children?: React.ReactNode;
   className?: string;
+  // External control props
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 interface ImageDimensions {
@@ -36,9 +39,13 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   currentIndex = 0,
   highResQuality = 100,
   children,
-  className
+  className,
+  isOpen: externalIsOpen,
+  onClose: externalOnClose
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // Use external control if provided, otherwise internal state
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  const isModalOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
   const [activeImageIndex, setActiveImageIndex] = useState(currentIndex);
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -60,6 +67,23 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   const mediaArray = allProjectMedia.length > 0 ? allProjectMedia : allProjectImages.map(imgSrc => ({ type: 'image' as const, src: imgSrc, hasAudio: false }));
   const currentMedia = mediaArray.length > 0 ? mediaArray[activeImageIndex] : { type: 'image' as const, src, hasAudio: false };
   const currentImageSrc = currentMedia.src;
+  
+  // Handle external open - sync currentIndex and initialize modal state
+  useEffect(() => {
+    if (externalIsOpen) {
+      setActiveImageIndex(currentIndex);
+      setZoom(1);
+      setPosition({ x: 0, y: 0 });
+      setHighResLoaded(false);
+      setIsLoadingHighRes(true);
+      
+      // Show mobile hint
+      if (typeof window !== 'undefined' && window.innerWidth < 768 && mediaArray.length > 1) {
+        setShowMobileHint(true);
+        setTimeout(() => setShowMobileHint(false), 3000);
+      }
+    }
+  }, [externalIsOpen, currentIndex, mediaArray.length]);
   
   // Helper function to check if current media is a video
   const isCurrentMediaVideo = () => {
@@ -117,7 +141,7 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   }, [mediaArray, activeImageIndex, getHighResUrl]);
 
   const openModal = useCallback(() => {
-    setIsModalOpen(true);
+    setInternalIsOpen(true);
     setActiveImageIndex(currentIndex);
     setZoom(1);
     setPosition({ x: 0, y: 0 });
@@ -137,10 +161,15 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   }, [currentIndex, allProjectImages, src, preloadHighRes, triggerHapticFeedback, mediaArray.length, setShowMobileHint]);
 
   const closeModal = useCallback(() => {
-    setIsModalOpen(false);
+    // If externally controlled, call the external callback
+    if (externalOnClose) {
+      externalOnClose();
+    } else {
+      setInternalIsOpen(false);
+    }
     setZoom(1);
     setPosition({ x: 0, y: 0 });
-  }, []);
+  }, [externalOnClose]);
   
   const nextImage = useCallback(() => {
     if (mediaArray.length > 1) {

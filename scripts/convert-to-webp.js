@@ -1,5 +1,8 @@
-// Script to convert images to high-quality WebP format
-// This preserves image quality while reducing file size
+// Enhanced script to convert and optimize images for web
+// - Converts to WebP format
+// - Resizes to max dimension (preserves aspect ratio)
+// - Saves to /images/optimized/ folder (mirrors folder structure)
+// - Keeps originals in place for high-res viewer
 
 const fs = require('fs');
 const path = require('path');
@@ -8,103 +11,178 @@ const { findImages } = require('./optimize-images');
 
 const publicDir = path.join(__dirname, '../public');
 const uploadsDir = path.join(publicDir, 'images/uploads');
+const optimizedDir = path.join(publicDir, 'images/optimized');
+
+// Configuration
+const CONFIG = {
+  maxWidth: 2400,     // Max width for optimized images
+  maxHeight: 2400,    // Max height for optimized images
+  quality: 90,        // WebP quality (90 is visually identical to original)
+  effort: 6,          // Compression effort (0-6, higher = smaller but slower)
+};
 
 /**
- * Converts an image to WebP format with high quality
- * @param {string} imagePath - Path to the original image
- * @param {number} quality - WebP quality (0-100)
- * @returns {Promise<string>} - Path to the converted WebP image
+ * Ensures a directory exists, creating it recursively if needed
  */
-async function convertToWebP(imagePath, quality = 95) {
-  // Skip if already WebP
-  if (path.extname(imagePath).toLowerCase() === '.webp') {
-    console.log(`Skipping already WebP image: ${imagePath}`);
-    return imagePath;
+function ensureDir(dirPath) {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
   }
+}
 
-  const outputPath = imagePath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+/**
+ * Gets the output path for an optimized image
+ * Mirrors the folder structure from uploads to optimized
+ */
+function getOutputPath(imagePath) {
+  const relativePath = path.relative(uploadsDir, imagePath);
+  const parsedPath = path.parse(relativePath);
+  const webpRelativePath = path.join(parsedPath.dir, `${parsedPath.name}.webp`);
+  return path.join(optimizedDir, webpRelativePath);
+}
+
+/**
+ * Converts and optimizes an image
+ * @param {string} imagePath - Path to the original image
+ * @returns {Promise<{original: string, optimized: string, originalSize: number, optimizedSize: number}>}
+ */
+async function optimizeImage(imagePath) {
+  const outputPath = getOutputPath(imagePath);
+  
+  // Ensure output directory exists
+  ensureDir(path.dirname(outputPath));
   
   try {
-    // Get image metadata first
+    // Get original metadata
     const metadata = await sharp(imagePath).metadata();
-    
-    // Convert to WebP with high quality
-    await sharp(imagePath)
-      .webp({ 
-        quality: quality,
-        effort: 6, // Higher effort = better compression but slower (0-6)
-        lossless: quality === 100 // Use lossless for 100% quality
-      })
-      .toFile(outputPath);
-    
     const originalStats = fs.statSync(imagePath);
-    const webpStats = fs.statSync(outputPath);
     
-    const originalSize = (originalStats.size / (1024 * 1024)).toFixed(2);
-    const webpSize = (webpStats.size / (1024 * 1024)).toFixed(2);
-    const savings = (100 - (webpStats.size / originalStats.size * 100)).toFixed(1);
+    // Determine if resize is needed
+    const needsResize = metadata.width > CONFIG.maxWidth || metadata.height > CONFIG.maxHeight;
     
-    console.log(`✓ Converted: ${path.basename(imagePath)} (${metadata.width}x${metadata.height})`);
-    console.log(`  ${originalSize}MB → ${webpSize}MB (${savings}% smaller)`);
+    // Build the sharp pipeline
+    let pipeline = sharp(imagePath);
     
-    return outputPath;
+    // Resize if larger than max dimensions (maintains aspect ratio)
+    if (needsResize) {
+      pipeline = pipeline.resize(CONFIG.maxWidth, CONFIG.maxHeight, {
+        fit: 'inside',
+        withoutEnlargement: true
+      });
+    }
+    
+    // Convert to WebP
+    pipeline = pipeline.webp({
+      quality: CONFIG.quality,
+      effort: CONFIG.effort,
+    });
+    
+    // Save the optimized image
+    await pipeline.toFile(outputPath);
+    
+    const optimizedStats = fs.statSync(outputPath);
+    
+    return {
+      original: imagePath,
+      optimized: outputPath,
+      originalSize: originalStats.size,
+      optimizedSize: optimizedStats.size,
+      wasResized: needsResize,
+      originalDimensions: `${metadata.width}x${metadata.height}`
+    };
   } catch (error) {
-    console.error(`Error converting ${imagePath} to WebP:`, error);
-    return imagePath;
+    console.error(`Error optimizing ${imagePath}:`, error.message);
+    return null;
   }
+}
+
+/**
+ * Formats bytes to human readable string
+ */
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
 }
 
 /**
  * Processes all images in the uploads directory
- * @param {number} quality - WebP quality (0-100)
  */
-async function processAllImages(quality = 95) {
-  console.log(`Converting images to WebP (quality: ${quality}%)...`);
+async function processAllImages() {
+  console.log('🖼️  Media Optimization Script');
+  console.log('================================\n');
+  console.log(`Config: max ${CONFIG.maxWidth}x${CONFIG.maxHeight}, quality ${CONFIG.quality}%\n`);
   
   if (!fs.existsSync(uploadsDir)) {
-    console.log('No uploads directory found.');
+    console.log('❌ No uploads directory found at:', uploadsDir);
     return;
   }
   
-  const images = findImages(uploadsDir).filter(img => 
-    /\.(jpg|jpeg|png)$/i.test(img) && !img.includes('.webp')
-  );
+  // Find all images (jpg, jpeg, png, webp)
+  const images = findImages(uploadsDir);
   
   if (images.length === 0) {
-    console.log('No compatible images found to convert.');
+    console.log('No images found to optimize.');
     return;
   }
   
-  console.log(`Found ${images.length} images to convert.`);
+  console.log(`Found ${images.length} images to process.\n`);
   
-  // Create a backup directory
-  const backupDir = path.join(publicDir, 'images/originals');
-  if (!fs.existsSync(backupDir)) {
-    fs.mkdirSync(backupDir, { recursive: true });
-  }
+  // Ensure optimized directory exists
+  ensureDir(optimizedDir);
   
-  // Process images
+  let totalOriginalSize = 0;
+  let totalOptimizedSize = 0;
+  let successCount = 0;
+  let skippedCount = 0;
+  
   for (const imagePath of images) {
-    const relativePath = path.relative(publicDir, imagePath);
-    const backupPath = path.join(backupDir, path.basename(imagePath));
+    const relativePath = path.relative(uploadsDir, imagePath);
+    const outputPath = getOutputPath(imagePath);
     
-    // Backup original
-    fs.copyFileSync(imagePath, backupPath);
+    // Check if optimized version already exists and is newer than original
+    if (fs.existsSync(outputPath)) {
+      const originalMtime = fs.statSync(imagePath).mtime;
+      const optimizedMtime = fs.statSync(outputPath).mtime;
+      
+      if (optimizedMtime > originalMtime) {
+        console.log(`⏭️  Skipping (already optimized): ${relativePath}`);
+        skippedCount++;
+        continue;
+      }
+    }
     
-    // Convert to WebP
-    await convertToWebP(imagePath, quality);
+    const result = await optimizeImage(imagePath);
+    
+    if (result) {
+      const savings = ((1 - result.optimizedSize / result.originalSize) * 100).toFixed(1);
+      const resizeNote = result.wasResized ? ` (resized from ${result.originalDimensions})` : '';
+      
+      console.log(`✅ ${relativePath}${resizeNote}`);
+      console.log(`   ${formatBytes(result.originalSize)} → ${formatBytes(result.optimizedSize)} (${savings}% smaller)\n`);
+      
+      totalOriginalSize += result.originalSize;
+      totalOptimizedSize += result.optimizedSize;
+      successCount++;
+    }
   }
   
-  console.log('\nConversion complete!');
-  console.log(`Original images backed up to: ${path.relative(process.cwd(), backupDir)}`);
+  console.log('================================');
+  console.log(`✨ Optimization complete!`);
+  console.log(`   Processed: ${successCount} images`);
+  if (skippedCount > 0) {
+    console.log(`   Skipped: ${skippedCount} (already optimized)`);
+  }
+  if (successCount > 0) {
+    const totalSavings = ((1 - totalOptimizedSize / totalOriginalSize) * 100).toFixed(1);
+    console.log(`   Total savings: ${formatBytes(totalOriginalSize - totalOptimizedSize)} (${totalSavings}% reduction)`);
+  }
+  console.log(`\n📁 Optimized images saved to: public/images/optimized/`);
 }
 
-// Run the script if called directly
+// Run the script
 if (require.main === module) {
-  // Use high quality by default (95%)
-  // Pass a command line argument to override, e.g. node convert-to-webp.js 90
-  const quality = process.argv[2] ? parseInt(process.argv[2]) : 95;
-  processAllImages(quality);
+  processAllImages().catch(console.error);
 }
 
-module.exports = { convertToWebP, processAllImages };
+module.exports = { optimizeImage, processAllImages, getOutputPath, CONFIG };
