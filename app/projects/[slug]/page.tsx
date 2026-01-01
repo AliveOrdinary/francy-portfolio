@@ -1,13 +1,22 @@
 import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdown';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import ProjectGallery from '@/components/ProjectGallery';
 import ExpandableSummary from '@/components/ExpandableSummary';
 
 /**
  * Generate static params for all projects at build time
+ * Returns a placeholder when no projects exist to prevent build failures with output: export
  */
 export function generateStaticParams() {
   const projects = getAllProjects();
+  
+  // If no projects exist, return a placeholder to prevent build failure
+  // The page component will handle showing a "not found" state
+  if (projects.length === 0) {
+    return [{ slug: '_placeholder' }];
+  }
+  
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -21,7 +30,19 @@ export default async function Project(
   const params = await props.params;
   const { slug } = params;
   
-  const projectData = getProjectData(slug);
+  // Handle placeholder slug - show 404
+  if (slug === '_placeholder') {
+    notFound();
+  }
+  
+  // Try to get project data, show 404 if not found
+  let projectData;
+  try {
+    projectData = getProjectData(slug);
+  } catch {
+    notFound();
+  }
+  
   const mainSummaryHtml = await getMarkdownContent(projectData.mainSummary || '');
   
   // Sort gallery blocks by order
