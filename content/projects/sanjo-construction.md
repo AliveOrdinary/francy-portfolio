@@ -40,6 +40,6 @@ galleryBlocks:
     hasAudio: false
     order: 5
     file: /images/uploads/sanjo-construction/3-frames.webm
-featured: false
+featured: true
 order: 1
 ---
