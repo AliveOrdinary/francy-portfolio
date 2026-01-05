@@ -1,6 +1,6 @@
 ---
 title: Sanjo Construction
-slug: sanjoconstruction
+slug: sanjo-construction
 category: Branding
 featuredVideo: /images/uploads/sanjo-construction/sanjo-logo.webm
 featuredVideoHasAudio: false
