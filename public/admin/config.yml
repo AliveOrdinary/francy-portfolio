@@ -11,7 +11,7 @@ collections:
     folder: "content/projects"
     create: true
     slug: "{{slug}}"
-    media_folder: "{{media_folder}}/images/uploads/{{slug}}"
+    media_folder: "public/images/uploads/{{slug}}"
     public_folder: "/images/uploads/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
