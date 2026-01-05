@@ -22,20 +22,45 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 1
+    file: /images/uploads/sanjo-construction/grid-animation.webm
+  - type: single
+    mediaType: image
+    hasAudio: false
+    order: 2
+    file: /images/uploads/sanjo-construction/grid.webp
+  - type: sideBySide
+    leftType: video
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 5
+    leftFile: /images/uploads/sanjo-construction/type-motion.webm
+    rightFile: /images/uploads/sanjo-construction/sanjo_letters.webm
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 3
+    file: /images/uploads/sanjo-construction/3-frames.webm
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 4
+    file: /images/uploads/sanjo-construction/type-motion.webm
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 6
     file: /images/uploads/sanjo-construction/colour-palette.webm
   - type: single
     mediaType: image
     hasAudio: false
-    order: 3
-    file: /images/uploads/sanjo-construction/grid.webp
-  - type: sideBySide
-    leftType: image
-    leftHasAudio: false
-    rightType: video
-    rightHasAudio: false
-    order: 2
-    leftFile: /images/uploads/sanjo-construction/cap.webp
-    rightFile: /images/uploads/sanjo-construction/type-motion.webm
+    order: 7
+    file: /images/uploads/sanjo-construction/sanjo-business-card.webp
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 8
+    file: /images/uploads/sanjo-construction/tiles.webm
 featured: true
 order: 1
 ---
