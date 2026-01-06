@@ -15,4 +15,10 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Scroll performance optimization for off-screen content */
+  .scroll-optimize {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
 }

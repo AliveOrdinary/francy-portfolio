@@ -31,7 +31,7 @@ function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, 
       <LazyVideo
         src={src}
         hasAudio={hasAudio}
-        className={`w-full h-auto rounded-2xl cursor-pointer transition-transform duration-500 ${className}`}
+        className={`w-full h-auto rounded-2xl cursor-pointer ${className}`}
         onClick={onClick}
       />
     );
@@ -51,7 +51,7 @@ function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, 
         quality={IMAGE_CONFIG.QUALITY.THUMBNAIL_GALLERY}
         loading={priority ? 'eager' : 'lazy'}
         priority={priority}
-        className="w-full h-auto object-cover block transition-transform duration-500"
+        className="w-full h-auto object-cover block"
       />
     </div>
   );
@@ -330,7 +330,7 @@ export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryP
 
   return (
     <>
-      <div className="space-y-4 md:space-y-8">
+      <div className="space-y-4 md:space-y-8 scroll-optimize">
         {sortedBlocks.map((block, index) => {
           const mediaStartIndex = currentMediaIndex;
           
