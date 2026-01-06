@@ -61,6 +61,11 @@ galleryBlocks:
     hasAudio: false
     order: 8
     file: /images/uploads/sanjo-construction/tiles.webm
+  - type: single
+    mediaType: image
+    hasAudio: false
+    order: 9
+    file: /images/uploads/sanjo-construction/grid.webp
 featured: true
 order: 1
 ---
