@@ -60,7 +60,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 8
-    file: /images/uploads/tiles.mp4
+    file: /images/uploads/tiles.webm
 featured: true
 order: 1
 ---
