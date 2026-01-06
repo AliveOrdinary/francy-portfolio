@@ -34,8 +34,8 @@ galleryBlocks:
     rightType: image
     rightHasAudio: false
     order: 5
-    leftFile: /images/uploads/sanjo-construction/type-motion.webm
-    rightFile: /images/uploads/sanjo-construction/sanjo_letters.webm
+    leftFile: /images/uploads/sanjo-construction/sanjo_letters.webm
+    rightFile: /images/uploads/sanjo-construction/cap.webp
   - type: single
     mediaType: video
     hasAudio: false
