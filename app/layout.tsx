@@ -18,10 +18,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Eldho | Art Director & Graphic Designer",
-  description: "Eldhose Kuriyan is an Art Director and Graphic Designer based in Toronto, specializing in branding, typography, and illustration.",
-  keywords: ["Art Director", "Graphic Designer", "Branding", "Typography", "Illustration", "Toronto", "Portfolio"],
-  authors: [{ name: "Eldhose Kuriyan" }],
+  title: "Francis | Art Director & Graphic Designer",
+  description: "Francis Xavier is an Art Director and Graphic Designer based in Toronto, specializing in branding, typography, and UI/UX.",
+  keywords: ["Art Director", "Graphic Designer", "Branding", "Typography", "UI/UX", "Toronto", "Portfolio"],
+  authors: [{ name: "Francis Xavier" }],
   creator: "AliveOrdinary",
 };
 
