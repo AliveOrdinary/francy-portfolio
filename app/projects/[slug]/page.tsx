@@ -1,8 +1,8 @@
 import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdown';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import ProjectGallery from '@/components/ProjectGallery';
 import ExpandableSummary from '@/components/ExpandableSummary';
+import HeroMedia from '@/components/HeroMedia';
 
 /**
  * Generate static params for all projects at build time
@@ -52,60 +52,17 @@ export default async function Project(
 
   return (
     <article className="bg-background px-4 md:px-6 min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section - Uses LazyVideo for optimized loading */}
       <div className="w-full">
-        <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
-          {/* Mobile featured media */}
-          {(projectData.featuredVideoMobile || projectData.featuredImageMobile) && (
-            <div className="block md:hidden w-full h-full">
-              {projectData.featuredVideoMobile ? (
-                <video
-                  src={projectData.featuredVideoMobile}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-full object-cover"
-                />
-              ) : projectData.featuredImageMobile ? (
-                <Image
-                  src={projectData.featuredImageMobile}
-                  alt={projectData.title}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="100vw"
-                />
-              ) : null}
-            </div>
-          )}
-          
-          {/* Desktop featured media (hidden on mobile if mobile variant exists) */}
-          <div className={`${(projectData.featuredVideoMobile || projectData.featuredImageMobile) ? 'hidden md:block' : 'block'} w-full h-full`}>
-            {projectData.featuredVideo ? (
-              <video
-                src={projectData.featuredVideo}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover"
-              />
-            ) : projectData.featuredImage ? (
-              <Image
-                src={projectData.featuredImage}
-                alt={projectData.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="100vw"
-              />
-            ) : null}
-          </div>
-        </div>
+        <HeroMedia
+          video={projectData.featuredVideo}
+          videoMobile={projectData.featuredVideoMobile}
+          image={projectData.featuredImage}
+          imageMobile={projectData.featuredImageMobile}
+          title={projectData.title}
+        />
       </div>
+
 
       <div className="w-full pt-8 md:pt-16">
         {/* Project Info Grid */}
