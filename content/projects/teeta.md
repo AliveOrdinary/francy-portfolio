@@ -30,7 +30,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 1
-    file: /images/uploads/coz-teeta_long.mp4
+    file: /images/uploads/coz-teeta_long.webm
   - type: seamlessPair
     leftType: image
     leftHasAudio: false
@@ -38,24 +38,24 @@ galleryBlocks:
     rightHasAudio: false
     order: 2
     leftFile: /images/uploads/coaster-mockup.jpg
-    rightFile: /images/uploads/illustration.mp4
+    rightFile: /images/uploads/illustration.webm
   - type: single
     mediaType: video
     hasAudio: false
     order: 3
-    file: /images/uploads/posters01.mp4
+    file: /images/uploads/posters01.webm
   - type: single
     mediaType: video
     hasAudio: false
     order: 4
-    file: /images/uploads/coz-teeta.mp4
+    file: /images/uploads/coz-teeta.webm
   - type: seamlessPair
     leftType: video
     leftHasAudio: false
     rightType: image
     rightHasAudio: false
     order: 5
-    leftFile: /images/uploads/colour-palette.mp4
+    leftFile: /images/uploads/colour-palette.webm
     rightFile: /images/uploads/tote-bag.jpg
   - type: sideBySide
     leftType: image
@@ -69,7 +69,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 7
-    file: /images/uploads/social-media-tiles.mp4
+    file: /images/uploads/social-media-tiles.webm
 featured: true
 order: 1
 ---
