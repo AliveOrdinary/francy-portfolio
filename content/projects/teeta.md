@@ -55,7 +55,7 @@ galleryBlocks:
     rightType: image
     rightHasAudio: false
     order: 5
-    leftFile: /images/uploads/colour-palette.webm
+    leftFile: /images/uploads/colour-palette.mp4
     rightFile: /images/uploads/tote-bag.jpg
   - type: sideBySide
     leftType: image
