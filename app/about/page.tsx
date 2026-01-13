@@ -27,7 +27,7 @@ export default function About() {
         {/* Bio */}
         {aboutData.bio && (
           <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-            <h2 className="text-base font-medium"></h2>
+            <div aria-hidden="true" />
             <p className="text-xl leading-relaxed text-gray-700">
               {aboutData.bio}
             </p>
@@ -59,7 +59,7 @@ export default function About() {
         )}
         
         {/* Divider */}
-        <div className="border-t border-gray-200 my-12"></div>
+        <div className="border-t border-gray-200 my-12" />
         
         {/* Contact Section */}
         <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
@@ -83,7 +83,7 @@ export default function About() {
         </div>
         
         {/* Divider */}
-        <div className="border-t border-gray-200 my-12"></div>
+        <div className="border-t border-gray-200 my-12" />
         
         {/* Social Section */}
         {contactData.socialMedia && contactData.socialMedia.length > 0 && (
