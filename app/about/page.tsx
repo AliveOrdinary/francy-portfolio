@@ -1,78 +1,110 @@
 import Image from 'next/image';
-import { getAboutPageData } from '../../lib/markdown';
+import { getAboutPageData, getContactPageData } from '../../lib/markdown';
 
 export default function About() {
   const aboutData = getAboutPageData();
+  const contactData = getContactPageData();
   
   return (
-    <div className="container mx-auto px-4 py-12 md:py-20">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-12 mb-16">
-          <div className="md:w-3/5 space-y-12">
-            <div>
-              <p className="text-xl md:text-2xl leading-relaxed font-sans">
-                {aboutData.bio}
-              </p>
-            </div>
-            
-            {aboutData.whatIDo && (
-              <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-500">What I Do</h2>
-                <p className="text-lg leading-relaxed">
-                  {aboutData.whatIDo}
-                </p>
-              </div>
-            )}
-            
-            {aboutData.experience && aboutData.experience.length > 0 && (
-              <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-500">Where I&apos;ve Been</h2>
-                <ul className="space-y-4">
-                  {aboutData.experience.map((item, index) => (
-                    <li key={index} className="text-lg border-l-2 border-primary pl-4">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            
-            {aboutData.achievements && aboutData.achievements.length > 0 && (
-              <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest mb-6 text-gray-500">Achievements</h2>
-                <div className="space-y-6">
-                  {aboutData.achievements.map((achievement, index) => (
-                    <div key={index} className="flex gap-8">
-                      <div className="text-gray-500 font-mono">
-                        {achievement.year}
-                      </div>
-                      <div className="text-lg font-medium">
-                        {achievement.description}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+    <div className="min-h-screen bg-white px-4 md:px-6">
+      {/* Hero Section */}
+      <div className="relative w-full ">
+        {aboutData.profileImage && (
+          <Image
+            src={aboutData.profileImage}
+            alt="Francis Xavier"
+            width={1200}
+            height={800}
+            className="w-full h-auto rounded-2xl"
+            sizes="100vw"
+            priority
+          />
+        )}
+      </div>
+      
+      {/* Content Section */}
+      <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
+        {/* Bio */}
+        {aboutData.bio && (
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+            <h2 className="text-base font-medium"></h2>
+            <p className="text-xl leading-relaxed text-gray-700">
+              {aboutData.bio}
+            </p>
           </div>
-          
-          <div className="md:w-2/5">
-            <div className="sticky top-24">
-              {aboutData.profileImage && (
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-gray-100">
-                  <Image
-                    src={aboutData.profileImage}
-                    alt="Eldhose Kuriyan"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                  />
-                </div>
-              )}
+        )}
+        
+        {/* What I Do Section */}
+        {aboutData.whatIDo && (
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+            <h2 className="text-xl font-medium">What I do</h2>
+            <p className="text-xl leading-relaxed text-gray-700">
+              {aboutData.whatIDo}
+            </p>
+          </div>
+        )}
+        
+        {/* Where I've Been Section */}
+        {aboutData.experience && aboutData.experience.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+            <h2 className="text-xl font-medium">Where I&apos;ve Been</h2>
+            <div className="space-y-4">
+              {aboutData.experience.map((item, index) => (
+                <p key={index} className="text-xl leading-relaxed text-gray-700">
+                  {item}
+                </p>
+              ))}
             </div>
+          </div>
+        )}
+        
+        {/* Divider */}
+        <div className="border-t border-gray-200 my-12"></div>
+        
+        {/* Contact Section */}
+        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+          <h2 className="text-xl font-medium">Contact</h2>
+          <div className="space-y-2">
+            <a 
+              href={`mailto:${contactData.email}`} 
+              className="block text-xl text-gray-700 hover:text-black transition-colors"
+            >
+              {contactData.email}
+            </a>
+            {contactData.phone && (
+              <a 
+                href={`tel:${contactData.phone.replace(/\s/g, '')}`}
+                className="block text-xl text-gray-700 hover:text-black transition-colors"
+              >
+                {contactData.phone}
+              </a>
+            )}
           </div>
         </div>
+        
+        {/* Divider */}
+        <div className="border-t border-gray-200 my-12"></div>
+        
+        {/* Social Section */}
+        {contactData.socialMedia && contactData.socialMedia.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8">
+            <h2 className="text-xl font-medium">Social</h2>
+            <div className="space-y-2">
+              {contactData.socialMedia.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xl text-gray-700 hover:text-black transition-colors"
+                >
+                  {social.platform}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
-} 
+}

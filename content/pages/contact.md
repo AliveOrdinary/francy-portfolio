@@ -1,12 +1,12 @@
 ---
 title: Contact
-email: eldhosekuriyan@gmail.com
-phone: "+1 (437) 559-2611"
+email: francisdes.in@gmail.com
+phone: "+1 647 893 5949"
 socialMedia:
-  - platform: Instagram
-    url: https://instagram.com/eldhosekuriyan
   - platform: LinkedIn
-    url: https://linkedin.com/in/eldhosekuriyan
+    url: https://linkedin.com/in/francisxavier
+  - platform: Instagram
+    url: https://instagram.com/francisxavier
   - platform: Behance
-    url: https://behance.net/eldhosekuriyan
---- 
+    url: https://behance.net/francisxavier
+---
