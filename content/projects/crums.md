@@ -43,6 +43,11 @@ galleryBlocks:
     hasAudio: false
     order: 2
     file: /images/uploads/slides-varients.mp4
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 3
+    file: /images/uploads/product-names.mp4
 featured: true
 order: 1
 ---
