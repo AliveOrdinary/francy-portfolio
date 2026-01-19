@@ -52,7 +52,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 4
-    file: /images/uploads/website-scroll.mp4
+    file: /images/uploads/website-scroll-mock.mp4
 featured: true
 order: 1
 ---
