@@ -38,6 +38,11 @@ galleryBlocks:
     order: 1
     leftFile: /images/uploads/crums-logo.jpg
     rightFile: /images/uploads/package.jpg
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 2
+    file: /images/uploads/slides-varients.mp4
 featured: true
 order: 1
 ---
