@@ -48,6 +48,11 @@ galleryBlocks:
     hasAudio: false
     order: 3
     file: /images/uploads/product-names.mp4
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 4
+    file: /images/uploads/website-scroll.mp4
 featured: true
 order: 1
 ---
