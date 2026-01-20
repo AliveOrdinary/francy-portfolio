@@ -2,7 +2,7 @@
 title: CRUMS
 slug: crums
 category: Branding
-featuredImage: /images/uploads/crums-cover.jpg
+featuredImage: /images/uploads/laptop_mockup_3.jpg
 featuredVideoHasAudio: false
 shortSummary: CRUMS is a conceptual e-commerce website designed for a premium
   snack brand specializing in banana chips, tapioca snacks, and traditional
