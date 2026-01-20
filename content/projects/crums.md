@@ -54,6 +54,14 @@ galleryBlocks:
     hasAudio: false
     order: 4
     file: /images/uploads/website-scroll-mock.mp4
+  - type: sideBySide
+    leftType: image
+    leftHasAudio: false
+    rightType: image
+    rightHasAudio: false
+    order: 5
+    leftFile: /images/uploads/favicon01.jpg
+    rightFile: /images/uploads/elements.jpg
 featured: true
 order: 1
 ---
