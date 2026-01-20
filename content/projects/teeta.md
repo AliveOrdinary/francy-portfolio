@@ -4,6 +4,7 @@ slug: teeta
 category: Branding
 featuredImage: /images/uploads/cover.jpg
 featuredVideoHasAudio: false
+featuredImageMobile: /images/uploads/teeta-mob.jpg
 shortSummary: "Teeta is a Malayali café rooted in Kochi, built around everyday
   food and everyday people. But the challenge was to turn something deeply
   familiar into a brand that felt bold, contemporary, and instantly
