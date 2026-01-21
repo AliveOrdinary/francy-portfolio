@@ -71,7 +71,12 @@ galleryBlocks:
     hasAudio: false
     order: 9
     file: /images/uploads/social-media-tiles.webm
-  - type: seamlessPair
+  - type: single
+    mediaType: image
+    hasAudio: false
+    order: 7
+    file: /images/uploads/free-coffee-cups-mockup.jpg
+  - type: sideBySide
     leftType: image
     leftHasAudio: false
     rightType: image
@@ -79,11 +84,6 @@ galleryBlocks:
     order: 8
     leftFile: /images/uploads/ice-cream-cups-mockup.jpg
     rightFile: /images/uploads/t-shirt-03.png
-  - type: single
-    mediaType: image
-    hasAudio: false
-    order: 7
-    file: /images/uploads/free-coffee-cups-mockup.jpg
 featured: true
 order: 1
 ---
