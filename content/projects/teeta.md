@@ -69,7 +69,7 @@ galleryBlocks:
   - type: single
     mediaType: video
     hasAudio: false
-    order: 8
+    order: 9
     file: /images/uploads/social-media-tiles.webm
   - type: seamlessPair
     leftType: image
@@ -78,7 +78,12 @@ galleryBlocks:
     rightHasAudio: false
     order: 7
     leftFile: /images/uploads/t-shirt-03.png
-    rightFile: /images/uploads/gemini_generated_image_e3vi7te3vi7te3vi.jpg
+    rightFile: /images/uploads/ice-cream-cups-mockup.jpg
+  - type: single
+    mediaType: image
+    hasAudio: false
+    order: 8
+    file: /images/uploads/free-coffee-cups-mockup.jpg
 featured: true
 order: 1
 ---
