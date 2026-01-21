@@ -76,13 +76,13 @@ galleryBlocks:
     leftHasAudio: false
     rightType: image
     rightHasAudio: false
-    order: 7
-    leftFile: /images/uploads/t-shirt-03.png
-    rightFile: /images/uploads/ice-cream-cups-mockup.jpg
+    order: 8
+    leftFile: /images/uploads/ice-cream-cups-mockup.jpg
+    rightFile: /images/uploads/t-shirt-03.png
   - type: single
     mediaType: image
     hasAudio: false
-    order: 8
+    order: 7
     file: /images/uploads/free-coffee-cups-mockup.jpg
 featured: true
 order: 1
