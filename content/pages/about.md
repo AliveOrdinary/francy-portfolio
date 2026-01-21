@@ -12,5 +12,6 @@ experience:
   - Freelance Designer, working across branding, digital, and print
   - Diploma in Advertising and Graphic Design from Humber Polytechnic
   - Bachelors in Fine Arts, Applied Art
-profileImage: /images/uploads/about.jpg
+profileImage: /images/uploads/about-landscape.jpg
+profileImageMobile: /images/uploads/about_portrait.jpg
 ---
