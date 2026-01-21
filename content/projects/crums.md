@@ -43,17 +43,17 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 2
-    file: /images/uploads/slides-varients.mp4
+    file: /images/uploads/slides-varients.webm
   - type: single
     mediaType: video
     hasAudio: false
     order: 3
-    file: /images/uploads/product-names.mp4
+    file: /images/uploads/product-names.webm
   - type: single
     mediaType: video
     hasAudio: false
     order: 4
-    file: /images/uploads/website-scroll-mock.mp4
+    file: /images/uploads/website-scroll-mock.webm
   - type: sideBySide
     leftType: image
     leftHasAudio: false

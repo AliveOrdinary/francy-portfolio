@@ -4,7 +4,7 @@ slug: sanjo-construction
 category: Branding
 featuredVideo: /images/uploads/sanjo-logo.webm
 featuredVideoHasAudio: false
-featuredVideoMobile: /images/uploads/sanjo-logo_mobile02.mp4
+featuredVideoMobile: /images/uploads/sanjo-logo_mobile02.webm
 shortSummary: The SANJO logo draws inspiration from architectural blueprints and
   spatial planning, directly reflecting the brand's core focus on renovations.
   Its design language is rooted in precision, structure, and intentional
