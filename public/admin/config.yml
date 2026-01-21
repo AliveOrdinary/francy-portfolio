@@ -73,6 +73,7 @@ collections:
           - { label: "Title", name: "title", widget: "string", default: "About" }
           - { label: "Bio", name: "bio", widget: "markdown" }
           - { label: "Profile Image", name: "profileImage", widget: "image" }
+          - { label: "Profile Image (Mobile)", name: "profileImageMobile", widget: "image", required: false, hint: "Vertical image optimized for mobile devices" }
       
       - label: "Contact Page"
         name: "contact"

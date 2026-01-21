@@ -89,6 +89,7 @@ export interface AboutPageData {
   experience?: string[];
   achievements?: Achievement[];
   profileImage: string;
+  profileImageMobile?: string;
   content?: string;
 }
 

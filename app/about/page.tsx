@@ -1,24 +1,53 @@
 import Image from 'next/image';
 import { getAboutPageData, getContactPageData } from '../../lib/markdown';
+import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 
 export default function About() {
   const aboutData = getAboutPageData();
   const contactData = getContactPageData();
   
+  // Optimize image paths
+  const optimizedProfileImage = isImagePath(aboutData.profileImage) 
+    ? getOptimizedPath(aboutData.profileImage) 
+    : aboutData.profileImage;
+    
+  // Check if mobile image exists and optimize it
+  const hasMobileImage = !!aboutData.profileImageMobile;
+  const optimizedMobileImage = hasMobileImage && aboutData.profileImageMobile && isImagePath(aboutData.profileImageMobile)
+    ? getOptimizedPath(aboutData.profileImageMobile)
+    : aboutData.profileImageMobile;
+
   return (
     <div className="min-h-screen bg-white px-4 md:px-6">
       {/* Hero Section */}
-      <div className="relative w-full ">
+      <div className="relative w-full">
         {aboutData.profileImage && (
-          <Image
-            src={aboutData.profileImage}
-            alt="Francis Xavier"
-            width={1200}
-            height={800}
-            className="w-full h-auto rounded-2xl"
-            sizes="100vw"
-            priority
-          />
+          <div className="w-full h-auto rounded-2xl overflow-hidden">
+             {hasMobileImage ? (
+               <picture>
+                 <source media="(max-width: 768px)" srcSet={optimizedMobileImage as string} />
+                 <Image
+                   src={optimizedProfileImage}
+                   alt="Francis Xavier"
+                   width={1200}
+                   height={800}
+                   className="w-full h-auto object-cover"
+                   sizes="100vw"
+                   priority
+                 />
+               </picture>
+             ) : (
+               <Image
+                 src={optimizedProfileImage}
+                 alt="Francis Xavier"
+                 width={1200}
+                 height={800}
+                 className="w-full h-auto object-cover"
+                 sizes="100vw"
+                 priority
+               />
+             )}
+          </div>
         )}
       </div>
       
