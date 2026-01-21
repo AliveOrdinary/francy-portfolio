@@ -8,6 +8,7 @@ interface LazyVideoProps {
   className?: string;
   onClick?: (() => void) | undefined;
   priority?: boolean; // For hero videos - uses preload but still pauses when offscreen
+  onLoadedData?: (() => void) | undefined; // Callback when video data is loaded
 }
 
 /**
@@ -20,7 +21,8 @@ export default function LazyVideo({
   hasAudio = false, 
   className = '', 
   onClick,
-  priority = false 
+  priority = false,
+  onLoadedData
 }: LazyVideoProps) {
   const videoRef = useVideoAutoplay(0.3);
 
@@ -34,6 +36,7 @@ export default function LazyVideo({
       preload={priority ? "metadata" : "none"}
       className={className}
       onClick={onClick}
+      onLoadedData={onLoadedData}
     />
   );
 }
