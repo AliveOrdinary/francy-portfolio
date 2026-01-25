@@ -62,6 +62,11 @@ galleryBlocks:
     order: 5
     leftFile: /images/uploads/favicon01.jpg
     rightFile: /images/uploads/elements.jpg
+  - type: single
+    mediaType: video
+    hasAudio: false
+    order: 6
+    file: /images/uploads/search.mp4
 featured: true
 order: 1
 ---
