@@ -4,6 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/ui/Header";
 import BottomNav from "@/components/ui/BottomNav";
+import PageTransition from "@/components/PageTransition";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,7 +36,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground`}>
         <Header />
         <main className="pt-20 pb-20 min-h-screen">
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
         </main>
         <BottomNav />
         
