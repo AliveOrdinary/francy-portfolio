@@ -5,7 +5,7 @@ export default function Contact() {
   const contactData = getContactPageData();
   
   return (
-    <div className="container mx-auto px-4 py-12 md:py-20">
+    <div className="container mx-auto py-12 md:py-20">
       <div className="max-w-2xl mx-auto">
         <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-display font-medium mb-6">Get in Touch</h2>

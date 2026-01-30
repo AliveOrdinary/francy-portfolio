@@ -51,7 +51,7 @@ export default async function Project(
     : [];
 
   return (
-    <article className="bg-background px-4 md:px-6 min-h-screen">
+    <article className="bg-background">
       {/* Hero Section - Uses LazyVideo for optimized loading */}
       <div className="w-full">
         <HeroMedia
