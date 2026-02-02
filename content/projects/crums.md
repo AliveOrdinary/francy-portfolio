@@ -66,7 +66,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 6
-    file: /images/uploads/search.webm
+    file: /images/uploads/search.mp4
 featured: true
 order: 1
 ---
