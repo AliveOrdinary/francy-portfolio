@@ -48,7 +48,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 3
-    file: /images/uploads/product-names.webm
+    file: /images/uploads/website-scroll_mokup.mp4
   - type: single
     mediaType: video
     hasAudio: false
