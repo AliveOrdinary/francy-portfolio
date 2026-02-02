@@ -49,11 +49,6 @@ galleryBlocks:
     hasAudio: false
     order: 3
     file: /images/uploads/website-scroll_mokup.mp4
-  - type: single
-    mediaType: video
-    hasAudio: false
-    order: 4
-    file: /images/uploads/website-scroll-mock.webm
   - type: sideBySide
     leftType: image
     leftHasAudio: false
