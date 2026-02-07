@@ -90,6 +90,7 @@ export interface AboutPageData {
   achievements?: Achievement[];
   profileImage: string;
   profileImageMobile?: string;
+  mobileOverlay?: string;
   content?: string;
 }
 

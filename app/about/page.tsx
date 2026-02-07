@@ -22,7 +22,7 @@ export default function About() {
       {/* Hero Section */}
       <div className="relative w-full">
         {aboutData.profileImage && (
-          <div className="w-full h-auto rounded-2xl overflow-hidden">
+          <div className="relative w-full h-auto rounded-2xl overflow-hidden">
              {hasMobileImage ? (
                <picture>
                  <source media="(max-width: 768px)" srcSet={optimizedMobileImage as string} />
@@ -46,6 +46,20 @@ export default function About() {
                  sizes="100vw"
                  priority
                />
+             )}
+             
+             {/* Mobile Overlay - only visible on mobile */}
+             {aboutData.mobileOverlay && (
+               <div className="absolute inset-0 md:hidden pointer-events-none">
+                 <Image
+                   src={aboutData.mobileOverlay}
+                   alt=""
+                   fill
+                   className="object-contain"
+                   sizes="100vw"
+                   priority
+                 />
+               </div>
              )}
           </div>
         )}

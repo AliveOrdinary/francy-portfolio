@@ -46,8 +46,13 @@ galleryBlocks:
   - type: single
     mediaType: video
     hasAudio: false
+    order: 3
+    file: /images/uploads/website-scroll_mokup.webm
+  - type: single
+    mediaType: video
+    hasAudio: false
     order: 4
-    file: /images/uploads/website-scroll_mokup.mp4
+    file: /images/uploads/product-names.webm
   - type: sideBySide
     leftType: image
     leftHasAudio: false
@@ -60,12 +65,7 @@ galleryBlocks:
     mediaType: video
     hasAudio: false
     order: 6
-    file: /images/uploads/search.mp4
-  - type: single
-    mediaType: video
-    hasAudio: false
-    order: 3
-    file: /images/uploads/product-names.webm
+    file: /images/uploads/search.webm
 featured: true
 order: 1
 ---

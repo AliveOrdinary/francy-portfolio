@@ -74,6 +74,7 @@ collections:
           - { label: "Bio", name: "bio", widget: "markdown" }
           - { label: "Profile Image", name: "profileImage", widget: "image" }
           - { label: "Profile Image (Mobile)", name: "profileImageMobile", widget: "image", required: false, hint: "Vertical image optimized for mobile devices" }
+          - { label: "Mobile Text Overlay", name: "mobileOverlay", widget: "image", required: false, hint: "SVG or PNG overlay for mobile image (for text animations)" }
       
       - label: "Contact Page"
         name: "contact"

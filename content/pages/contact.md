@@ -4,9 +4,9 @@ email: francisdes.in@gmail.com
 phone: "+1 647 893 5949"
 socialMedia:
   - platform: LinkedIn
-    url: https://linkedin.com/in/francisxavier
+    url: https://www.linkedin.com/in/francisdes/
   - platform: Instagram
-    url: https://instagram.com/francisxavier
+    url: https://www.instagram.com/head_full_of__dreams/
   - platform: Behance
-    url: https://behance.net/francisxavier
+    url: https://www.behance.net/francis_xavier
 ---
