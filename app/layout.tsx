@@ -24,6 +24,18 @@ export const metadata: Metadata = {
   keywords: ["Art Director", "Graphic Designer", "Branding", "Typography", "UI/UX", "Toronto", "Portfolio"],
   authors: [{ name: "Francis Xavier" }],
   creator: "AliveOrdinary",
+  icons: {
+    icon: [
+      {
+        url: "/White-favicon.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+      {
+        url: "/Black-favicon.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
