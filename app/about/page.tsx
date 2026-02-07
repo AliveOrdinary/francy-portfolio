@@ -50,13 +50,14 @@ export default function About() {
              
              {/* Mobile Overlay - only visible on mobile */}
              {aboutData.mobileOverlay && (
-               <div className="absolute inset-0 md:hidden pointer-events-none">
+               <div className="absolute left-[10%] bottom-[10%] w-1/2 h-auto md:hidden pointer-events-none">
                  <Image
                    src={aboutData.mobileOverlay}
                    alt=""
-                   fill
-                   className="object-contain"
-                   sizes="100vw"
+                   width={400}
+                   height={200}
+                   className="w-full h-auto object-contain"
+                   sizes="50vw"
                    priority
                  />
                </div>
