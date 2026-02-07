@@ -13,5 +13,6 @@ experience:
   - Diploma in Advertising and Graphic Design from Humber Polytechnic
   - Bachelors in Fine Arts, Applied Art
 profileImage: /images/uploads/about-landscape.jpg
-profileImageMobile: /images/uploads/about_portrait.jpg
+profileImageMobile: /images/uploads/about_portrait_dp.jpg
+mobileOverlay: /images/uploads/francis-xavier.white.svg
 ---
