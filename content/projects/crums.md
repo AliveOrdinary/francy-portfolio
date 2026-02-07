@@ -5,9 +5,8 @@ category: Branding
 featuredImage: /images/uploads/laptop_mockup_3.jpg
 featuredVideoHasAudio: false
 featuredImageMobile: /images/uploads/mob_mockup_3.jpg
-shortSummary: CRUMS is a conceptual e-commerce website designed for a premium
-  snack brand specializing in banana chips, tapioca snacks, and traditional
-  Kerala treats.
+shortSummary: CRUMS is a e-commerce website designed for a premium snack brand
+  specializing in banana chips, tapioca snacks, and traditional Kerala treats.
 mainSummary: >-
   The goal of this project was to create a visually engaging, brand-driven
   shopping experience that highlights product variety, natural ingredients, and
