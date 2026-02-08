@@ -7,7 +7,7 @@ bio: Hey, I'm Francis Xavier—an Art Director and Graphic Designer based in
   purposeful and results-driven.
 whatIDo: I work with branding, typography, and UI/UX. I enjoy shaping ideas from
   the ground up and carefully refining what already exists, with a focus on
-  clarity, ease, and creating experiences that feel intuitive and thoughtful
+  clarity, ease, and creating experiences that feel intuitive and thoughtful.
 experience:
   - Freelance Designer, working across branding, digital, and print
   - Diploma in Advertising and Graphic Design from Humber Polytechnic
