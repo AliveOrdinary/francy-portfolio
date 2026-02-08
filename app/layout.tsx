@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/ui/Header";
 import BottomNav from "@/components/ui/BottomNav";
 import PageTransition from "@/components/PageTransition";
 
-const inter = Inter({
+const openSans = Open_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-open-sans",
   display: "swap",
 });
 
@@ -45,10 +39,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground`}>
+      <body className={`${openSans.variable} font-sans antialiased bg-background text-foreground`}>
         <Header />
         <main 
-          className="px-4 md:px-6 rounded-b-3xl"
+          className="px-4 md:px-6 pb-2"
         >
           <PageTransition>
             {children}
