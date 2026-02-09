@@ -25,7 +25,7 @@ mainSummary: >-
   Emphasize brand values such as 100% natural, vegan, and preservative-free
 
 
-  Deliver a modern yet culturally rooted aesthetic
+  Deliver a modern yet culturally rooted aesthetic.
 year: 2024
 services:
   - Web Design
