@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import LazyVideo from '@/components/LazyVideo';
+import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 
 interface ProjectCardProps {
   title: string;
@@ -26,10 +27,13 @@ export default function ProjectCard({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
+  // Use optimized WebP path for images
+  const optimizedImage = image && isImagePath(image) ? getOptimizedPath(image) : image;
+
   return (
     <Link href={`/projects/${slug}`} className="block group w-full">
       <div 
-        className="relative w-full overflow-hidden rounded-2xl transition-transform duration-500"
+        className="relative w-full aspect-video overflow-hidden rounded-2xl transition-transform duration-500"
         style={{ backgroundColor: isLoaded ? 'transparent' : '#f5f5f5' }}
       >
         {/* Skeleton loader - shows while media is loading */}
@@ -42,26 +46,24 @@ export default function ProjectCard({
                 background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
               }}
             />
-            {/* TODO: Add Lottie logo animation here when available */}
           </div>
         )}
 
         {/* Media */}
-        <div className={`w-full transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`absolute inset-0 transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           {video ? (
             <LazyVideo
               src={video}
-              className="w-full h-auto object-cover block"
+              className="w-full h-full object-cover"
               onLoadedData={() => setIsLoaded(true)}
             />
-          ) : image ? (
+          ) : optimizedImage ? (
             <Image
-              src={image}
+              src={optimizedImage}
               alt={title}
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="w-full h-auto object-cover block"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
               priority={priority}
               onLoad={() => setIsLoaded(true)}
               onError={() => {
@@ -72,7 +74,7 @@ export default function ProjectCard({
           ) : (
             // Fallback when no media - use brand color
             <div 
-              className="w-full aspect-video flex items-center justify-center"
+              className="w-full h-full flex items-center justify-center"
               style={{ backgroundColor: color || '#B065FF' }}
             >
               <span className="text-white font-display text-2xl">{title}</span>
@@ -83,7 +85,7 @@ export default function ProjectCard({
         {/* Error fallback */}
         {hasError && (
           <div 
-            className="w-full aspect-video flex items-center justify-center bg-neutral-200"
+            className="absolute inset-0 flex items-center justify-center bg-neutral-200"
           >
             <span className="text-neutral-500 font-display text-xl">{title}</span>
           </div>

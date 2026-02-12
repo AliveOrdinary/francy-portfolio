@@ -2,6 +2,7 @@
 
 import LazyVideo from '@/components/LazyVideo';
 import Image from 'next/image';
+import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 
 interface HeroMediaProps {
   video?: string | undefined;
@@ -25,6 +26,10 @@ export default function HeroMedia({
 }: HeroMediaProps) {
   const hasMobileVariant = videoMobile || imageMobile;
 
+  // Use optimized WebP paths for images
+  const optimizedImage = image && isImagePath(image) ? getOptimizedPath(image) : image;
+  const optimizedImageMobile = imageMobile && isImagePath(imageMobile) ? getOptimizedPath(imageMobile) : imageMobile;
+
   return (
     <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
       {/* Mobile featured media */}
@@ -36,9 +41,9 @@ export default function HeroMedia({
               className="w-full h-full object-cover"
               priority
             />
-          ) : imageMobile ? (
+          ) : optimizedImageMobile ? (
             <Image
-              src={imageMobile}
+              src={optimizedImageMobile}
               alt={title}
               fill
               className="object-cover"
@@ -57,9 +62,9 @@ export default function HeroMedia({
             className="w-full h-full object-cover"
             priority
           />
-        ) : image ? (
+        ) : optimizedImage ? (
           <Image
-            src={image}
+            src={optimizedImage}
             alt={title}
             fill
             className="object-cover"
@@ -71,3 +76,4 @@ export default function HeroMedia({
     </div>
   );
 }
+
