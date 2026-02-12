@@ -5,7 +5,7 @@ export default function Projects() {
   const allProjects = getAllProjects();
   
   return (
-    <div className="w-full py-8 md:py-12 min-h-screen">
+    <div className="w-full py-8 md:py-12">
       {allProjects.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 md:gap-6">
           {allProjects.map((project, index) => (

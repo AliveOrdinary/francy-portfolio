@@ -42,7 +42,7 @@ export default function RootLayout({
       <body className={`${openSans.variable} font-sans antialiased bg-background text-foreground`}>
         <Header />
         <main 
-          className="px-4 md:px-6 pb-2"
+          className="px-4 md:px-6 pb-2 min-h-screen"
         >
           <PageTransition>
             {children}

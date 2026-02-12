@@ -18,7 +18,7 @@ export default function About() {
     : aboutData.profileImageMobile;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       {/* Hero Section */}
       <div className="relative w-full">
         {aboutData.profileImage && (

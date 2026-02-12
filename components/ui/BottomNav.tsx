@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function BottomNav() {
   return (
-    <nav className="relative sticky bottom-0 left-0 w-full z-50 bg-white py-4 px-4 md:px-8">
+    <nav className="fixed bottom-0 left-0 w-full z-50 bg-white py-4 px-4 md:px-8">
       {/* Left faux corner - positioned at content edge (matching main px-4) */}
       <svg 
         className="absolute -top-4 left-4 md:left-6 w-4 h-4"
