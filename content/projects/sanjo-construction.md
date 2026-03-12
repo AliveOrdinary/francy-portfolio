@@ -5,7 +5,18 @@ category: Branding
 featuredVideo: /images/uploads/sanjo-logo.webm
 featuredVideoHasAudio: false
 featuredVideoMobile: /images/uploads/sanjo-logo_mobile02.webm
+summary: >-
+  Sanjo Construction is a renovation and construction company based in the
+  Greater Toronto Area. The project involved rebranding the company to create a
+  more modern and professional visual identity while maintaining the trust and
+  reliability the business had already established. The existing identity lacked
+  a strong visual presence and did not fully reflect the scale and
+  professionalism of the company’s services.
+
+
+  The rebrand focused on developing a clear and structured visual system inspired by architectural drawings and construction planning. Strong geometric forms and bold typography were used to communicate stability, precision, and craftsmanship—qualities closely associated with the construction industry. The resulting identity creates a cohesive and recognizable brand presence designed to work seamlessly across multiple applications including stationery, signage, and digital platforms.
 year: 2025
+industry: Construction
 services:
   - Branding
   - Web Design
@@ -55,16 +66,4 @@ galleryBlocks:
     file: /images/uploads/tiles.webm
 featured: true
 order: 1
-summary: >-
-  The SANJO logo draws inspiration from architectural blueprints and spatial
-  planning, directly reflecting the brand's core focus on renovations. Its
-  design language is rooted in precision, structure, and intentional layout—key
-  elements found in architectural drawings and construction planning.
-
-
-  Each letter in the SANJO wordmark is placed within a square, symbolizing
-  individual rooms or structural modules. Together, these squares come together
-  like a floor plan layout, reinforcing ideas of organization, balance, and
-  thoughtfully designed spaces.
 ---
-
