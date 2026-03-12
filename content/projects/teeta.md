@@ -18,6 +18,7 @@ summary: Teeta is a café located in Kochi, Kerala. The project involved buildin
   The result is a cohesive brand system that helps establish Teeta as a
   distinctive café within Kochi’s growing food culture.
 year: 2024
+client: Teeta
 industry: Café / Food & Beverage
 services:
   - Branding
