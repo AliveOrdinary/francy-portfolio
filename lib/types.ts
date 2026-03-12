@@ -51,8 +51,7 @@ export interface ProjectData {
   featuredVideoHasAudio?: boolean;
   featuredImageMobile?: string;
   featuredVideoMobile?: string;
-  shortSummary: string;
-  mainSummary?: string;
+  summary?: string;
   year: number;
   services?: string[];
   galleryBlocks?: GalleryBlock[];

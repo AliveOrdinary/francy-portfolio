@@ -1,7 +1,6 @@
 import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 import ProjectGallery from '@/components/ProjectGallery';
-import ExpandableSummary from '@/components/ExpandableSummary';
 import HeroMedia from '@/components/HeroMedia';
 
 /**
@@ -43,7 +42,7 @@ export default async function Project(
     notFound();
   }
   
-  const mainSummaryHtml = await getMarkdownContent(projectData.mainSummary || '');
+  const summaryHtml = await getMarkdownContent(projectData.summary || '');
   
   // Sort gallery blocks by order
   const sortedBlocks = projectData.galleryBlocks 
@@ -64,7 +63,7 @@ export default async function Project(
       </div>
 
 
-      <div className="w-full pt-8 md:pt-16">
+      <div className="w-full my-4 md:my-8">
         {/* Project Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4 space-y-8">
@@ -82,16 +81,18 @@ export default async function Project(
             </div>
           </div>
           
-          {projectData.mainSummary && (
+          {projectData.summary && (
             <div className="md:col-span-8">
-              <ExpandableSummary 
-                shortSummary={projectData.shortSummary}
-                mainSummaryHtml={mainSummaryHtml}
+              <div 
+                className="text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none"
+                dangerouslySetInnerHTML={{ __html: summaryHtml }} 
               />
             </div>
           )}
         </div>
+      </div>
 
+      <div className="w-full pb-8 md:pb-16">
         {/* Gallery */}
         <ProjectGallery blocks={sortedBlocks} projectTitle={projectData.title} />
       </div>

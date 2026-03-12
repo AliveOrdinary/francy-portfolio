@@ -5,14 +5,6 @@ category: Branding
 featuredVideo: /images/uploads/sanjo-logo.webm
 featuredVideoHasAudio: false
 featuredVideoMobile: /images/uploads/sanjo-logo_mobile02.webm
-shortSummary: The SANJO logo draws inspiration from architectural blueprints and
-  spatial planning, directly reflecting the brand's core focus on renovations.
-  Its design language is rooted in precision, structure, and intentional
-  layout—key elements found in architectural drawings and construction planning.
-mainSummary: Each letter in the SANJO wordmark is placed within a square,
-  symbolizing individual rooms or structural modules. Together, these squares
-  come together like a floor plan layout, reinforcing ideas of organization,
-  balance, and thoughtfully designed spaces.
 year: 2025
 services:
   - Branding
@@ -63,4 +55,16 @@ galleryBlocks:
     file: /images/uploads/tiles.webm
 featured: true
 order: 1
+summary: >-
+  The SANJO logo draws inspiration from architectural blueprints and spatial
+  planning, directly reflecting the brand's core focus on renovations. Its
+  design language is rooted in precision, structure, and intentional layout—key
+  elements found in architectural drawings and construction planning.
+
+
+  Each letter in the SANJO wordmark is placed within a square, symbolizing
+  individual rooms or structural modules. Together, these squares come together
+  like a floor plan layout, reinforcing ideas of organization, balance, and
+  thoughtfully designed spaces.
 ---
+

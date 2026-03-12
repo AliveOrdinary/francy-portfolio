@@ -20,8 +20,7 @@ collections:
       - { label: "Featured Video Has Audio?", name: "featuredVideoHasAudio", widget: "boolean", default: false, required: false }
       - { label: "Featured Image (Mobile)", name: "featuredImageMobile", widget: "image", required: false, hint: "Vertical image for mobile devices" }
       - { label: "Featured Video (Mobile)", name: "featuredVideoMobile", widget: "file", required: false, hint: "Vertical video for mobile devices" }
-      - { label: "Short Summary", name: "shortSummary", widget: "string", pattern: ['.{1,160}', "Must be 160 characters or less"], hint: "Brief description (required for all types)" }
-      - { label: "Main Summary", name: "mainSummary", widget: "markdown", required: false, hint: "Detailed description (optional for Photography/Illustration)" }
+      - { label: "Summary", name: "summary", widget: "markdown", required: false, hint: "Detailed description" }
       - { label: "Year", name: "year", widget: "number" }
       - { label: "Services", name: "services", widget: "select", multiple: true, options: ["Branding", "Web Design", "Print", "Packaging", "UI/UX", "Illustration", "Naming", "Art Direction", "Motion Graphics", "Photography"], required: false, hint: "Not required for Photography/Illustration" }
       - label: "Gallery Blocks"
