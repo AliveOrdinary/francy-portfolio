@@ -65,30 +65,44 @@ export default async function Project(
 
       <div className="w-full my-4 md:my-8">
         {/* Project Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-4 space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+          {/* Column 1: Client & Industry */}
+          <div className="md:col-span-3 space-y-8">
+            {projectData.client && (
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Client</h3>
+                <div className="text-lg">{projectData.client}</div>
+              </div>
+            )}
             {projectData.industry && (
               <div>
                 <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Industry</h3>
                 <div className="text-lg">{projectData.industry}</div>
               </div>
             )}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Services</h3>
-              <div className="text-lg">
-                {projectData.services?.map((service, index) => (
-                  <div key={index}>{service}</div>
-                ))}
+          </div>
+
+          {/* Column 2: Services & Year */}
+          <div className="md:col-span-3 space-y-8">
+            {projectData.services && projectData.services.length > 0 && (
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Services</h3>
+                <div className="text-lg">
+                  {projectData.services.map((service, index) => (
+                    <div key={index}>{service}</div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             <div>
               <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Year</h3>
               <div className="text-lg">{projectData.year}</div>
             </div>
           </div>
           
+          {/* Column 3: Summary */}
           {projectData.summary && (
-            <div className="md:col-span-8">
+            <div className="md:col-span-6">
               <div 
                 className="text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none"
                 dangerouslySetInnerHTML={{ __html: summaryHtml }} 

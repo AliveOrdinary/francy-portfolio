@@ -22,6 +22,7 @@ collections:
       - { label: "Featured Video (Mobile)", name: "featuredVideoMobile", widget: "file", required: false, hint: "Vertical video for mobile devices" }
       - { label: "Summary", name: "summary", widget: "markdown", required: false, hint: "Detailed description" }
       - { label: "Year", name: "year", widget: "number" }
+      - { label: "Client", name: "client", widget: "string", required: false }
       - { label: "Industry", name: "industry", widget: "string", required: false }
       - { label: "Services", name: "services", widget: "select", multiple: true, options: ["Branding", "Web Design", "Print", "Packaging", "UI/UX", "Illustration", "Naming", "Art Direction", "Motion Graphics", "Photography"], required: false, hint: "Not required for Photography/Illustration" }
       - label: "Gallery Blocks"
