@@ -27,7 +27,8 @@ summary: >-
 
   Deliver a modern yet culturally rooted aesthetic.
 year: 2024
-industry: ""
+client: Crums
+industry: Food & Beverage
 services:
   - Web Design
 galleryBlocks:
