@@ -67,6 +67,12 @@ export default async function Project(
         {/* Project Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4 space-y-8">
+            {projectData.industry && (
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Industry</h3>
+                <div className="text-lg">{projectData.industry}</div>
+              </div>
+            )}
             <div>
               <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Services</h3>
               <div className="text-lg">

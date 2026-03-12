@@ -53,6 +53,7 @@ export interface ProjectData {
   featuredVideoMobile?: string;
   summary?: string;
   year: number;
+  industry?: string;
   services?: string[];
   galleryBlocks?: GalleryBlock[];
   featured: boolean;
