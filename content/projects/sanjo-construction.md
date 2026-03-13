@@ -16,7 +16,7 @@ summary: >-
 
   The rebrand focused on developing a clear and structured visual system inspired by architectural drawings and construction planning. Strong geometric forms and bold typography were used to communicate stability, precision, and craftsmanship—qualities closely associated with the construction industry. The resulting identity creates a cohesive and recognizable brand presence designed to work seamlessly across multiple applications including stationery, signage, and digital platforms.
 year: 2025
-client: Sanjo
+client: Sanjo Construction Inc
 industry: Construction
 services:
   - Branding
