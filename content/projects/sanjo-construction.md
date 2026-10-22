@@ -6,15 +6,22 @@ featuredVideo: /images/uploads/sanjo-logo.webm
 featuredVideoHasAudio: false
 featuredVideoMobile: /images/uploads/sanjo-logo_mobile02.webm
 summary: >-
-  Sanjo Construction is a renovation and construction company based in the
-  Greater Toronto Area. The project involved rebranding the company to create a
-  more modern and professional visual identity while maintaining the trust and
-  reliability the business had already established. The existing identity lacked
-  a strong visual presence and did not fully reflect the scale and
-  professionalism of the company’s services.
+  Sanjo Construction Inc. has spent 19+ years renovating homes across the GTA,
+  from kitchens and basements to decks and full remodels. Their reputation was
+  built on word of mouth, but their brand hadn’t kept up: a dated logo and
+  nothing that told homeowners why Sanjo over anyone else.
 
 
-  The rebrand focused on developing a clear and structured visual system inspired by architectural drawings and construction planning. Strong geometric forms and bold typography were used to communicate stability, precision, and craftsmanship—qualities closely associated with the construction industry. The resulting identity creates a cohesive and recognizable brand presence designed to work seamlessly across multiple applications including stationery, signage, and digital platforms.
+  **The idea.** Every renovation starts with a floor plan. The SANJO wordmark is built the same way: each letter sits in its own square, like rooms or structural modules laid out on a blueprint.
+
+
+  **The system.** Because the letters are modules, they can be rearranged to fit the space. The wordmark works as a horizontal line (6 × 1), a stacked block (3 × 2) or a vertical column (2 × 3) without losing its shape. It’s paired with Jagerlay, whose wide, heavy capitals carry the same block-like weight. Purple was Sanjo’s own choice. I built it into a four-colour palette: a bright violet (`#b065ff`), a deep purple (`#3a0068`), a near-black (`#191021`), and a soft off-white (`#f6f4f9`), so it works across print, motion and signage. It also sets Sanjo apart from the orange and navy common in renovation branding.
+
+
+  **Motion.** The letters move like modules being placed on a plan, scattering and snapping back into their squares, so the name builds itself the way a house goes up.
+
+
+  **Status.** Proposed identity, 2025.
 year: 2025
 client: Sanjo Construction Inc
 industry: Home Renovation & Construction
