@@ -135,7 +135,7 @@ export default async function Project(
           {projectData.summary && (
             <div className="md:col-span-6">
               <div 
-                className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none"
+                className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none prose-code:font-normal prose-code:before:content-none prose-code:after:content-none"
                 dangerouslySetInnerHTML={{ __html: summaryHtml }} 
               />
             </div>

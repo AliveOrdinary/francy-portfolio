@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
+/* Tailwind v4 ignores tailwind.config.js unless it is loaded explicitly.
+   This brings in the theme colours, fonts and the typography plugin. */
+@config "../tailwind.config.js";
+
 :root {
   --background: #FFFFFF;
   --foreground: #191021;
-}
-
-.bg-background {
-  background-color: var(--background);
 }
 
 body {
