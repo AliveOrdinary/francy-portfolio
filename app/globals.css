@@ -5,6 +5,10 @@
   --foreground: #191021;
 }
 
+.bg-background {
+  background-color: var(--background);
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -51,4 +55,13 @@ body {
 
 .animate-page-enter {
   animation: page-enter 0.6s ease-out forwards;
+}
+
+/* Project summary: space between paragraphs */
+.project-summary p {
+  margin: 0 0 1.25em;
+}
+
+.project-summary p:last-child {
+  margin-bottom: 0;
 }

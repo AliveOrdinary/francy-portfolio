@@ -31,7 +31,7 @@ export default function ProjectCard({
   const optimizedImage = image && isImagePath(image) ? getOptimizedPath(image) : image;
 
   return (
-    <Link href={`/projects/${slug}`} className="block group w-full">
+    <Link href={`/projects/${slug}`} aria-label={title} className="block group w-full">
       <div 
         className="relative w-full aspect-video overflow-hidden rounded-2xl transition-transform duration-500"
         style={{ backgroundColor: isLoaded ? 'transparent' : '#f5f5f5' }}

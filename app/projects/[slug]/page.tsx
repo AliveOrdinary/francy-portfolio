@@ -80,6 +80,25 @@ export default async function Project(
                 <div className="text-lg">{projectData.industry}</div>
               </div>
             )}
+            {projectData.studio && (
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Studio</h3>
+                <div className="text-lg">
+                  {projectData.studioUrl ? (
+                    <a
+                      href={projectData.studioUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-4 hover:opacity-70 transition-opacity"
+                    >
+                      {projectData.studio}
+                    </a>
+                  ) : (
+                    projectData.studio
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Column 2: Services & Year */}
@@ -98,13 +117,25 @@ export default async function Project(
               <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Year</h3>
               <div className="text-lg">{projectData.year}</div>
             </div>
+            {projectData.role && (
+              <div>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Role</h3>
+                <div className="text-lg">{projectData.role}</div>
+              </div>
+            )}
+            {projectData.credits?.map((credit, index) => (
+              <div key={index}>
+                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">{credit.label}</h3>
+                <div className="text-lg">{credit.value}</div>
+              </div>
+            ))}
           </div>
           
           {/* Column 3: Summary */}
           {projectData.summary && (
             <div className="md:col-span-6">
               <div 
-                className="text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none"
+                className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none"
                 dangerouslySetInnerHTML={{ __html: summaryHtml }} 
               />
             </div>
