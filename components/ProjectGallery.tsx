@@ -391,7 +391,6 @@ export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryP
           currentIndex={activeMediaIndex}
           isOpen={viewerOpen}
           onClose={() => setViewerOpen(false)}
-          className="hidden"
         />
       )}
     </>

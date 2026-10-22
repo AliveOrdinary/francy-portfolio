@@ -434,25 +434,31 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
     }
   };
 
+  // When the parent opens the viewer itself (isOpen passed in), there is no
+  // inline trigger to show, so skip rendering it rather than loading a hidden image.
+  const isExternallyControlled = externalIsOpen !== undefined;
+
   return (
     <>
-      <div 
-        className={className || `w-full ${getAspectRatioClass()} cursor-pointer`}
-        onClick={openModal}
-      >
-        {children ? (
-          children
-        ) : (
-          <OptimizedImage
-            src={src}
-            alt={alt}
-            priority={priority}
-            quality={quality}
-            sizes={sizes}
-            className="w-full h-full object-cover"
-          />
-        )}
-      </div>
+      {!isExternallyControlled && (
+        <div 
+          className={className || `w-full ${getAspectRatioClass()} cursor-pointer`}
+          onClick={openModal}
+        >
+          {children ? (
+            children
+          ) : (
+            <OptimizedImage
+              src={src}
+              alt={alt}
+              priority={priority}
+              quality={quality}
+              sizes={sizes}
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+      )}
 
       {isModalOpen && (
         <div 
