@@ -43,6 +43,7 @@ export type GalleryBlock = SingleBlock | SeamlessPairBlock | SideBySideBlock;
 export interface ViewerMediaItem {
   type: 'image' | 'video';
   src: string;
+  alt?: string | undefined;
   caption?: string;
   hasAudio?: boolean;
 }

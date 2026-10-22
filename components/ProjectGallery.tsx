@@ -272,6 +272,7 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.mediaType,
           src: block.file, // Use original path for high-res viewer
+          alt: block.alt || block.caption,
           hasAudio: block.hasAudio || false
         });
         break;
@@ -279,11 +280,13 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.leftType,
           src: block.leftFile,
+          alt: block.leftAlt || block.caption,
           hasAudio: block.leftHasAudio || false
         });
         media.push({
           type: block.rightType,
           src: block.rightFile,
+          alt: block.rightAlt || block.caption,
           hasAudio: block.rightHasAudio || false
         });
         break;
@@ -291,11 +294,13 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.leftType,
           src: block.leftFile,
+          alt: block.leftAlt || block.caption,
           hasAudio: block.leftHasAudio || false
         });
         media.push({
           type: block.rightType,
           src: block.rightFile,
+          alt: block.rightAlt || block.caption,
           hasAudio: block.rightHasAudio || false
         });
         break;
