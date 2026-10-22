@@ -7,11 +7,6 @@ bio: >-
 
 
   I build brands from the name up. For Teeta, a café in Kochi, that meant starting with a word: a mix of the maths symbol θ and the Malayalam word for eating. It then grew into a full identity across packaging, signage, and motion. That’s the work I enjoy most: finding the one idea that holds everything together, then making it work everywhere it needs to.
-
-
-  *Alternative first line, if you’d rather lead with what you do:*\
-
-  I design brand identities, typography, and digital experiences, usually starting before there’s a name and staying until it’s on the cups.
 whatIDo: I work with branding, typography, and UI/UX. I enjoy shaping ideas from
   the ground up and carefully refining what already exists, with a focus on
   clarity, ease, and creating experiences that feel intuitive and thoughtful.
