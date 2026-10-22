@@ -31,12 +31,15 @@ summary: >-
 
   **Status.** Proposed identity, 2025.
 year: 2025
-client: Sanjo Construction Inc
+client: Sanjo Construction Inc.
 industry: Home Renovation & Construction
 services:
   - Branding
   - Art Direction
   - Motion Graphics
+studio: Amplifier Studio
+studioUrl: https://www.instagram.com/studio.amplifier/
+role: Concept, identity design, typography, colour, poster motion, motion direction
 galleryBlocks:
   - type: single
     mediaType: video
@@ -48,6 +51,7 @@ galleryBlocks:
     hasAudio: false
     order: 2
     file: /images/uploads/grid.webp
+    alt: SANJO wordmark built on a modular square grid
   - type: sideBySide
     leftType: video
     leftHasAudio: false
@@ -56,6 +60,7 @@ galleryBlocks:
     order: 5
     leftFile: /images/uploads/sanjo_letters.webm
     rightFile: /images/uploads/cap.webp
+    rightAlt: Purple cap with the stacked SANJO logo
   - type: single
     mediaType: video
     hasAudio: false
@@ -76,6 +81,7 @@ galleryBlocks:
     hasAudio: false
     order: 7
     file: /images/uploads/sanjo-business-card.webp
+    alt: Deep purple business cards with the SANJO CONSTRUCTION wordmark
   - type: single
     mediaType: video
     hasAudio: false

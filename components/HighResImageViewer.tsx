@@ -64,9 +64,11 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
   const highResImageRef = useRef<HTMLImageElement>(null);
 
   // Use mixed media if available, otherwise fall back to images only
-  const mediaArray = allProjectMedia.length > 0 ? allProjectMedia : allProjectImages.map(imgSrc => ({ type: 'image' as const, src: imgSrc, hasAudio: false }));
-  const currentMedia = mediaArray.length > 0 ? mediaArray[activeImageIndex] : { type: 'image' as const, src, hasAudio: false };
+  const mediaArray: ViewerMediaItem[] = allProjectMedia.length > 0 ? allProjectMedia : allProjectImages.map(imgSrc => ({ type: 'image' as const, src: imgSrc, hasAudio: false }));
+  const currentMedia: ViewerMediaItem = mediaArray.length > 0 ? mediaArray[activeImageIndex] : { type: 'image' as const, src, hasAudio: false };
   const currentImageSrc = currentMedia.src;
+  // Per-item alt text from the CMS, falling back to the generic label
+  const currentAlt = currentMedia.alt || alt;
   
   // Handle external open - sync currentIndex and initialize modal state
   useEffect(() => {
@@ -432,25 +434,31 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
     }
   };
 
+  // When the parent opens the viewer itself (isOpen passed in), there is no
+  // inline trigger to show, so skip rendering it rather than loading a hidden image.
+  const isExternallyControlled = externalIsOpen !== undefined;
+
   return (
     <>
-      <div 
-        className={className || `w-full ${getAspectRatioClass()} cursor-pointer`}
-        onClick={openModal}
-      >
-        {children ? (
-          children
-        ) : (
-          <OptimizedImage
-            src={src}
-            alt={alt}
-            priority={priority}
-            quality={quality}
-            sizes={sizes}
-            className="w-full h-full object-cover"
-          />
-        )}
-      </div>
+      {!isExternallyControlled && (
+        <div 
+          className={className || `w-full ${getAspectRatioClass()} cursor-pointer`}
+          onClick={openModal}
+        >
+          {children ? (
+            children
+          ) : (
+            <OptimizedImage
+              src={src}
+              alt={alt}
+              priority={priority}
+              quality={quality}
+              sizes={sizes}
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+      )}
 
       {isModalOpen && (
         <div 
@@ -509,7 +517,7 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
                   <img
                     ref={imageRef}
                     src={currentImageSrc}
-                    alt={alt}
+                    alt={currentAlt}
                     className={`max-w-full max-h-full object-contain select-none transition-opacity duration-300 block ${
                       highResLoaded ? 'opacity-0' : 'opacity-100'
                     }`}
@@ -523,7 +531,8 @@ const HighResImageViewer: React.FC<HighResImageViewerProps> = ({
                   <img
                     ref={highResImageRef}
                     src={getHighResUrl(currentImageSrc)}
-                    alt={`${alt} (High Resolution)`}
+                    alt=""
+                    aria-hidden="true"
                     className={`absolute inset-0 max-w-full max-h-full object-contain select-none transition-opacity duration-300 block ${
                       highResLoaded ? 'opacity-100' : 'opacity-0'
                     }`}

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Tailwind v4 ignores tailwind.config.js unless it is loaded explicitly.
+   This brings in the theme colours, fonts and the typography plugin. */
+@config "../tailwind.config.js";
+
 :root {
   --background: #FFFFFF;
   --foreground: #191021;
@@ -51,4 +55,13 @@ body {
 
 .animate-page-enter {
   animation: page-enter 0.6s ease-out forwards;
+}
+
+/* Project summary: space between paragraphs */
+.project-summary p {
+  margin: 0 0 1.25em;
+}
+
+.project-summary p:last-child {
+  margin-bottom: 0;
 }

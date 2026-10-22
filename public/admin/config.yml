@@ -25,6 +25,17 @@ collections:
       - { label: "Client", name: "client", widget: "string", required: false }
       - { label: "Industry", name: "industry", widget: "string", required: false }
       - { label: "Services", name: "services", widget: "select", multiple: true, options: ["Branding", "Web Design", "Print", "Packaging", "UI/UX", "Illustration", "Naming", "Art Direction", "Motion Graphics", "Photography"], required: false, hint: "Not required for Photography/Illustration" }
+      - { label: "Studio", name: "studio", widget: "string", required: false, hint: "e.g. Amplifier Studio" }
+      - { label: "Studio Link", name: "studioUrl", widget: "string", required: false, hint: "Opens in a new tab" }
+      - { label: "Role", name: "role", widget: "string", required: false, hint: "What you did on this project" }
+      - label: "Credits"
+        name: "credits"
+        widget: "list"
+        required: false
+        hint: "Other contributors, e.g. Grid animation / Name, from my storyboard"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Value", name: "value", widget: "string" }
       - label: "Gallery Blocks"
         name: "galleryBlocks"
         widget: "list"
@@ -36,6 +47,7 @@ collections:
             fields:
               - { label: "Media Type", name: "mediaType", widget: "select", options: ["image", "video"], default: "image" }
               - { label: "File", name: "file", widget: "file" }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, hint: "Describe the image for screen readers and search" }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Has Audio?", name: "hasAudio", widget: "boolean", default: false, required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
@@ -44,9 +56,11 @@ collections:
             fields:
               - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
               - { label: "Left File", name: "leftFile", widget: "file", hint: "1:1 aspect ratio recommended" }
+              - { label: "Left Alt Text", name: "leftAlt", widget: "string", required: false }
               - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
               - { label: "Right File", name: "rightFile", widget: "file", hint: "1:1 aspect ratio recommended" }
+              - { label: "Right Alt Text", name: "rightAlt", widget: "string", required: false }
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
@@ -55,9 +69,11 @@ collections:
             fields:
               - { label: "Left Media Type", name: "leftType", widget: "select", options: ["image", "video"], default: "image" }
               - { label: "Left File", name: "leftFile", widget: "file" }
+              - { label: "Left Alt Text", name: "leftAlt", widget: "string", required: false }
               - { label: "Left Has Audio?", name: "leftHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Right Media Type", name: "rightType", widget: "select", options: ["image", "video"], default: "image" }
               - { label: "Right File", name: "rightFile", widget: "file" }
+              - { label: "Right Alt Text", name: "rightAlt", widget: "string", required: false }
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }

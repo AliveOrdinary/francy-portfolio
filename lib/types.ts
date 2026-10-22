@@ -3,6 +3,7 @@ export interface SingleBlock {
   type: 'single';
   mediaType: 'image' | 'video';
   file: string;
+  alt?: string;
   caption?: string;
   hasAudio?: boolean;
   order: number;
@@ -12,9 +13,11 @@ export interface SeamlessPairBlock {
   type: 'seamlessPair';
   leftType: 'image' | 'video';
   leftFile: string;
+  leftAlt?: string;
   leftHasAudio?: boolean;
   rightType: 'image' | 'video';
   rightFile: string;
+  rightAlt?: string;
   rightHasAudio?: boolean;
   caption?: string;
   order: number;
@@ -24,9 +27,11 @@ export interface SideBySideBlock {
   type: 'sideBySide';
   leftType: 'image' | 'video';
   leftFile: string;
+  leftAlt?: string;
   leftHasAudio?: boolean;
   rightType: 'image' | 'video';
   rightFile: string;
+  rightAlt?: string;
   rightHasAudio?: boolean;
   caption?: string;
   order: number;
@@ -38,6 +43,7 @@ export type GalleryBlock = SingleBlock | SeamlessPairBlock | SideBySideBlock;
 export interface ViewerMediaItem {
   type: 'image' | 'video';
   src: string;
+  alt?: string | undefined;
   caption?: string;
   hasAudio?: boolean;
 }
@@ -56,6 +62,10 @@ export interface ProjectData {
   client?: string;
   industry?: string;
   services?: string[];
+  studio?: string;
+  studioUrl?: string;
+  role?: string;
+  credits?: Array<{ label: string; value: string }>;
   galleryBlocks?: GalleryBlock[];
   featured: boolean;
   order: number;

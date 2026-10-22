@@ -74,7 +74,7 @@ function SingleBlockComponent({
       <MediaItem
         type={block.mediaType}
         src={block.file}
-        alt={block.caption || `${projectTitle} - ${index + 1}`}
+        alt={block.alt || block.caption || `${projectTitle} - ${index + 1}`}
         hasAudio={block.hasAudio}
         priority={index < 2}
         onClick={() => onMediaClick(index)}
@@ -147,7 +147,7 @@ function SeamlessPairBlockComponent({
             {renderMedia(
               block.leftType,
               block.leftFile,
-              block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`,
+              block.leftAlt || (block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`),
               block.leftHasAudio,
               index < 2,
               mediaStartIndex
@@ -159,7 +159,7 @@ function SeamlessPairBlockComponent({
             {renderMedia(
               block.rightType,
               block.rightFile,
-              block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`,
+              block.rightAlt || (block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`),
               block.rightHasAudio,
               index < 2,
               mediaStartIndex + 1
@@ -235,7 +235,7 @@ function SideBySideBlockComponent({
             {renderMedia(
               block.leftType,
               block.leftFile,
-              block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`,
+              block.leftAlt || (block.caption ? `${block.caption} - Left` : `${projectTitle} - ${index + 1} Left`),
               block.leftHasAudio,
               index < 2,
               mediaStartIndex
@@ -247,7 +247,7 @@ function SideBySideBlockComponent({
             {renderMedia(
               block.rightType,
               block.rightFile,
-              block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`,
+              block.rightAlt || (block.caption ? `${block.caption} - Right` : `${projectTitle} - ${index + 1} Right`),
               block.rightHasAudio,
               index < 2,
               mediaStartIndex + 1
@@ -272,6 +272,7 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.mediaType,
           src: block.file, // Use original path for high-res viewer
+          alt: block.alt || block.caption,
           hasAudio: block.hasAudio || false
         });
         break;
@@ -279,11 +280,13 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.leftType,
           src: block.leftFile,
+          alt: block.leftAlt || block.caption,
           hasAudio: block.leftHasAudio || false
         });
         media.push({
           type: block.rightType,
           src: block.rightFile,
+          alt: block.rightAlt || block.caption,
           hasAudio: block.rightHasAudio || false
         });
         break;
@@ -291,11 +294,13 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
         media.push({
           type: block.leftType,
           src: block.leftFile,
+          alt: block.leftAlt || block.caption,
           hasAudio: block.leftHasAudio || false
         });
         media.push({
           type: block.rightType,
           src: block.rightFile,
+          alt: block.rightAlt || block.caption,
           hasAudio: block.rightHasAudio || false
         });
         break;
@@ -386,7 +391,6 @@ export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryP
           currentIndex={activeMediaIndex}
           isOpen={viewerOpen}
           onClose={() => setViewerOpen(false)}
-          className="hidden"
         />
       )}
     </>

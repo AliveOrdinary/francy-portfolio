@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 left-0 w-full z-50 px-4 md:px-8">
+    <header className="sticky top-0 left-0 w-full z-50 px-4 md:px-8 bg-background">
       <div className="flex justify-center items-center h-[68px]">
         <Link href="/" className="text-xl md:text-2xl font-display font-bold tracking-tight uppercase">
           <Image src="/images/optimized/Type.webp" alt="Logo" width={120} height={68} />
