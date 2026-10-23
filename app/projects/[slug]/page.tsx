@@ -59,6 +59,8 @@ export default async function Project(
 
   return (
     <article className="bg-background">
+      {/* Main heading for screen readers and search; the hero shows the title visually */}
+      <h1 className="sr-only">{projectData.title}</h1>
       {/* Hero Section - Uses LazyVideo for optimized loading */}
       <div className="w-full">
         <HeroMedia
