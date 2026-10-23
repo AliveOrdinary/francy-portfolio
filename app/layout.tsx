@@ -41,8 +41,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${openSans.variable} font-sans antialiased bg-background text-foreground`}>
         <Header />
+        {/* Bottom padding clears the fixed BottomNav (bar + its corner pieces)
+            plus breathing room, and the phone's home-indicator area if any */}
         <main 
-          className="px-4 md:px-6 pb-2 min-h-screen"
+          className="px-4 md:px-6 pb-[calc(6rem+env(safe-area-inset-bottom))] min-h-screen"
         >
           <PageTransition>
             {children}
