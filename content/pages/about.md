@@ -11,9 +11,6 @@ bio: >-
   carrying it across signage, packaging and motion. That’s the work I enjoy
   most: finding the one idea that holds everything together, then making it
   work everywhere it needs to.
-
-
-  Currently open to graphic design and art direction roles in Toronto.
 whatIDo:
   - Brand identity and logo design
   - Typography and lettering
