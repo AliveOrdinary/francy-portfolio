@@ -4,6 +4,8 @@ export interface SingleBlock {
   mediaType: 'image' | 'video';
   file: string;
   alt?: string;
+  /** Show a tall image (e.g. a full web page) inside a scrollable browser frame */
+  frame?: boolean;
   caption?: string;
   hasAudio?: boolean;
   order: number;

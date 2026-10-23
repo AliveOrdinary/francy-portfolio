@@ -50,6 +50,7 @@ collections:
               - { label: "Alt Text", name: "alt", widget: "string", required: false, hint: "Describe the image for screen readers and search" }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Has Audio?", name: "hasAudio", widget: "boolean", default: false, required: false }
+              - { label: "Show in scrollable frame?", name: "frame", widget: "boolean", default: false, required: false, hint: "For tall images like a full web page: shown in a browser-style window that scrolls" }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
           - label: "Seamless Pair (Merged on Desktop)"
             name: "seamlessPair"
