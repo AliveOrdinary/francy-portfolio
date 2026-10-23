@@ -76,7 +76,7 @@ export default function Home() {
 
       {/* Selected work */}
       {projects.length > 0 && (
-        <section className="pt-16 md:pt-28">
+        <section id="work" className="pt-16 md:pt-28 scroll-mt-20">
           <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
             <span>{home.featuredProjectsHeading || 'Selected work'}</span>
             <span>({count})</span>
