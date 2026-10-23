@@ -77,6 +77,13 @@ collections:
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
+          - label: "Text Section"
+            name: "text"
+            fields:
+              - { label: "Label", name: "label", widget: "string", required: false, hint: "Small label, e.g. 01 — The challenge" }
+              - { label: "Heading", name: "heading", widget: "string", required: false }
+              - { label: "Body", name: "body", widget: "markdown", required: false, hint: "One to three sentences" }
+              - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 
