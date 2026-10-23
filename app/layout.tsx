@@ -6,10 +6,29 @@ import BottomNav from "@/components/ui/BottomNav";
 import PageTransition from "@/components/PageTransition";
 import { getGlobalData } from "@/lib/markdown";
 
+const SITE_DESCRIPTION =
+  "Francis Xavier, art director and graphic designer in Toronto. Brand identities, naming, motion and web design, each built around one clear idea.";
+
 export const metadata: Metadata = {
-  title: "Francis | Art Director & Graphic Designer",
-  description: "Francis Xavier is an Art Director and Graphic Designer based in Toronto, specializing in branding, typography, and UI/UX.",
-  keywords: ["Art Director", "Graphic Designer", "Branding", "Typography", "UI/UX", "Toronto", "Portfolio"],
+  metadataBase: new URL("https://francisdes.com"),
+  title: "Francis Xavier · Art director & graphic designer",
+  description: SITE_DESCRIPTION,
+  keywords: ["Francis Xavier", "Art Director", "Graphic Designer", "Brand Identity", "Branding", "Motion", "Web Design", "Toronto", "Amplifier Studio", "Portfolio"],
+  openGraph: {
+    title: "Francis Xavier · Art director & graphic designer",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: "Francis Xavier",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Francis Xavier, art director and graphic designer, Toronto" }],
+    locale: "en_CA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Francis Xavier · Art director & graphic designer",
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.jpg"],
+  },
   authors: [{ name: "Francis Xavier" }],
   creator: "Francis Xavier",
   icons: {
