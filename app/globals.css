@@ -65,3 +65,12 @@ body {
 .project-summary p:last-child {
   margin-bottom: 0;
 }
+
+.project-summary a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-summary a:hover {
+  opacity: 0.7;
+}

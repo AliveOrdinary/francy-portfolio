@@ -105,11 +105,30 @@ export interface Achievement {
   description: string;
 }
 
+export interface ExperienceItem {
+  role: string;
+  organisation: string;
+  url?: string;
+  location?: string;
+  years?: string;
+  description?: string;
+}
+
+export interface EducationItem {
+  qualification: string;
+  school: string;
+  location?: string;
+  year?: string;
+}
+
 export interface AboutPageData {
   title: string;
   bio: string;
-  whatIDo?: string;
-  experience?: string[];
+  /** A paragraph, or a list of short lines */
+  whatIDo?: string | string[];
+  /** Structured entries; plain strings still work */
+  experience?: Array<ExperienceItem | string>;
+  education?: EducationItem[];
   achievements?: Achievement[];
   profileImage: string;
   profileImageMobile?: string;

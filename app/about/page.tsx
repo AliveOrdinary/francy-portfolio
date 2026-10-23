@@ -1,10 +1,59 @@
 import Image from 'next/image';
-import { getAboutPageData, getContactPageData } from '../../lib/markdown';
+import { getAboutPageData, getContactPageData, getMarkdownContent } from '../../lib/markdown';
 import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
+import type { ExperienceItem, EducationItem } from '@/lib/types';
 
-export default function About() {
+const sectionGrid = 'grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12';
+
+function ExperienceEntry({ item }: { item: ExperienceItem | string }) {
+  if (typeof item === 'string') {
+    return <p className="text-xl leading-relaxed text-gray-700">{item}</p>;
+  }
+  return (
+    <div>
+      <p className="text-xl leading-relaxed text-gray-900">
+        {item.url ? (
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium underline underline-offset-4 hover:opacity-70 transition-opacity"
+          >
+            {item.organisation}
+          </a>
+        ) : (
+          <span className="font-medium">{item.organisation}</span>
+        )}
+        {item.location && <span className="text-gray-500">, {item.location}</span>}
+      </p>
+      <p className="text-lg text-gray-700">
+        {item.role}
+        {item.years && <span className="text-gray-500"> · {item.years}</span>}
+      </p>
+      {item.description && (
+        <p className="text-lg leading-relaxed text-gray-600 mt-1">{item.description}</p>
+      )}
+    </div>
+  );
+}
+
+function EducationEntry({ item }: { item: EducationItem }) {
+  return (
+    <div>
+      <p className="text-xl leading-relaxed text-gray-900 font-medium">{item.qualification}</p>
+      <p className="text-lg text-gray-700">
+        {item.school}
+        {item.location && `, ${item.location}`}
+        {item.year && <span className="text-gray-500"> · {item.year}</span>}
+      </p>
+    </div>
+  );
+}
+
+export default async function About() {
   const aboutData = getAboutPageData();
   const contactData = getContactPageData();
+  const bioHtml = aboutData.bio ? await getMarkdownContent(aboutData.bio.trim()) : '';
   
   // Optimize image paths
   const optimizedProfileImage = isImagePath(aboutData.profileImage) 
@@ -16,6 +65,8 @@ export default function About() {
   const optimizedMobileImage = hasMobileImage && aboutData.profileImageMobile && isImagePath(aboutData.profileImageMobile)
     ? getOptimizedPath(aboutData.profileImageMobile)
     : aboutData.profileImageMobile;
+
+  const whatIDo = aboutData.whatIDo;
 
   return (
     <div className="bg-white">
@@ -69,34 +120,51 @@ export default function About() {
       {/* Content Section */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
         {/* Bio */}
-        {aboutData.bio && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+        {bioHtml && (
+          <div className={sectionGrid}>
             <div aria-hidden="true" />
-            <p className="text-xl leading-relaxed text-gray-700">
-              {aboutData.bio}
-            </p>
+            <div
+              className="project-summary text-xl leading-relaxed text-gray-700"
+              dangerouslySetInnerHTML={{ __html: bioHtml }}
+            />
           </div>
         )}
         
         {/* What I Do Section */}
-        {aboutData.whatIDo && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
+        {whatIDo && whatIDo.length > 0 && (
+          <div className={sectionGrid}>
             <h2 className="text-xl font-medium">What I do</h2>
-            <p className="text-xl leading-relaxed text-gray-700">
-              {aboutData.whatIDo}
-            </p>
+            {Array.isArray(whatIDo) ? (
+              <ul className="space-y-1">
+                {whatIDo.map((line, index) => (
+                  <li key={index} className="text-xl leading-relaxed text-gray-700">{line}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xl leading-relaxed text-gray-700">{whatIDo}</p>
+            )}
           </div>
         )}
         
         {/* Where I've Been Section */}
         {aboutData.experience && aboutData.experience.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-            <h2 className="text-xl font-medium">Where I&apos;ve Been</h2>
-            <div className="space-y-4">
+          <div className={sectionGrid}>
+            <h2 className="text-xl font-medium">Experience</h2>
+            <div className="space-y-6">
               {aboutData.experience.map((item, index) => (
-                <p key={index} className="text-xl leading-relaxed text-gray-700">
-                  {item}
-                </p>
+                <ExperienceEntry key={index} item={item} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Education Section */}
+        {aboutData.education && aboutData.education.length > 0 && (
+          <div className={sectionGrid}>
+            <h2 className="text-xl font-medium">Education</h2>
+            <div className="space-y-6">
+              {aboutData.education.map((item, index) => (
+                <EducationEntry key={index} item={item} />
               ))}
             </div>
           </div>
