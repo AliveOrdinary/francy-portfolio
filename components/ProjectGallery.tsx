@@ -57,6 +57,33 @@ function MediaItem({ type, src, alt, hasAudio = false, className = '', onClick, 
   );
 }
 
+// Tall image (such as a full web page) shown in a browser-style window that scrolls
+function ScrollFrame({ src, alt, onOpen }: { src: string; alt: string; onOpen: () => void }) {
+  // Use the original file: the build's WebP step caps images at 2400px tall, which would blur a full-page design
+  return (
+    <div className="w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100">
+      <div className="flex items-center justify-between h-10 px-4 border-b border-neutral-200">
+        <div className="flex gap-2" aria-hidden="true">
+          <span className="w-3 h-3 rounded-full bg-neutral-300" />
+          <span className="w-3 h-3 rounded-full bg-neutral-300" />
+          <span className="w-3 h-3 rounded-full bg-neutral-300" />
+        </div>
+        <button
+          type="button"
+          onClick={onOpen}
+          className="text-xs font-mono text-neutral-500 hover:text-neutral-900 transition-colors"
+        >
+          View full size
+        </button>
+      </div>
+      <div className="h-[70vh] md:h-[80vh] overflow-y-auto overscroll-contain bg-white" tabIndex={0} aria-label={`${alt} (scrollable)`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} alt={alt} loading="lazy" className="block w-full h-auto" />
+      </div>
+    </div>
+  );
+}
+
 // Single full-width block
 function SingleBlockComponent({ 
   block, 
@@ -71,6 +98,13 @@ function SingleBlockComponent({
 }) {
   return (
     <div className="w-full">
+      {block.frame && block.mediaType === 'image' ? (
+        <ScrollFrame
+          src={block.file}
+          alt={block.alt || block.caption || `${projectTitle} - ${index + 1}`}
+          onOpen={() => onMediaClick(index)}
+        />
+      ) : (
       <MediaItem
         type={block.mediaType}
         src={block.file}
@@ -79,6 +113,7 @@ function SingleBlockComponent({
         priority={index < 2}
         onClick={() => onMediaClick(index)}
       />
+      )}
       {block.caption && (
         <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
       )}
