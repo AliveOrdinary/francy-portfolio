@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import LazyVideo from '@/components/LazyVideo';
 import HighResImageViewer from '@/components/HighResImageViewer';
-import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock, ViewerMediaItem } from '@/lib/types';
+import { GalleryBlock, SingleBlock, SeamlessPairBlock, SideBySideBlock, TextBlock, ViewerMediaItem } from '@/lib/types';
 import { IMAGE_CONFIG } from '@/lib/constants';
 import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 
@@ -262,6 +262,32 @@ function SideBySideBlockComponent({
   );
 }
 
+// Text section - a short label, heading and paragraph placed between media
+function TextBlockComponent({ block }: { block: TextBlock }) {
+  return (
+    <section className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 pt-12 md:pt-24 pb-2 md:pb-4">
+      <div className="md:col-span-6">
+        {block.label && (
+          <p className="text-sm font-mono font-semibold uppercase tracking-widest text-[#7c3aed]">
+            {block.label}
+          </p>
+        )}
+      </div>
+      <div className="md:col-span-6">
+        {block.heading && (
+          <h2 className="text-2xl md:text-3xl font-semibold leading-tight mb-3">{block.heading}</h2>
+        )}
+        {block.bodyHtml && (
+          <div
+            className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none prose-code:font-normal prose-code:before:content-none prose-code:after:content-none"
+            dangerouslySetInnerHTML={{ __html: block.bodyHtml }}
+          />
+        )}
+      </div>
+    </section>
+  );
+}
+
 // Helper to extract all media items from blocks for the viewer
 function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
   const media: ViewerMediaItem[] = [];
@@ -303,6 +329,9 @@ function extractAllMedia(blocks: GalleryBlock[]): ViewerMediaItem[] {
           alt: block.rightAlt || block.caption,
           hasAudio: block.rightHasAudio || false
         });
+        break;
+      case 'text':
+        // Text sections have no media
         break;
     }
   }
@@ -376,6 +405,8 @@ export default function ProjectGallery({ blocks, projectTitle }: ProjectGalleryP
                   mediaStartIndex={mediaStartIndex}
                 />
               );
+            case 'text':
+              return <TextBlockComponent key={index} block={block} />;
             default:
               return null;
           }
