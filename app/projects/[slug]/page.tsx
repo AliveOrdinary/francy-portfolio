@@ -44,9 +44,17 @@ export default async function Project(
   
   const summaryHtml = await getMarkdownContent(projectData.summary || '');
   
-  // Sort gallery blocks by order
+  // Sort gallery blocks by order, and render markdown for text sections
   const sortedBlocks = projectData.galleryBlocks 
-    ? [...projectData.galleryBlocks].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    ? await Promise.all(
+        [...projectData.galleryBlocks]
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+          .map(async (block) =>
+            block.type === 'text' && block.body
+              ? { ...block, bodyHtml: await getMarkdownContent(block.body) }
+              : block
+          )
+      )
     : [];
 
   return (

@@ -37,7 +37,17 @@ export interface SideBySideBlock {
   order: number;
 }
 
-export type GalleryBlock = SingleBlock | SeamlessPairBlock | SideBySideBlock;
+export interface TextBlock {
+  type: 'text';
+  label?: string;
+  heading?: string;
+  body?: string;
+  /** Rendered HTML for body, filled in at build time */
+  bodyHtml?: string;
+  order: number;
+}
+
+export type GalleryBlock = SingleBlock | SeamlessPairBlock | SideBySideBlock | TextBlock;
 
 // Helper type for the image viewer component
 export interface ViewerMediaItem {
