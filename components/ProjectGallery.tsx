@@ -268,7 +268,7 @@ function TextBlockComponent({ block }: { block: TextBlock }) {
     <section className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 pt-12 md:pt-24 pb-2 md:pb-4">
       <div className="md:col-span-6">
         {block.label && (
-          <p className="text-sm font-mono font-semibold uppercase tracking-widest text-[#7c3aed]">
+          <p className="text-sm font-mono font-semibold uppercase tracking-widest text-primary-dark">
             {block.label}
           </p>
         )}
