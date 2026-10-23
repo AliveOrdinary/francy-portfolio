@@ -159,6 +159,8 @@ export interface AboutPageData {
 
 export interface ContactPageData {
   title: string;
+  /** Short line shown on the contact page */
+  intro?: string;
   email: string;
   phone?: string;
   socialMedia: Array<{ platform: string; url: string }>;

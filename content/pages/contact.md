@@ -1,5 +1,8 @@
 ---
 title: Contact
+intro: >-
+  Open to graphic design and art direction roles in Toronto, and to new
+  projects through Amplifier Studio.
 email: francisdes.in@gmail.com
 phone: "+1 647 893 5949"
 socialMedia:

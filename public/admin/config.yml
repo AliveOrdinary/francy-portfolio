@@ -130,6 +130,7 @@ collections:
         file: "content/pages/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "Contact" }
+          - { label: "Intro", name: "intro", widget: "text", required: false }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Phone", name: "phone", widget: "string", required: false }
           - label: "Social Media"
