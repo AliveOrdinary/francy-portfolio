@@ -122,5 +122,9 @@ galleryBlocks:
     label: Status
     body: Designed in 2025. The site is no longer live.
 featured: true
+homeThumbnail: /images/uploads/laptop_mockup_3.jpg
+homeRatio: 16/9
+homeTags:
+  - Web design
 order: 3
 ---

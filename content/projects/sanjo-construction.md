@@ -157,5 +157,10 @@ galleryBlocks:
     label: Status
     body: Proposed identity, 2025. Not yet rolled out.
 featured: true
+homeThumbnail: /images/uploads/sanjo-logo-square.webm
+homeRatio: 1/1
+homeTags:
+  - Brand identity
+  - Motion
 order: 1
 ---

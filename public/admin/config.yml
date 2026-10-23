@@ -86,6 +86,9 @@ collections:
               - { label: "Body", name: "body", widget: "markdown", required: false, hint: "One to three sentences" }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Homepage thumbnail", name: "homeThumbnail", widget: "file", required: false, hint: "Image or video for the homepage tile. Falls back to the featured image/video" }
+      - { label: "Homepage thumbnail shape", name: "homeRatio", widget: "select", options: ["1/1", "4/5", "16/9"], required: false, hint: "Square, portrait or wide" }
+      - { label: "Homepage tags", name: "homeTags", widget: "list", required: false, hint: "Short tags under the tile. Falls back to Services" }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 
   - name: "pages"
@@ -141,8 +144,11 @@ collections:
         file: "content/pages/home.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "Home" }
-          - { label: "Intro Text", name: "introText", widget: "string" }
-          - { label: "Featured Projects Heading", name: "featuredProjectsHeading", widget: "string", default: "Featured Projects" }
+          - { label: "Name", name: "name", widget: "string", hint: "The large name at the top" }
+          - { label: "Role", name: "role", widget: "string", required: false, hint: "Small label, e.g. Art director & graphic designer" }
+          - { label: "Intro Text", name: "introText", widget: "text" }
+          - { label: "Availability", name: "availability", widget: "string", required: false, hint: "Shown with a green dot, e.g. Open to roles. Leave empty to hide" }
+          - { label: "Work Heading", name: "featuredProjectsHeading", widget: "string", default: "Selected work" }
 
   - name: "global"
     label: "Global Settings"
@@ -154,6 +160,15 @@ collections:
           - { label: "Site Title", name: "siteTitle", widget: "string" }
           - { label: "Site Description", name: "siteDescription", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Location", name: "location", widget: "string", required: false, hint: "Shown in the header, e.g. Toronto, CA" }
+          - label: "Header links"
+            name: "headerLinks"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Short text (phones)", name: "short", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string" }
           - label: "Navigation"
             name: "navigation"
             widget: "list"

@@ -19,8 +19,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        display: ["var(--font-outfit)", "sans-serif"],
+        sans: ["'PP Neue Montreal'", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["'PP Neue Montreal'", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

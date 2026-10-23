@@ -4,6 +4,65 @@
    This brings in the theme colours, fonts and the typography plugin. */
 @config "../tailwind.config.js";
 
+/* PP Neue Montreal: the site's typeface (files in /public/fonts) */
+/* PP Neue Montreal Font */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Right Serif Font */
+@font-face {
+  font-family: 'Right Serif';
+  src: url('/fonts/PPRightSerif-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #FFFFFF;
   --foreground: #191021;
@@ -12,7 +71,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-open-sans), sans-serif;
+  font-family: 'PP Neue Montreal', ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {
@@ -73,4 +132,12 @@ body {
 
 .project-summary a:hover {
   opacity: 0.7;
+}
+
+/* Small uppercase labels (navigation, meta, tags) */
+.label {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }

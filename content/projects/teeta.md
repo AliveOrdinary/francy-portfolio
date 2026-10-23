@@ -207,5 +207,10 @@ galleryBlocks:
       is…” line, and has since closed. The wordmark shown here is a refined
       version I developed afterwards.
 featured: true
+homeThumbnail: /images/uploads/teeta-logo-portrait.webm
+homeRatio: 4/5
+homeTags:
+  - Naming
+  - Brand identity
 order: 2
 ---

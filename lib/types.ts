@@ -82,6 +82,19 @@ export interface ProjectData {
   featured: boolean;
   order: number;
   content?: string;
+  /** Homepage thumbnail (image or video); falls back to the featured image or video */
+  homeThumbnail?: string;
+  /** Shape of the homepage thumbnail */
+  homeRatio?: '1/1' | '4/5' | '16/9';
+  /** Short tags under the homepage thumbnail; falls back to services */
+  homeTags?: string[];
+}
+
+export interface HeaderLink {
+  text: string;
+  /** Shorter label used on phones, e.g. IN */
+  short?: string;
+  url: string;
 }
 
 export interface GlobalData {
@@ -90,11 +103,19 @@ export interface GlobalData {
   navigation: Array<{ text: string; url: string }>;
   footerText: string;
   logo?: string;
+  location?: string;
+  headerLinks?: HeaderLink[];
 }
 
 export interface HomePageData {
   title: string;
+  /** Large name at the top of the homepage */
+  name?: string;
+  /** Small label beside the intro, e.g. Art director & graphic designer */
+  role?: string;
   introText: string;
+  /** Shown with a green dot, e.g. Open to roles. Leave empty to hide. */
+  availability?: string;
   whatIDo?: string;
   featuredProjectsHeading: string;
   content?: string;
