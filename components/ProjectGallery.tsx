@@ -115,7 +115,7 @@ function SingleBlockComponent({
       />
       )}
       {block.caption && (
-        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+        <p className="caption label text-gray-500 mt-3.5">{block.caption}</p>
       )}
     </div>
   );
@@ -203,7 +203,7 @@ function SeamlessPairBlockComponent({
         </div>
       </div>
       {block.caption && (
-        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+        <p className="caption label text-gray-500 mt-3.5">{block.caption}</p>
       )}
     </div>
   );
@@ -291,33 +291,32 @@ function SideBySideBlockComponent({
         </div>
       </div>
       {block.caption && (
-        <p className="text-sm text-gray-500 mt-4 text-center font-mono">{block.caption}</p>
+        <p className="caption label text-gray-500 mt-3.5">{block.caption}</p>
       )}
     </div>
   );
 }
 
-// Text section - a short label, heading and paragraph placed between media
+// Text section: a small label over a thin rule, then heading and text in the middle column
 function TextBlockComponent({ block }: { block: TextBlock }) {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-12 pt-12 md:pt-24 pb-2 md:pb-4">
-      <div className="md:col-span-6">
-        {block.label && (
-          <p className="text-sm font-mono font-semibold uppercase tracking-widest text-primary-dark">
-            {block.label}
-          </p>
-        )}
+    <section className="pt-16 md:pt-28 pb-2 md:pb-4">
+      <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-5 md:mb-6">
+        <span>{block.label}</span>
       </div>
-      <div className="md:col-span-6">
-        {block.heading && (
-          <h2 className="text-2xl md:text-3xl font-semibold leading-tight mb-3">{block.heading}</h2>
-        )}
-        {block.bodyHtml && (
-          <div
-            className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none prose-code:font-normal prose-code:before:content-none prose-code:after:content-none"
-            dangerouslySetInnerHTML={{ __html: block.bodyHtml }}
-          />
-        )}
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] md:gap-8">
+        <span className="hidden md:block" aria-hidden="true" />
+        <div className="max-w-[640px]">
+          {block.heading && (
+            <h2 className="text-2xl md:text-[28px] font-normal leading-tight tracking-[-0.01em] mb-3">{block.heading}</h2>
+          )}
+          {block.bodyHtml && (
+            <div
+              className="project-summary text-base md:text-lg leading-relaxed text-gray-600"
+              dangerouslySetInnerHTML={{ __html: block.bodyHtml }}
+            />
+          )}
+        </div>
       </div>
     </section>
   );
