@@ -52,9 +52,9 @@ galleryBlocks:
   - type: single
     order: 4
     mediaType: image
-    file: /images/uploads/teeta-logo-sheet.png
+    file: /images/uploads/teeta-logo-sheet.jpg
     alt: >-
-      Teeta wordmark in horizontal and stacked layouts, with two round seals
+      Teeta wordmark in horizontal and stacked layouts, with a round seal
       reading “cos teeta is a common factor”
     hasAudio: false
   - type: single
