@@ -9,6 +9,9 @@ headerLinks:
   - text: Behance
     short: BE
     url: https://www.behance.net/francis_xavier
+  - text: Resume
+    short: CV
+    url: /Francis_Xavier_Resume.pdf
 navigation:
   - text: Work
     url: /projects

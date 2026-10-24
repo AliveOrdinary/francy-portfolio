@@ -55,7 +55,7 @@ export default function Contact() {
               <dt className="text-gray-500">{link.text}</dt>
               <dd>
                 <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-60">
-                  {link.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                  {link.url.startsWith('/') ? 'Download PDF' : link.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
                 </a>
               </dd>
             </div>
