@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 /**
@@ -16,7 +17,7 @@ export default function Projects() {
 
   return (
     <p className="label pt-10">
-      <a href="/#work" className="underline underline-offset-[3px]">Go to work</a>
+      <Link href="/#work" className="underline underline-offset-[3px]">Go to work</Link>
     </p>
   );
 }
