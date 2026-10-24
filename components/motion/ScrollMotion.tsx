@@ -16,11 +16,19 @@ export default function ScrollMotion() {
     const root = document.documentElement;
     if (!root.classList.contains('motion')) return;
 
+    // After the first page view, don't replay the homepage name intro
+    const markSeen = window.setTimeout(() => {
+      root.classList.add('intro-seen');
+      try {
+        sessionStorage.setItem('intro-seen', '1');
+      } catch {}
+    }, 1500);
+
     const pending = () => Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]:not([data-in])'));
 
     if (!('IntersectionObserver' in window)) {
       pending().forEach((el) => el.setAttribute('data-in', ''));
-      return;
+      return () => window.clearTimeout(markSeen);
     }
 
     const observer = new IntersectionObserver(
@@ -39,6 +47,7 @@ export default function ScrollMotion() {
     const frame = requestAnimationFrame(() => pending().forEach((el) => observer.observe(el)));
 
     return () => {
+      window.clearTimeout(markSeen);
       cancelAnimationFrame(frame);
       observer.disconnect();
     };

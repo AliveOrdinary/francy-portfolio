@@ -55,11 +55,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Turn on motion before first paint, unless the visitor prefers reduced motion */}
+        {/* Turn on motion before first paint, unless the visitor prefers reduced motion.
+            The homepage name intro only plays on the first page view of a visit. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion')}",
+              "if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion')}try{if(sessionStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}",
           }}
         />
       </head>

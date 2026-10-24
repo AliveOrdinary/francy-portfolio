@@ -52,7 +52,7 @@ export default function Home() {
       {/* Name */}
       <section className="pt-[7vh] md:pt-[9vh]">
         <h1 className="font-normal leading-[0.86] tracking-[-0.045em] text-[20vw] md:text-[17.2vw] md:whitespace-nowrap">
-          <Letters text={home.name || 'Francis Xavier'} />
+          <Letters text={home.name || 'Francis Xavier'} once />
         </h1>
       </section>
 
