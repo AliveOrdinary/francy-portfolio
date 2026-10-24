@@ -8,6 +8,7 @@ import LazyVideo from '@/components/LazyVideo';
 import type { Metadata } from 'next';
 import { getOptimizedPath, isImagePath, isVideoPath } from '@/lib/getOptimizedPath';
 import type { ProjectData } from '@/lib/types';
+import Letters from '@/components/motion/Letters';
 
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await props.params;
@@ -113,11 +114,11 @@ export default async function Project(
         <span>{projectData.year}</span>
       </div>
       <h1 className="font-normal text-[15vw] md:text-[11vw] leading-[0.9] tracking-[-0.045em] mt-4 mb-6 md:mb-8">
-        {projectData.title}
+        <Letters text={projectData.title} />
       </h1>
 
       {/* Hero */}
-      <div className="w-full">
+      <div data-reveal="media" style={{ '--i': 4 } as React.CSSProperties} className="w-full">
         <HeroMedia
           video={projectData.featuredVideo}
           videoMobile={projectData.featuredVideoMobile}
@@ -128,7 +129,7 @@ export default async function Project(
       </div>
 
       {/* Details · summary · services and role */}
-      <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-6 md:gap-8 pt-8 md:pt-12">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-6 md:gap-8 pt-8 md:pt-12">
         <dl className="label grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 content-start">
           {projectData.client && <Detail label="Client">{projectData.client}</Detail>}
           {projectData.industry && <Detail label="Industry">{projectData.industry}</Detail>}
@@ -171,12 +172,13 @@ export default async function Project(
       {/* Next project */}
       {nextProject && (
         <section className="pt-24 md:pt-36">
-          <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
+          <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
             <span>Next project</span>
             <span>{pad(((position + 1) % allProjects.length) + 1)} / {pad(allProjects.length)}</span>
           </div>
           <Link
             href={`/projects/${nextProject.slug}`}
+            data-reveal="media"
             className="group grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-8 items-end"
           >
             <div>

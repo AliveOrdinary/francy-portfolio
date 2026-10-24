@@ -2,12 +2,13 @@ import Image from 'next/image';
 import { getAboutPageData, getContactPageData, getGlobalData, getHomePageData, getMarkdownContent } from '../../lib/markdown';
 import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
 import type { ExperienceItem, EducationItem } from '@/lib/types';
+import type { CSSProperties } from 'react';
 
 const row = 'grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-1 md:gap-8 py-5 md:py-6 border-b border-gray-100 items-baseline';
 
 function SectionLabel({ title, count }: { title: string; count?: number }) {
   return (
-    <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-2">
+    <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-2">
       <span>{title}</span>
       {count ? <span>({String(count).padStart(2, '0')})</span> : <span />}
     </div>
@@ -16,11 +17,11 @@ function SectionLabel({ title, count }: { title: string; count?: number }) {
 
 function ExperienceRow({ item }: { item: ExperienceItem | string }) {
   if (typeof item === 'string') {
-    return <div className={row}><span /><p className="text-xl md:text-2xl">{item}</p><span /></div>;
+    return <div data-reveal="row" className={row}><span /><p className="text-xl md:text-2xl">{item}</p><span /></div>;
   }
   const detail = [item.location, item.description].filter(Boolean).join(' · ');
   return (
-    <div className={row}>
+    <div data-reveal="row" className={row}>
       <span className="text-base text-gray-500">{item.years}</span>
       <div>
         <p className="text-xl md:text-2xl leading-tight tracking-[-0.01em]">
@@ -41,7 +42,7 @@ function ExperienceRow({ item }: { item: ExperienceItem | string }) {
 
 function EducationRow({ item }: { item: EducationItem }) {
   return (
-    <div className={row}>
+    <div data-reveal="row" className={row}>
       <span className="text-base text-gray-500">{item.year}</span>
       <div>
         <p className="text-xl md:text-2xl leading-tight tracking-[-0.01em]">{item.qualification}</p>
@@ -86,7 +87,7 @@ export default async function About() {
       {/* Hero Section */}
       <div className="relative w-full">
         {aboutData.profileImage && (
-          <div className="relative w-full h-auto rounded-2xl overflow-hidden">
+          <div data-reveal="media" className="relative w-full h-auto rounded-2xl overflow-hidden">
              {hasMobileImage ? (
                <picture>
                  <source media="(max-width: 768px)" srcSet={optimizedMobileImage as string} />
@@ -131,7 +132,7 @@ export default async function About() {
       </div>
       
       {/* Intro */}
-      <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-4 md:gap-8 pt-8 md:pt-14">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-4 md:gap-8 pt-8 md:pt-14">
         <p className="label">About</p>
         <div className="max-w-[640px]">
           <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] mb-5">{lead}</p>
@@ -159,7 +160,7 @@ export default async function About() {
           <SectionLabel title="What I do" count={services.length} />
           <ul className="grid grid-cols-1 md:grid-cols-4 gap-1.5 md:gap-5 pt-3">
             {services.map((line, index) => (
-              <li key={index} className="text-xl md:text-[22px] leading-tight tracking-[-0.01em]">{line}</li>
+              <li key={index} data-reveal style={{ '--i': index } as CSSProperties} className="text-xl md:text-[22px] leading-tight tracking-[-0.01em]">{line}</li>
             ))}
           </ul>
         </section>
@@ -186,6 +187,7 @@ export default async function About() {
         <SectionLabel title="Contact" />
         <a
           href={`mailto:${contactData.email}`}
+          data-reveal
           className="block pt-4 text-[9vw] md:text-[6vw] leading-none tracking-[-0.035em] hover:opacity-60 transition-opacity break-all"
         >
           {contactData.email}

@@ -1,4 +1,5 @@
 import { getContactPageData, getGlobalData, getHomePageData } from '../../lib/markdown';
+import Letters from '@/components/motion/Letters';
 
 export const metadata = {
   title: 'Contact · Francis Xavier',
@@ -23,10 +24,10 @@ export default function Contact() {
         href={`mailto:${contactData.email}`}
         className="block mt-4 text-[8.6vw] md:text-[8.4vw] leading-[0.95] tracking-[-0.045em] break-all hover:opacity-60 transition-opacity"
       >
-        {contactData.email}
+        <Letters text={contactData.email} delay={0.1} />
       </a>
 
-      <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
+      <section data-reveal style={{ '--i': 8 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
         <div className="label">
           {home.availability && (
             <p>

@@ -4,6 +4,7 @@ import LazyVideo from '@/components/LazyVideo';
 import { getFeaturedProjects, getHomePageData, getContactPageData } from '@/lib/markdown';
 import { getOptimizedPath, isImagePath, isVideoPath } from '@/lib/getOptimizedPath';
 import type { ProjectData } from '@/lib/types';
+import Letters from '@/components/motion/Letters';
 
 // Staggered layout, repeating every three projects:
 // large on the left, smaller and lower on the right, then wide in the middle
@@ -51,12 +52,12 @@ export default function Home() {
       {/* Name */}
       <section className="pt-[7vh] md:pt-[9vh]">
         <h1 className="font-normal leading-[0.86] tracking-[-0.045em] text-[20vw] md:text-[17.2vw] md:whitespace-nowrap">
-          {home.name || 'Francis Xavier'}
+          <Letters text={home.name || 'Francis Xavier'} />
         </h1>
       </section>
 
       {/* Role · intro · availability */}
-      <section className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
+      <section data-reveal style={{ '--i': 6 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
         {home.role && <p className="label">{home.role}</p>}
         <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] max-w-[620px]">
           {home.introText}
@@ -77,7 +78,7 @@ export default function Home() {
       {/* Selected work */}
       {projects.length > 0 && (
         <section id="work" className="pt-16 md:pt-28 scroll-mt-20">
-          <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
+          <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
             <span>{home.featuredProjectsHeading || 'Selected work'}</span>
             <span>({count})</span>
           </div>
@@ -89,6 +90,7 @@ export default function Home() {
                 <Link
                   key={project.slug}
                   href={`/projects/${project.slug}`}
+                  data-reveal="media"
                   className={`group block ${POSITIONS[index % 3]}`}
                 >
                   <h2 className="text-xl font-medium tracking-[-0.01em] mb-3">{project.title}</h2>

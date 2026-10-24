@@ -5,6 +5,7 @@ import Header from "@/components/ui/Header";
 import BottomNav from "@/components/ui/BottomNav";
 import PageTransition from "@/components/PageTransition";
 import { getGlobalData } from "@/lib/markdown";
+import ScrollMotion from "@/components/motion/ScrollMotion";
 
 const SITE_DESCRIPTION =
   "Francis Xavier, art director and graphic designer in Toronto. Brand identities, naming, motion and web design, each built around one clear idea.";
@@ -53,6 +54,15 @@ export default function RootLayout({
   const global = getGlobalData();
   return (
     <html lang="en">
+      <head>
+        {/* Turn on motion before first paint, unless the visitor prefers reduced motion */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion')}",
+          }}
+        />
+      </head>
       <body className="font-sans antialiased bg-background text-foreground">
         <Header location={global.location} links={global.headerLinks} />
         {/* Bottom padding clears the floating nav pill plus breathing room,
@@ -65,6 +75,7 @@ export default function RootLayout({
           </PageTransition>
         </main>
         <BottomNav />
+        <ScrollMotion />
         
         <Script 
           src="https://identity.netlify.com/v1/netlify-identity-widget.js"

@@ -97,7 +97,7 @@ function SingleBlockComponent({
   onMediaClick: (mediaIndex: number) => void;
 }) {
   return (
-    <div className="w-full">
+    <div data-reveal="media" className="w-full">
       {block.frame && block.mediaType === 'image' ? (
         <ScrollFrame
           src={block.file}
@@ -175,7 +175,7 @@ function SeamlessPairBlockComponent({
   };
 
   return (
-    <div className="w-full">
+    <div data-reveal="media" className="w-full">
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:w-1/2">
           <div className="relative aspect-square overflow-hidden rounded-2xl md:rounded-r-none">
@@ -263,7 +263,7 @@ function SideBySideBlockComponent({
   };
 
   return (
-    <div className="w-full">
+    <div data-reveal="media" className="w-full">
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="w-full md:w-1/2">
           <div className="relative aspect-square overflow-hidden rounded-2xl">
@@ -301,10 +301,10 @@ function SideBySideBlockComponent({
 function TextBlockComponent({ block }: { block: TextBlock }) {
   return (
     <section className="pt-16 md:pt-28 pb-2 md:pb-4">
-      <div className="label flex justify-between border-t border-gray-200 pt-3.5 mb-5 md:mb-6">
+      <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-5 md:mb-6">
         <span>{block.label}</span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] md:gap-8">
+      <div data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] md:gap-8">
         <span className="hidden md:block" aria-hidden="true" />
         <div className="max-w-[640px]">
           {block.heading && (
