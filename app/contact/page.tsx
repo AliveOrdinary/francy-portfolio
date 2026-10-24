@@ -27,7 +27,7 @@ export default function Contact() {
         <Letters text={contactData.email} delay={0.1} />
       </a>
 
-      <section data-reveal style={{ '--i': 8 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
         <div className="label">
           {home.availability && (
             <p>
@@ -55,7 +55,7 @@ export default function Contact() {
               <dt className="text-gray-500">{link.text}</dt>
               <dd>
                 <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-60">
-                  {link.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                  {link.url.startsWith('/') ? 'Download PDF' : link.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
                 </a>
               </dd>
             </div>

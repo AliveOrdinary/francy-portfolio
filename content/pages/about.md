@@ -32,6 +32,11 @@ experience:
     description: >-
       Branding and web design for clients in India and Canada. Led creative
       direction on Teeta and Sanjo Construction; designed the CRUMS website.
+  - organisation: Freelance
+    location: Toronto
+    role: Graphic Designer
+    years: "2022"
+    description: Logo and identity for Milton Malayalees, a Malayalee community association in Milton, Ontario.
   - organisation: Chorus Communications (formerly Chila Films)
     location: Bangalore
     role: Graphic Designer

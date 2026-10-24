@@ -9,8 +9,8 @@ import Letters from '@/components/motion/Letters';
 // Staggered layout, repeating every three projects:
 // large on the left, smaller and lower on the right, then wide in the middle
 const POSITIONS = [
-  'md:col-start-1 md:col-end-7',
-  'md:col-start-9 md:col-end-13 md:mt-44',
+  'md:col-start-1 md:col-end-8',
+  'md:col-start-9 md:col-end-13 md:mt-12',
   'md:col-start-3 md:col-end-11',
 ];
 const DEFAULT_RATIOS: Array<NonNullable<ProjectData['homeRatio']>> = ['1/1', '4/5', '16/9'];
@@ -57,7 +57,7 @@ export default function Home() {
       </section>
 
       {/* Role · intro · availability */}
-      <section data-reveal style={{ '--i': 6 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
         {home.role && <p className="label">{home.role}</p>}
         <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] max-w-[620px]">
           {home.introText}
@@ -82,7 +82,7 @@ export default function Home() {
             <span>{home.featuredProjectsHeading || 'Selected work'}</span>
             <span>({count})</span>
           </div>
-          <div className="flex flex-col gap-9 md:grid md:grid-cols-12 md:gap-x-5 md:gap-y-24 md:items-start">
+          <div className="flex flex-col gap-9 md:grid md:grid-cols-12 md:gap-x-5 md:gap-y-20 md:items-start">
             {projects.map((project, index) => {
               const ratio = project.homeRatio || DEFAULT_RATIOS[index % 3];
               const tags = project.homeTags?.length ? project.homeTags : project.services ?? [];
@@ -108,11 +108,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="label flex flex-col md:flex-row md:justify-between gap-1.5 text-gray-500 pt-16">
-        <span>© {new Date().getFullYear()} {home.name || 'Francis Xavier'}</span>
-        <a href={`mailto:${contact.email}`} className="hover:text-foreground transition-colors">{contact.email}</a>
-      </footer>
     </div>
   );
 }

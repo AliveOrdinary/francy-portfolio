@@ -44,14 +44,15 @@ galleryBlocks:
   - type: sideBySide
     order: 3
     leftType: image
-    leftFile: /images/uploads/gg-key-snow.jpg
+    leftFile: /images/uploads/gg-key-snow-pair.jpg
     leftAlt: Giant Giants & Gentlemen gin bottle on a snowy mountain slope, two hikers beside it
     leftHasAudio: false
     rightType: image
-    rightFile: /images/uploads/gg-key-underwater.jpg
+    rightFile: /images/uploads/gg-key-underwater-pair.jpg
     rightAlt: Giants & Gentlemen gin bottle underwater among shoals of fish
     rightHasAudio: false
     caption: Key visuals. Backgrounds from stock photography, composited by me.
+    aspect: 1458/2044
   - type: text
     order: 4
     label: 03 — Out of home
@@ -118,10 +119,10 @@ galleryBlocks:
       Team project for Campaign Development (GRAF256), Humber Polytechnic,
       2023. Not commissioned by Giants & Gentlemen.
 featured: true
-homeThumbnail: /images/uploads/gg-key-underwater.jpg
-homeRatio: 4/5
+homeThumbnail: /images/uploads/gg-key-clouds.jpg
+homeRatio: 16/9
 homeTags:
   - Art direction
   - Campaign
-order: 4
+order: 5
 ---

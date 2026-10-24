@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/ui/Header";
 import BottomNav from "@/components/ui/BottomNav";
+import Footer from "@/components/ui/Footer";
 import PageTransition from "@/components/PageTransition";
 import { getGlobalData } from "@/lib/markdown";
 import ScrollMotion from "@/components/motion/ScrollMotion";
@@ -64,17 +65,18 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col">
         <Header location={global.location} links={global.headerLinks} />
         {/* Bottom padding clears the floating nav pill plus breathing room,
             and the phone's home-indicator area if any */}
         <main 
-          className="px-4 md:px-6 pb-[calc(6rem+env(safe-area-inset-bottom))] min-h-screen"
+          className="px-4 md:px-6 flex-1"
         >
           <PageTransition>
             {children}
           </PageTransition>
         </main>
+        <Footer />
         <BottomNav />
         <ScrollMotion />
         
