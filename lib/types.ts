@@ -63,7 +63,7 @@ export interface ViewerMediaItem {
 export interface ProjectData {
   title: string;
   slug: string;
-  category?: 'Branding' | 'Photography' | 'Illustration';
+  category?: 'Branding' | 'Advertising' | 'Photography' | 'Illustration';
   featuredImage?: string;
   featuredVideo?: string;
   featuredVideoHasAudio?: boolean;

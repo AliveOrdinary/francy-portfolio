@@ -14,7 +14,7 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Branding", "Photography", "Illustration"], default: "Branding" }
+      - { label: "Category", name: "category", widget: "select", options: ["Branding", "Advertising", "Photography", "Illustration"], default: "Branding" }
       - { label: "Featured Image", name: "featuredImage", widget: "image", required: false }
       - { label: "Featured Video", name: "featuredVideo", widget: "file", required: false }
       - { label: "Featured Video Has Audio?", name: "featuredVideoHasAudio", widget: "boolean", default: false, required: false }
