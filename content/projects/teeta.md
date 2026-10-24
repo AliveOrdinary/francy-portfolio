@@ -5,7 +5,6 @@ category: Branding
 featuredImage: /images/uploads/cover.jpg
 featuredVideo: /images/uploads/teeta-logo-animation.webm
 featuredVideoHasAudio: false
-featuredVideoMobile: /images/uploads/teeta-logo-animation.webm
 summary: >-
   Naming and identity for a café in Kochi, built around one idea: food is the
   common factor.

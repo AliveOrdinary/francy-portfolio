@@ -31,7 +31,14 @@ export default function HeroMedia({
   const optimizedImageMobile = imageMobile && isImagePath(imageMobile) ? getOptimizedPath(imageMobile) : imageMobile;
 
   return (
-    <div className="w-full h-[60vh] md:h-[90vh] relative overflow-hidden rounded-2xl">
+    <div
+      className={`w-full relative overflow-hidden rounded-2xl ${
+        // A separate phone version can fill a tall box; otherwise keep the
+        // landscape shape so nothing gets cropped. Desktop always 16:9,
+        // capped at 90% of the screen height.
+        hasMobileVariant ? 'h-[60vh]' : 'aspect-video'
+      } md:h-auto md:aspect-video md:max-h-[90vh]`}
+    >
       {/* Mobile featured media */}
       {hasMobileVariant && (
         <div className="block md:hidden w-full h-full">
