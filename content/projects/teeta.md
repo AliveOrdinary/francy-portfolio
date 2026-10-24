@@ -74,9 +74,9 @@ galleryBlocks:
     label: 03 — Where it started
     heading: From the café’s sign to a refined wordmark
     body: >-
-      Teeta opened with my original logo, which already had θ, here as the
-      “a”, and the looped “e”. Later, I refined it: θ moved into the
-      first “e”, the second “e” gained a smile, and the letterforms became
+      Teeta opened with the original logo, which already had θ, here as the
+      “a”, and the looped “e”. The wordmark was later refined: θ moved into
+      the first “e”, the second “e” gained a smile, and the letterforms became
       softer and friendlier.
   - type: sideBySide
     order: 8
@@ -202,9 +202,9 @@ galleryBlocks:
     order: 23
     label: Status
     body: >-
-      Teeta opened in Kochi in 2024 with my original logo and the “cos teeta
-      is…” line, and has since closed. The wordmark shown here is a refined
-      version I developed afterwards.
+      Teeta opened in Kochi in 2024 with the original logo and the “cos teeta
+      is…” line, and has since closed. The wordmark shown here is a later
+      refinement.
 featured: true
 homeThumbnail: /images/uploads/teeta-logo-portrait.webm
 homeRatio: 4/5

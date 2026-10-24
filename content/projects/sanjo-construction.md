@@ -94,7 +94,7 @@ galleryBlocks:
     label: 05 — Colour
     heading: Sanjo’s purple, made into a system
     body: >-
-      Purple was Sanjo’s own choice. I built it into a four-colour palette that
+      Purple was Sanjo’s own choice, built into a four-colour palette that
       works across print, motion and signage, and sets Sanjo apart from the
       orange and navy common in renovation branding.
   - type: single
@@ -108,8 +108,8 @@ galleryBlocks:
     heading: A name that builds itself
     body: >-
       The letters move like modules being placed on a plan, scattering and
-      snapping back into their squares. I storyboarded the sequence and tested
-      the timing frame by frame in Procreate before handing it to the animator.
+      snapping back into their squares. The sequence was storyboarded and its
+      timing tested frame by frame in Procreate before it went to the animator.
   - type: single
     order: 13
     mediaType: image
