@@ -149,20 +149,16 @@ body {
    is shown as normal.
 ------------------------------------------------------------------- */
 
-/* Headlines: letters fade in one by one, in a scattered order */
+/* Headlines: letters fade in smoothly, in a scattered order */
 /* Letters start faintly visible (not 0) so the browser still counts the
    headline as painted straight away (Largest Contentful Paint) */
 @keyframes letter-in {
-  0% { opacity: 0.08; }
-  20% { opacity: 0.5; }
-  35% { opacity: 0.12; }
-  55% { opacity: 1; }
-  70% { opacity: 0.45; }
-  100% { opacity: 1; }
+  from { opacity: 0.08; }
+  to { opacity: 1; }
 }
 .motion .letters .ch {
   opacity: 0.08;
-  animation: letter-in 0.45s steps(1, end) forwards;
+  animation: letter-in 0.5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
   animation-delay: var(--d, 0s);
 }
 /* The homepage name only plays once per visit */

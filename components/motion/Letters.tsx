@@ -1,5 +1,5 @@
 /**
- * Splits a headline into letters that flicker in, in a scattered order,
+ * Splits a headline into letters that fade in, in a scattered order,
  * when the page loads. With `once`, it only plays on the first page view of
  * a visit (used for the name on the homepage). Pure CSS (see `.letters` in globals.css), so it
  * works in server components. Screen readers get the plain text.
