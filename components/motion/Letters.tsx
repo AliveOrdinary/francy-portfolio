@@ -16,8 +16,9 @@ export default function Letters({ text, delay = 0 }: { text: string; delay?: num
           <span
             key={i}
             className="ch"
-            // Same scattered order on server and client: no hydration mismatch
-            style={{ '--d': `${(delay + (((i * 37 + 11) % 17) / 17) * 0.8).toFixed(3)}s` } as React.CSSProperties}
+            // Scattered order (golden-ratio spacing), the same on server and
+            // client so there is no hydration mismatch
+            style={{ '--d': `${(delay + 0.25 + (((i + 1) * 0.618034) % 1) * 1.4).toFixed(3)}s` } as React.CSSProperties}
           >
             {ch}
           </span>
