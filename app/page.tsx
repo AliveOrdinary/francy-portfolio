@@ -9,8 +9,8 @@ import Letters from '@/components/motion/Letters';
 // Staggered layout, repeating every three projects:
 // large on the left, smaller and lower on the right, then wide in the middle
 const POSITIONS = [
-  'md:col-start-1 md:col-end-7',
-  'md:col-start-9 md:col-end-13 md:mt-44',
+  'md:col-start-1 md:col-end-8',
+  'md:col-start-9 md:col-end-13 md:mt-12',
   'md:col-start-3 md:col-end-11',
 ];
 const DEFAULT_RATIOS: Array<NonNullable<ProjectData['homeRatio']>> = ['1/1', '4/5', '16/9'];
@@ -82,7 +82,7 @@ export default function Home() {
             <span>{home.featuredProjectsHeading || 'Selected work'}</span>
             <span>({count})</span>
           </div>
-          <div className="flex flex-col gap-9 md:grid md:grid-cols-12 md:gap-x-5 md:gap-y-24 md:items-start">
+          <div className="flex flex-col gap-9 md:grid md:grid-cols-12 md:gap-x-5 md:gap-y-20 md:items-start">
             {projects.map((project, index) => {
               const ratio = project.homeRatio || DEFAULT_RATIOS[index % 3];
               const tags = project.homeTags?.length ? project.homeTags : project.services ?? [];

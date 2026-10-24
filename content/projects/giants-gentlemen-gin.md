@@ -119,8 +119,8 @@ galleryBlocks:
       Team project for Campaign Development (GRAF256), Humber Polytechnic,
       2023. Not commissioned by Giants & Gentlemen.
 featured: true
-homeThumbnail: /images/uploads/gg-key-underwater.jpg
-homeRatio: 1/1
+homeThumbnail: /images/uploads/gg-key-clouds.jpg
+homeRatio: 16/9
 homeTags:
   - Art direction
   - Campaign
