@@ -101,6 +101,7 @@ collections:
           - { label: "Title", name: "title", widget: "string", default: "About" }
           - { label: "Bio", name: "bio", widget: "markdown" }
           - { label: "What I do", name: "whatIDo", widget: "list", required: false, hint: "One short line per item" }
+          - { label: "Tools", name: "tools", widget: "list", required: false, hint: "One app per item, e.g. Figma" }
           - label: "Experience"
             name: "experience"
             widget: "list"

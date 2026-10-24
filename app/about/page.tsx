@@ -166,6 +166,18 @@ export default async function About() {
         </section>
       )}
 
+      {/* Tools */}
+      {aboutData.tools && aboutData.tools.length > 0 && (
+        <section className="pt-16 md:pt-24">
+          <SectionLabel title="Tools" count={aboutData.tools.length} />
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-1.5 md:gap-y-3 pt-3">
+            {aboutData.tools.map((tool, index) => (
+              <li key={tool} data-reveal style={{ '--i': index } as CSSProperties} className="text-xl md:text-[22px] leading-tight tracking-[-0.01em]">{tool}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* Experience */}
       {aboutData.experience && aboutData.experience.length > 0 && (
         <section className="pt-16 md:pt-24">

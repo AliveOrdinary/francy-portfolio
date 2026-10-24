@@ -16,6 +16,14 @@ whatIDo:
   - Typography and lettering
   - Art direction for print, packaging and motion
   - Web design
+tools:
+  - Adobe Illustrator
+  - Photoshop
+  - InDesign
+  - After Effects
+  - Premiere Pro
+  - Figma
+  - Procreate
 experience:
   - organisation: Amplifier Studio
     url: https://www.instagram.com/studio.amplifier/

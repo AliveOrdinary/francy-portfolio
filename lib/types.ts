@@ -147,6 +147,8 @@ export interface AboutPageData {
   bio: string;
   /** A paragraph, or a list of short lines */
   whatIDo?: string | string[];
+  /** Software, one per line */
+  tools?: string[];
   /** Structured entries; plain strings still work */
   experience?: Array<ExperienceItem | string>;
   education?: EducationItem[];
