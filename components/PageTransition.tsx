@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 
 /**
  * Handles scroll-to-top on route changes.
- * Only applies slide-up animation on project detail pages.
+ * Page motion is handled per element (see components/motion).
  */
 export default function PageTransition({ 
   children 
@@ -14,8 +14,6 @@ export default function PageTransition({
 }) {
   const pathname = usePathname();
   
-  // Only animate on project detail pages (e.g., /projects/crums)
-  const isProjectPage = pathname.startsWith('/projects/') && pathname !== '/projects/';
 
   useEffect(() => {
     // Scroll to top on route change
@@ -26,10 +24,7 @@ export default function PageTransition({
   }, [pathname]);
 
   return (
-    <div 
-      key={pathname}
-      className={isProjectPage ? 'animate-page-enter' : ''}
-    >
+    <div key={pathname}>
       {children}
     </div>
   );

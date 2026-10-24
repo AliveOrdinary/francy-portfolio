@@ -4,6 +4,65 @@
    This brings in the theme colours, fonts and the typography plugin. */
 @config "../tailwind.config.js";
 
+/* PP Neue Montreal: the site's typeface (files in /public/fonts) */
+/* PP Neue Montreal Font */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/PPNeueMontreal-SemiBolditalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Right Serif Font */
+@font-face {
+  font-family: 'Right Serif';
+  src: url('/fonts/PPRightSerif-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #FFFFFF;
   --foreground: #191021;
@@ -12,7 +71,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-open-sans), sans-serif;
+  font-family: 'PP Neue Montreal', ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer utilities {
@@ -64,4 +123,80 @@ body {
 
 .project-summary p:last-child {
   margin-bottom: 0;
+}
+
+.project-summary a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.project-summary a:hover {
+  opacity: 0.7;
+}
+
+/* Small uppercase labels (navigation, meta, tags) */
+.label {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------------
+   Motion
+   Only active when <html> has the `motion` class (set in layout.tsx
+   unless the visitor prefers reduced motion). Without it, everything
+   is shown as normal.
+------------------------------------------------------------------- */
+
+/* Headlines: letters fade in smoothly, in a scattered order */
+/* Letters start faintly visible (not 0) so the browser still counts the
+   headline as painted straight away (Largest Contentful Paint) */
+@keyframes letter-in {
+  from { opacity: 0.08; }
+  to { opacity: 1; }
+}
+.motion .letters .ch {
+  opacity: 0.08;
+  animation: letter-in 0.5s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+/* The homepage name only plays once per visit */
+.intro-seen .letters.once .ch {
+  animation: none;
+  opacity: 1;
+}
+
+/* Scroll reveals: rise and fade in */
+.motion [data-reveal] {
+  opacity: 0.12;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.motion [data-reveal][data-in] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Media: rises a little further than text, so the work arrives first */
+.motion [data-reveal='media'] {
+  transform: translateY(28px);
+}
+
+/* Rows and section lines: wipe in from the left */
+.motion [data-reveal='row'],
+.motion [data-reveal='line'] {
+  transform: none;
+  clip-path: inset(0 35% 0 0);
+}
+.motion [data-reveal='line'] {
+  clip-path: inset(0 70% 0 0);
+}
+.motion [data-reveal='row'][data-in],
+.motion [data-reveal='line'][data-in] {
+  clip-path: inset(0 0 0 0);
 }

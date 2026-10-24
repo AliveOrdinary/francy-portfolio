@@ -10,6 +10,19 @@
   port = 8888
   targetPort = 3000
 
+# The work list now lives on the homepage
+[[redirects]]
+  from = "/projects"
+  to = "/#work"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects/"
+  to = "/#work"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

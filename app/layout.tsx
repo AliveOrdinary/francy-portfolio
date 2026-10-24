@@ -1,23 +1,37 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/ui/Header";
 import BottomNav from "@/components/ui/BottomNav";
 import PageTransition from "@/components/PageTransition";
+import { getGlobalData } from "@/lib/markdown";
+import ScrollMotion from "@/components/motion/ScrollMotion";
 
-const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--font-open-sans",
-  display: "swap",
-});
+const SITE_DESCRIPTION =
+  "Francis Xavier, art director and graphic designer in Toronto. Brand identities, naming, motion and web design, each built around one clear idea.";
 
 export const metadata: Metadata = {
-  title: "Francis | Art Director & Graphic Designer",
-  description: "Francis Xavier is an Art Director and Graphic Designer based in Toronto, specializing in branding, typography, and UI/UX.",
-  keywords: ["Art Director", "Graphic Designer", "Branding", "Typography", "UI/UX", "Toronto", "Portfolio"],
+  metadataBase: new URL("https://francisdes.com"),
+  title: "Francis Xavier · Art director & graphic designer",
+  description: SITE_DESCRIPTION,
+  keywords: ["Francis Xavier", "Art Director", "Graphic Designer", "Brand Identity", "Branding", "Motion", "Web Design", "Toronto", "Amplifier Studio", "Portfolio"],
+  openGraph: {
+    title: "Francis Xavier · Art director & graphic designer",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    siteName: "Francis Xavier",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Francis Xavier, art director and graphic designer, Toronto" }],
+    locale: "en_CA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Francis Xavier · Art director & graphic designer",
+    description: SITE_DESCRIPTION,
+    images: ["/og-image.jpg"],
+  },
   authors: [{ name: "Francis Xavier" }],
-  creator: "AliveOrdinary",
+  creator: "Francis Xavier",
   icons: {
     icon: [
       {
@@ -37,12 +51,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const global = getGlobalData();
   return (
     <html lang="en">
-      <body className={`${openSans.variable} font-sans antialiased bg-background text-foreground`}>
-        <Header />
-        {/* Bottom padding clears the fixed BottomNav (bar + its corner pieces)
-            plus breathing room, and the phone's home-indicator area if any */}
+      <head>
+        {/* Turn on motion before first paint, unless the visitor prefers reduced motion.
+            The homepage name intro only plays on the first page view of a visit. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('motion')}try{if(sessionStorage.getItem('intro-seen'))document.documentElement.classList.add('intro-seen')}catch(e){}",
+          }}
+        />
+      </head>
+      <body className="font-sans antialiased bg-background text-foreground">
+        <Header location={global.location} links={global.headerLinks} />
+        {/* Bottom padding clears the floating nav pill plus breathing room,
+            and the phone's home-indicator area if any */}
         <main 
           className="px-4 md:px-6 pb-[calc(6rem+env(safe-area-inset-bottom))] min-h-screen"
         >
@@ -51,6 +76,7 @@ export default function RootLayout({
           </PageTransition>
         </main>
         <BottomNav />
+        <ScrollMotion />
         
         <Script 
           src="https://identity.netlify.com/v1/netlify-identity-widget.js"

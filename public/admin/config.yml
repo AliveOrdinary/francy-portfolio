@@ -86,6 +86,9 @@ collections:
               - { label: "Body", name: "body", widget: "markdown", required: false, hint: "One to three sentences" }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Homepage thumbnail", name: "homeThumbnail", widget: "file", required: false, hint: "Image or video for the homepage tile. Falls back to the featured image/video" }
+      - { label: "Homepage thumbnail shape", name: "homeRatio", widget: "select", options: ["1/1", "4/5", "16/9"], required: false, hint: "Square, portrait or wide" }
+      - { label: "Homepage tags", name: "homeTags", widget: "list", required: false, hint: "Short tags under the tile. Falls back to Services" }
       - { label: "Order", name: "order", widget: "number", default: 1 }
 
   - name: "pages"
@@ -97,6 +100,28 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string", default: "About" }
           - { label: "Bio", name: "bio", widget: "markdown" }
+          - { label: "What I do", name: "whatIDo", widget: "list", required: false, hint: "One short line per item" }
+          - { label: "Tools", name: "tools", widget: "list", required: false, hint: "One app per item, e.g. Figma" }
+          - label: "Experience"
+            name: "experience"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Organisation", name: "organisation", widget: "string" }
+              - { label: "Link", name: "url", widget: "string", required: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Years", name: "years", widget: "string", required: false, hint: "e.g. 2024–present" }
+              - { label: "Description", name: "description", widget: "string", required: false }
+          - label: "Education"
+            name: "education"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Qualification", name: "qualification", widget: "string" }
+              - { label: "School", name: "school", widget: "string" }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - { label: "Year", name: "year", widget: "string", required: false }
           - { label: "Profile Image", name: "profileImage", widget: "image" }
           - { label: "Profile Image (Mobile)", name: "profileImageMobile", widget: "image", required: false, hint: "Vertical image optimized for mobile devices" }
           - { label: "Mobile Text Overlay", name: "mobileOverlay", widget: "image", required: false, hint: "SVG or PNG overlay for mobile image (for text animations)" }
@@ -106,6 +131,7 @@ collections:
         file: "content/pages/contact.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "Contact" }
+          - { label: "Intro", name: "intro", widget: "text", required: false }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Phone", name: "phone", widget: "string", required: false }
           - label: "Social Media"
@@ -120,8 +146,11 @@ collections:
         file: "content/pages/home.md"
         fields:
           - { label: "Title", name: "title", widget: "string", default: "Home" }
-          - { label: "Intro Text", name: "introText", widget: "string" }
-          - { label: "Featured Projects Heading", name: "featuredProjectsHeading", widget: "string", default: "Featured Projects" }
+          - { label: "Name", name: "name", widget: "string", hint: "The large name at the top" }
+          - { label: "Role", name: "role", widget: "string", required: false, hint: "Small label, e.g. Art director & graphic designer" }
+          - { label: "Intro Text", name: "introText", widget: "text" }
+          - { label: "Availability", name: "availability", widget: "string", required: false, hint: "Shown with a green dot, e.g. Open to roles. Leave empty to hide" }
+          - { label: "Work Heading", name: "featuredProjectsHeading", widget: "string", default: "Selected work" }
 
   - name: "global"
     label: "Global Settings"
@@ -133,6 +162,15 @@ collections:
           - { label: "Site Title", name: "siteTitle", widget: "string" }
           - { label: "Site Description", name: "siteDescription", widget: "string" }
           - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Location", name: "location", widget: "string", required: false, hint: "Shown in the header, e.g. Toronto, CA" }
+          - label: "Header links"
+            name: "headerLinks"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Text", name: "text", widget: "string" }
+              - { label: "Short text (phones)", name: "short", widget: "string", required: false }
+              - { label: "URL", name: "url", widget: "string" }
           - label: "Navigation"
             name: "navigation"
             widget: "list"

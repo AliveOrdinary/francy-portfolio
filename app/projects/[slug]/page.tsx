@@ -2,6 +2,52 @@ import { getProjectData, getMarkdownContent, getAllProjects } from '@/lib/markdo
 import { notFound } from 'next/navigation';
 import ProjectGallery from '@/components/ProjectGallery';
 import HeroMedia from '@/components/HeroMedia';
+import Link from 'next/link';
+import Image from 'next/image';
+import LazyVideo from '@/components/LazyVideo';
+import type { Metadata } from 'next';
+import { getOptimizedPath, isImagePath, isVideoPath } from '@/lib/getOptimizedPath';
+import type { ProjectData } from '@/lib/types';
+import Letters from '@/components/motion/Letters';
+
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await props.params;
+  try {
+    const project = getProjectData(slug);
+    return {
+      title: `${project.title} · Francis Xavier`,
+      description: project.summary?.trim(),
+    };
+  } catch {
+    return {};
+  }
+}
+
+function Detail({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <>
+      <dt className="text-gray-500">{label}</dt>
+      <dd>{children}</dd>
+    </>
+  );
+}
+
+function NextThumb({ project }: { project: ProjectData }) {
+  const src = project.homeThumbnail || project.featuredImage || project.featuredVideo;
+  if (!src) return null;
+  if (isVideoPath(src)) {
+    return (
+      <div className="w-full aspect-[4/5] overflow-hidden rounded-md bg-neutral-100">
+        <LazyVideo src={src} className="w-full h-full object-cover" />
+      </div>
+    );
+  }
+  return (
+    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-md bg-neutral-100">
+      <Image src={isImagePath(src) ? getOptimizedPath(src) : src} alt="" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+    </div>
+  );
+}
 
 /**
  * Generate static params for all projects at build time
@@ -42,7 +88,10 @@ export default async function Project(
     notFound();
   }
   
-  const summaryHtml = await getMarkdownContent(projectData.summary || '');
+  const allProjects = getAllProjects();
+  const position = allProjects.findIndex((p) => p.slug === projectData.slug);
+  const nextProject = allProjects.length > 1 ? allProjects[(position + 1) % allProjects.length] : undefined;
+  const pad = (n: number) => String(n).padStart(2, '0');
   
   // Sort gallery blocks by order, and render markdown for text sections
   const sortedBlocks = projectData.galleryBlocks 
@@ -59,10 +108,17 @@ export default async function Project(
 
   return (
     <article className="bg-background">
-      {/* Main heading for screen readers and search; the hero shows the title visually */}
-      <h1 className="sr-only">{projectData.title}</h1>
-      {/* Hero Section - Uses LazyVideo for optimized loading */}
-      <div className="w-full">
+      {/* Title */}
+      <div className="label flex justify-between pt-8 md:pt-10">
+        <span>Work / {pad(position + 1)}</span>
+        <span>{projectData.year}</span>
+      </div>
+      <h1 className="font-normal text-[15vw] md:text-[11vw] leading-[0.9] tracking-[-0.045em] mt-4 mb-6 md:mb-8">
+        <Letters text={projectData.title} />
+      </h1>
+
+      {/* Hero */}
+      <div data-reveal="media" style={{ '--i': 4 } as React.CSSProperties} className="w-full">
         <HeroMedia
           video={projectData.featuredVideo}
           videoMobile={projectData.featuredVideoMobile}
@@ -72,91 +128,71 @@ export default async function Project(
         />
       </div>
 
-
-      <div className="w-full my-4 md:my-8">
-        {/* Project Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-          {/* Column 1: Client & Industry */}
-          <div className="md:col-span-3 space-y-8">
-            {projectData.client && (
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Client</h3>
-                <div className="text-lg">{projectData.client}</div>
-              </div>
-            )}
-            {projectData.industry && (
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Industry</h3>
-                <div className="text-lg">{projectData.industry}</div>
-              </div>
-            )}
-            {projectData.studio && (
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Studio</h3>
-                <div className="text-lg">
-                  {projectData.studioUrl ? (
-                    <a
-                      href={projectData.studioUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-4 hover:opacity-70 transition-opacity"
-                    >
-                      {projectData.studio}
-                    </a>
-                  ) : (
-                    projectData.studio
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Column 2: Services & Year */}
-          <div className="md:col-span-3 space-y-8">
-            {projectData.services && projectData.services.length > 0 && (
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Services</h3>
-                <div className="text-lg">
-                  {projectData.services.map((service, index) => (
-                    <div key={index}>{service}</div>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Year</h3>
-              <div className="text-lg">{projectData.year}</div>
-            </div>
-            {projectData.role && (
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">Role</h3>
-                <div className="text-lg">{projectData.role}</div>
-              </div>
-            )}
-            {projectData.credits?.map((credit, index) => (
-              <div key={index}>
-                <h3 className="text-sm font-bold uppercase tracking-widest mb-2 text-gray-500">{credit.label}</h3>
-                <div className="text-lg">{credit.value}</div>
-              </div>
-            ))}
-          </div>
-          
-          {/* Column 3: Summary */}
-          {projectData.summary && (
-            <div className="md:col-span-6">
-              <div 
-                className="project-summary text-lg md:text-xl leading-relaxed text-foreground prose prose-lg prose-gray max-w-none prose-code:font-normal prose-code:before:content-none prose-code:after:content-none"
-                dangerouslySetInnerHTML={{ __html: summaryHtml }} 
-              />
-            </div>
+      {/* Details · summary · services and role */}
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-6 md:gap-8 pt-8 md:pt-12">
+        <dl className="label grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 content-start">
+          {projectData.client && <Detail label="Client">{projectData.client}</Detail>}
+          {projectData.industry && <Detail label="Industry">{projectData.industry}</Detail>}
+          {projectData.studio && (
+            <Detail label="Studio">
+              {projectData.studioUrl ? (
+                <a href={projectData.studioUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-[3px] hover:opacity-60">
+                  {projectData.studio}
+                </a>
+              ) : (
+                projectData.studio
+              )}
+            </Detail>
           )}
-        </div>
-      </div>
+          <Detail label="Year">{projectData.year}</Detail>
+        </dl>
+        {projectData.summary && (
+          <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] max-w-[640px]">
+            {projectData.summary.trim()}
+          </p>
+        )}
+        <dl className="label grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 content-start">
+          {projectData.services && projectData.services.length > 0 && (
+            <Detail label="Services">
+              {projectData.services.map((service) => <span key={service} className="block">{service}</span>)}
+            </Detail>
+          )}
+          {projectData.role && <Detail label="Role">{projectData.role}</Detail>}
+          {projectData.credits?.map((credit) => (
+            <Detail key={credit.label} label={credit.label}>{credit.value}</Detail>
+          ))}
+        </dl>
+      </section>
 
-      <div className="w-full pb-8 md:pb-16">
-        {/* Gallery */}
+      {/* Gallery */}
+      <div className="w-full">
         <ProjectGallery blocks={sortedBlocks} projectTitle={projectData.title} />
       </div>
+
+      {/* Next project */}
+      {nextProject && (
+        <section className="pt-24 md:pt-36">
+          <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-6">
+            <span>Next project</span>
+            <span>{pad(((position + 1) % allProjects.length) + 1)} / {pad(allProjects.length)}</span>
+          </div>
+          <Link
+            href={`/projects/${nextProject.slug}`}
+            data-reveal="media"
+            className="group grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 md:gap-8 items-end"
+          >
+            <div>
+              <p className="label text-gray-500 mb-3.5">
+                {[...(nextProject.homeTags?.length ? nextProject.homeTags : nextProject.services ?? []), nextProject.year].join(' · ')}
+              </p>
+              <p className="text-[15vw] md:text-[9vw] leading-[0.9] tracking-[-0.045em] group-hover:opacity-70 transition-opacity">
+                {nextProject.title} <span aria-hidden="true">→</span>
+              </p>
+            </div>
+            <NextThumb project={nextProject} />
+          </Link>
+        </section>
+      )}
     </article>
   );
 }

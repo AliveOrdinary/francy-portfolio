@@ -1,67 +1,67 @@
-import Link from 'next/link';
-import { getContactPageData } from '../../lib/markdown';
+import { getContactPageData, getGlobalData, getHomePageData } from '../../lib/markdown';
+import Letters from '@/components/motion/Letters';
+
+export const metadata = {
+  title: 'Contact · Francis Xavier',
+};
 
 export default function Contact() {
   const contactData = getContactPageData();
-  
+  const global = getGlobalData();
+  const home = getHomePageData();
+  const links = global.headerLinks ?? [];
+
   return (
-    <div className="container mx-auto py-12 md:py-20">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-display font-medium mb-6">Get in Touch</h2>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            I&apos;m always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-          </p>
-        </div>
-        
-        <div className="space-y-12">
-          <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-gray-500">Contact Information</h3>
-            <ul className="space-y-4">
-              <li className="flex flex-col">
-                <span className="text-sm text-gray-500 mb-1">Email</span>
-                <a 
-                  href={`mailto:${contactData.email}`} 
-                  className="text-2xl md:text-3xl font-display hover:text-primary transition-colors"
-                >
-                  {contactData.email}
-                </a>
-              </li>
-              {contactData.phone && (
-                <li className="flex flex-col">
-                  <span className="text-sm text-gray-500 mb-1">Phone</span>
-                  <a 
-                    href={`tel:${contactData.phone}`} 
-                    className="text-2xl md:text-3xl font-display hover:text-primary transition-colors"
-                  >
-                    {contactData.phone}
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-          
-          {contactData.socialMedia && contactData.socialMedia.length > 0 && (
-            <div>
-              <h3 className="text-sm font-bold uppercase tracking-widest mb-4 text-gray-500">Connect with Me</h3>
-              <ul className="flex flex-wrap gap-4">
-                {contactData.socialMedia.map((social, index) => (
-                  <li key={index}>
-                    <Link
-                      href={social.url}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-block px-6 py-3 bg-white border border-gray-200 rounded-full hover:border-primary hover:text-primary transition-all"
-                    >
-                      {social.platform}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+    <div className="w-full">
+      <div className="label flex justify-between pt-8 md:pt-10">
+        <span>Contact</span>
+        {/* The header already shows the location on desktop */}
+        <span className="md:hidden">{global.location}</span>
+      </div>
+
+      {/* Email, large */}
+      <a
+        href={`mailto:${contactData.email}`}
+        className="block mt-4 text-[8.6vw] md:text-[8.4vw] leading-[0.95] tracking-[-0.045em] break-all hover:opacity-60 transition-opacity"
+      >
+        <Letters text={contactData.email} delay={0.1} />
+      </a>
+
+      <section data-reveal style={{ '--i': 8 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
+        <div className="label">
+          {home.availability && (
+            <p>
+              <span className="inline-block w-2 h-2 rounded-full bg-[#2bb24c] mr-2 align-[1px]" aria-hidden="true" />
+              {home.availability}
+            </p>
           )}
         </div>
-      </div>
+        {contactData.intro && (
+          <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] max-w-[640px]">
+            {contactData.intro}
+          </p>
+        )}
+        <dl className="label grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5 content-start md:justify-self-end">
+          <dt className="text-gray-500">Email</dt>
+          <dd><a href={`mailto:${contactData.email}`} className="hover:opacity-60">{contactData.email}</a></dd>
+          {contactData.phone && (
+            <>
+              <dt className="text-gray-500">Phone</dt>
+              <dd><a href={`tel:${contactData.phone.replace(/\s/g, '')}`} className="hover:opacity-60">{contactData.phone}</a></dd>
+            </>
+          )}
+          {links.map((link) => (
+            <div key={link.url} className="contents">
+              <dt className="text-gray-500">{link.text}</dt>
+              <dd>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-60">
+                  {link.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                </a>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
     </div>
   );
-} 
+}

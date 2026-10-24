@@ -1,11 +1,72 @@
 import Image from 'next/image';
-import { getAboutPageData, getContactPageData } from '../../lib/markdown';
+import { getAboutPageData, getContactPageData, getGlobalData, getHomePageData, getMarkdownContent } from '../../lib/markdown';
 import { getOptimizedPath, isImagePath } from '@/lib/getOptimizedPath';
+import type { ExperienceItem, EducationItem } from '@/lib/types';
+import type { CSSProperties } from 'react';
 
-export default function About() {
+const row = 'grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-1 md:gap-8 py-5 md:py-6 border-b border-gray-100 items-baseline';
+
+function SectionLabel({ title, count }: { title: string; count?: number }) {
+  return (
+    <div data-reveal="line" className="label flex justify-between border-t border-gray-200 pt-3.5 mb-2">
+      <span>{title}</span>
+      {count ? <span>({String(count).padStart(2, '0')})</span> : <span />}
+    </div>
+  );
+}
+
+function ExperienceRow({ item }: { item: ExperienceItem | string }) {
+  if (typeof item === 'string') {
+    return <div data-reveal="row" className={row}><span /><p className="text-xl md:text-2xl">{item}</p><span /></div>;
+  }
+  const detail = [item.location, item.description].filter(Boolean).join(' · ');
+  return (
+    <div data-reveal="row" className={row}>
+      <span className="text-base text-gray-500">{item.years}</span>
+      <div>
+        <p className="text-xl md:text-2xl leading-tight tracking-[-0.01em]">
+          {item.url ? (
+            <a href={item.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-[5px] hover:opacity-60 transition-opacity">
+              {item.organisation}
+            </a>
+          ) : (
+            item.organisation
+          )}
+        </p>
+        {detail && <p className="text-base leading-relaxed text-gray-500 mt-1.5 max-w-[560px]">{detail}</p>}
+      </div>
+      <span className="label md:justify-self-end md:text-right mt-1.5 md:mt-0">{item.role}</span>
+    </div>
+  );
+}
+
+function EducationRow({ item }: { item: EducationItem }) {
+  return (
+    <div data-reveal="row" className={row}>
+      <span className="text-base text-gray-500">{item.year}</span>
+      <div>
+        <p className="text-xl md:text-2xl leading-tight tracking-[-0.01em]">{item.qualification}</p>
+        <p className="text-base text-gray-500 mt-1.5">
+          {item.school}
+          {item.location && `, ${item.location}`}
+        </p>
+      </div>
+      <span />
+    </div>
+  );
+}
+
+export default async function About() {
   const aboutData = getAboutPageData();
   const contactData = getContactPageData();
-  
+  const home = getHomePageData();
+  const global = getGlobalData();
+
+  // First paragraph of the bio is the large lead; the rest is body text
+  const paragraphs = (aboutData.bio || '').trim().split(/\n\s*\n/);
+  const lead = paragraphs[0] || '';
+  const restHtml = paragraphs.length > 1 ? await getMarkdownContent(paragraphs.slice(1).join('\n\n')) : '';
+
   // Optimize image paths
   const optimizedProfileImage = isImagePath(aboutData.profileImage) 
     ? getOptimizedPath(aboutData.profileImage) 
@@ -17,12 +78,16 @@ export default function About() {
     ? getOptimizedPath(aboutData.profileImageMobile)
     : aboutData.profileImageMobile;
 
+  const whatIDo = aboutData.whatIDo;
+  const services = Array.isArray(whatIDo) ? whatIDo : whatIDo ? [whatIDo] : [];
+  const contactLinks = global.headerLinks ?? [];
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
       <div className="relative w-full">
         {aboutData.profileImage && (
-          <div className="relative w-full h-auto rounded-2xl overflow-hidden">
+          <div data-reveal="media" className="relative w-full h-auto rounded-2xl overflow-hidden">
              {hasMobileImage ? (
                <picture>
                  <source media="(max-width: 768px)" srcSet={optimizedMobileImage as string} />
@@ -66,89 +131,91 @@ export default function About() {
         )}
       </div>
       
-      {/* Content Section */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
-        {/* Bio */}
-        {aboutData.bio && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-            <div aria-hidden="true" />
-            <p className="text-xl leading-relaxed text-gray-700">
-              {aboutData.bio}
-            </p>
-          </div>
-        )}
-        
-        {/* What I Do Section */}
-        {aboutData.whatIDo && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-            <h2 className="text-xl font-medium">What I do</h2>
-            <p className="text-xl leading-relaxed text-gray-700">
-              {aboutData.whatIDo}
-            </p>
-          </div>
-        )}
-        
-        {/* Where I've Been Section */}
-        {aboutData.experience && aboutData.experience.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-            <h2 className="text-xl font-medium">Where I&apos;ve Been</h2>
-            <div className="space-y-4">
-              {aboutData.experience.map((item, index) => (
-                <p key={index} className="text-xl leading-relaxed text-gray-700">
-                  {item}
-                </p>
-              ))}
-            </div>
-          </div>
-        )}
-        
-        {/* Divider */}
-        <div className="border-t border-gray-200 my-12" />
-        
-        {/* Contact Section */}
-        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 mb-12">
-          <h2 className="text-xl font-medium">Contact</h2>
-          <div className="space-y-2">
-            <a 
-              href={`mailto:${contactData.email}`} 
-              className="block text-xl text-gray-700 hover:text-black transition-colors"
-            >
-              {contactData.email}
-            </a>
-            {contactData.phone && (
-              <a 
-                href={`tel:${contactData.phone.replace(/\s/g, '')}`}
-                className="block text-xl text-gray-700 hover:text-black transition-colors"
-              >
-                {contactData.phone}
-              </a>
-            )}
-          </div>
+      {/* Intro */}
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-4 md:gap-8 pt-8 md:pt-14">
+        <p className="label">About</p>
+        <div className="max-w-[640px]">
+          <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] mb-5">{lead}</p>
+          {restHtml && (
+            <div
+              className="project-summary text-lg leading-relaxed text-gray-600"
+              dangerouslySetInnerHTML={{ __html: restHtml }}
+            />
+          )}
         </div>
-        
-        {/* Divider */}
-        <div className="border-t border-gray-200 my-12" />
-        
-        {/* Social Section */}
-        {contactData.socialMedia && contactData.socialMedia.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8">
-            <h2 className="text-xl font-medium">Social</h2>
-            <div className="space-y-2">
-              {contactData.socialMedia.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-xl text-gray-700 hover:text-black transition-colors"
-                >
-                  {social.platform}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+        <div className="label md:justify-self-end md:text-right">
+          {home.availability && (
+            <p>
+              <span className="inline-block w-2 h-2 rounded-full bg-[#2bb24c] mr-2 align-[1px]" aria-hidden="true" />
+              {home.availability}
+            </p>
+          )}
+          {global.location && <p>{global.location}</p>}
+        </div>
+      </section>
+
+      {/* What I do */}
+      {services.length > 0 && (
+        <section className="pt-16 md:pt-24">
+          <SectionLabel title="What I do" count={services.length} />
+          <ul className="grid grid-cols-1 md:grid-cols-4 gap-1.5 md:gap-5 pt-3">
+            {services.map((line, index) => (
+              <li key={index} data-reveal style={{ '--i': index } as CSSProperties} className="text-xl md:text-[22px] leading-tight tracking-[-0.01em]">{line}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Tools */}
+      {aboutData.tools && aboutData.tools.length > 0 && (
+        <section className="pt-16 md:pt-24">
+          <SectionLabel title="Tools" count={aboutData.tools.length} />
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-1.5 md:gap-y-3 pt-3">
+            {aboutData.tools.map((tool, index) => (
+              <li key={tool} data-reveal style={{ '--i': index } as CSSProperties} className="text-xl md:text-[22px] leading-tight tracking-[-0.01em]">{tool}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* Experience */}
+      {aboutData.experience && aboutData.experience.length > 0 && (
+        <section className="pt-16 md:pt-24">
+          <SectionLabel title="Experience" count={aboutData.experience.length} />
+          {aboutData.experience.map((item, index) => <ExperienceRow key={index} item={item} />)}
+        </section>
+      )}
+
+      {/* Education */}
+      {aboutData.education && aboutData.education.length > 0 && (
+        <section className="pt-16 md:pt-24">
+          <SectionLabel title="Education" count={aboutData.education.length} />
+          {aboutData.education.map((item, index) => <EducationRow key={index} item={item} />)}
+        </section>
+      )}
+
+      {/* Contact */}
+      <section className="pt-16 md:pt-24">
+        <SectionLabel title="Contact" />
+        <a
+          href={`mailto:${contactData.email}`}
+          data-reveal
+          className="block pt-4 text-[9vw] md:text-[6vw] leading-none tracking-[-0.035em] hover:opacity-60 transition-opacity break-all"
+        >
+          {contactData.email}
+        </a>
+        <p className="label mt-3 flex flex-wrap gap-x-2">
+          {contactData.phone && (
+            <a href={`tel:${contactData.phone.replace(/\s/g, '')}`} className="hover:opacity-60">{contactData.phone}</a>
+          )}
+          {contactLinks.map((link) => (
+            <span key={link.url}>
+              <span aria-hidden="true">· </span>
+              <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-60">{link.text}</a>
+            </span>
+          ))}
+        </p>
+      </section>
     </div>
   );
 }
