@@ -266,7 +266,7 @@ function SideBySideBlockComponent({
     <div data-reveal="media" className="w-full">
       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
         <div className="w-full md:w-1/2">
-          <div className="relative aspect-square overflow-hidden rounded-2xl">
+          <div className={`relative overflow-hidden rounded-2xl ${block.aspect ? '' : 'aspect-square'}`} style={block.aspect ? { aspectRatio: block.aspect } : undefined}>
             {renderMedia(
               block.leftType,
               block.leftFile,
@@ -278,7 +278,7 @@ function SideBySideBlockComponent({
           </div>
         </div>
         <div className="w-full md:w-1/2">
-          <div className="relative aspect-square overflow-hidden rounded-2xl">
+          <div className={`relative overflow-hidden rounded-2xl ${block.aspect ? '' : 'aspect-square'}`} style={block.aspect ? { aspectRatio: block.aspect } : undefined}>
             {renderMedia(
               block.rightType,
               block.rightFile,

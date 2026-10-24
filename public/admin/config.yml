@@ -77,6 +77,7 @@ collections:
               - { label: "Right Alt Text", name: "rightAlt", widget: "string", required: false }
               - { label: "Right Has Audio?", name: "rightHasAudio", widget: "boolean", default: false, required: false }
               - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Shape", name: "aspect", widget: "string", required: false, hint: "Leave empty for square, or e.g. 4/5 for portrait" }
               - { label: "Display Order", name: "order", widget: "number", default: 1 }
           - label: "Text Section"
             name: "text"

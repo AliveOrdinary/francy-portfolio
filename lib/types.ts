@@ -36,6 +36,8 @@ export interface SideBySideBlock {
   rightAlt?: string;
   rightHasAudio?: boolean;
   caption?: string;
+  /** Shape of both tiles, e.g. "4/5". Square when left out */
+  aspect?: string;
   order: number;
 }
 
