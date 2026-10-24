@@ -120,7 +120,7 @@ galleryBlocks:
       2023. Not commissioned by Giants & Gentlemen.
 featured: true
 homeThumbnail: /images/uploads/gg-key-underwater.jpg
-homeRatio: 4/5
+homeRatio: 1/1
 homeTags:
   - Art direction
   - Campaign

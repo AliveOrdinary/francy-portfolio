@@ -118,7 +118,7 @@ export default async function Project(
       </h1>
 
       {/* Hero */}
-      <div data-reveal="media" style={{ '--i': 4 } as React.CSSProperties} className="w-full">
+      <div data-reveal="media" className="w-full">
         <HeroMedia
           video={projectData.featuredVideo}
           videoMobile={projectData.featuredVideoMobile}

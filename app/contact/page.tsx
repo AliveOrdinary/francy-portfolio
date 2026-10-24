@@ -27,7 +27,7 @@ export default function Contact() {
         <Letters text={contactData.email} delay={0.1} />
       </a>
 
-      <section data-reveal style={{ '--i': 8 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-8 md:pt-12">
         <div className="label">
           {home.availability && (
             <p>

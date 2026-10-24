@@ -57,7 +57,7 @@ export default function Home() {
       </section>
 
       {/* Role · intro · availability */}
-      <section data-reveal style={{ '--i': 6 } as React.CSSProperties} className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
+      <section data-reveal className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-5 md:gap-8 pt-7 md:pt-10">
         {home.role && <p className="label">{home.role}</p>}
         <p className="text-[22px] md:text-[28px] leading-[1.25] tracking-[-0.01em] max-w-[620px]">
           {home.introText}
@@ -108,11 +108,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Footer */}
-      <footer className="label flex flex-col md:flex-row md:justify-between gap-1.5 text-gray-500 pt-16">
-        <span>© {new Date().getFullYear()} {home.name || 'Francis Xavier'}</span>
-        <a href={`mailto:${contact.email}`} className="hover:text-foreground transition-colors">{contact.email}</a>
-      </footer>
     </div>
   );
 }

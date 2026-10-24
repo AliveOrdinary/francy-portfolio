@@ -101,7 +101,7 @@ galleryBlocks:
     body: Logo and identity for Milton Malayalees, 2022.
 featured: true
 homeThumbnail: /images/uploads/mm-hero.jpg
-homeRatio: 4/5
+homeRatio: 16/9
 homeTags:
   - Logo
   - Brand identity
