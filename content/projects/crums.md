@@ -19,7 +19,7 @@ studioUrl: https://www.instagram.com/studio.amplifier/
 role: Website design (UX/UI)
 credits:
   - label: Brand identity & packaging
-    value: Eldho Kuriyan
+    value: Eldhose Kuriyan
   - label: Development
     value: Client’s team
 galleryBlocks:
@@ -29,7 +29,7 @@ galleryBlocks:
     heading: One brand, fourteen flavours
     body: >-
       [CRUMS](https://www.instagram.com/crums.in/) launched with 14 snack
-      variations. My partner [Eldho Kuriyan](https://eldhosekuriyan.com/projects/crums)
+      variations. Brand designer [Eldhose Kuriyan](https://eldhosekuriyan.com/projects/crums)
       solved this on the shelf with a single green pouch and colour-coded
       flavour stickers. The website needed to do the same online: show the
       whole range clearly, keep each flavour distinct, and make ordering quick.
@@ -43,7 +43,7 @@ galleryBlocks:
     rightFile: /images/uploads/package.jpg
     rightAlt: Green CRUMS snack pouch with yellow flavour stickers
     rightHasAudio: false
-    caption: Brand identity and packaging by Eldho Kuriyan
+    caption: Brand identity and packaging by Eldhose Kuriyan
   - type: text
     order: 3
     label: 02 — The homepage
@@ -104,7 +104,7 @@ galleryBlocks:
     heading: Small pieces of the same system
     body: >-
       Rounded green-and-yellow controls for search, cart and navigation echo
-      the pack’s sticker shapes, alongside Eldho’s favicon, built from the
+      the pack’s sticker shapes, alongside Eldhose’s favicon, built from the
       wordmark’s C.
   - type: sideBySide
     order: 12
@@ -116,7 +116,7 @@ galleryBlocks:
     rightFile: /images/uploads/elements.jpg
     rightAlt: CRUMS search bar, cart icon and yellow arrow buttons on green
     rightHasAudio: false
-    caption: Favicon by Eldho Kuriyan (left) · UI elements (right)
+    caption: Favicon by Eldhose Kuriyan (left) · UI elements (right)
   - type: text
     order: 13
     label: Status

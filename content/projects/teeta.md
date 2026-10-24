@@ -21,7 +21,7 @@ studioUrl: https://www.instagram.com/studio.amplifier/
 role: Naming (with the client), logo, identity system, illustration, art direction, motion
 credits:
   - label: Logo animation
-    value: Created with AI assistance, from my direction
+    value: Produced with AI tools
 galleryBlocks:
   - type: text
     order: 1
@@ -75,7 +75,7 @@ galleryBlocks:
     heading: From the café’s sign to a refined wordmark
     body: >-
       Teeta opened with my original logo, which already had θ, here as the
-      “a”, and the looped “e”. For my portfolio, I refined it: θ moved into the
+      “a”, and the looped “e”. Later, I refined it: θ moved into the
       first “e”, the second “e” gained a smile, and the letterforms became
       softer and friendlier.
   - type: sideBySide

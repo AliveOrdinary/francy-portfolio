@@ -20,7 +20,7 @@ credits:
   - label: Team
     value: With Richa and Stephan (Team 04)
   - label: Photography
-    value: Stock images from Pexels and other sites, composited by me
+    value: Stock imagery (Pexels and others)
 galleryBlocks:
   - type: text
     order: 1
@@ -51,7 +51,7 @@ galleryBlocks:
     rightFile: /images/uploads/gg-key-underwater-pair.jpg
     rightAlt: Giants & Gentlemen gin bottle underwater among shoals of fish
     rightHasAudio: false
-    caption: Key visuals. Backgrounds from stock photography, composited by me.
+    caption: Key visuals, composited from stock photography
     aspect: 1458/2044
   - type: text
     order: 4

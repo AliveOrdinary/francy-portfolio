@@ -18,6 +18,9 @@ services:
 studio: Amplifier Studio
 studioUrl: https://www.instagram.com/studio.amplifier/
 role: Concept, identity design, typography, colour, poster motion, motion direction
+credits:
+  - label: Letter animation
+    value: Freelance animator
 galleryBlocks:
   - type: text
     order: 1
@@ -112,7 +115,7 @@ galleryBlocks:
     mediaType: image
     file: /images/uploads/sanjo-storyboard.png
     alt: Hand-drawn storyboard frames for the SANJO letter animation
-    caption: Storyboard and motion direction by me
+    caption: Storyboard for the letter animation, drawn frame by frame
     hasAudio: false
   - type: sideBySide
     order: 14
@@ -122,9 +125,7 @@ galleryBlocks:
     rightType: video
     rightFile: /images/uploads/sanjo_letters.webm
     rightHasAudio: false
-    caption: >-
-      Left: frame-by-frame animatic, hand-drawn in Procreate · Right: final
-      animation by a collaborator, from my storyboard
+    caption: Procreate animatic (left) · Final animation (right)
   - type: text
     order: 15
     label: 07 — In use

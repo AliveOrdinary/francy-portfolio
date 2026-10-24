@@ -16,6 +16,9 @@ services:
   - Social Media
 studio: Freelance
 role: Logo, identity, event and social design
+credits:
+  - label: Animations
+    value: Produced with AI tools
 galleryBlocks:
   - type: text
     order: 1
@@ -47,13 +50,13 @@ galleryBlocks:
     order: 4
     mediaType: video
     file: /images/uploads/mm-logo-construction.webm
-    caption: Construction animation created with AI assistance, from my direction
+    caption: "Building the mark: block, letter m, eye, nettipattam"
     hasAudio: false
   - type: single
     order: 5
     mediaType: video
     file: /images/uploads/mm-colourways.webm
-    caption: Colourway animation created with AI assistance, from my direction
+    caption: The logo across its four colourways
     hasAudio: false
   - type: text
     order: 6
@@ -67,7 +70,6 @@ galleryBlocks:
     order: 7
     mediaType: video
     file: /images/uploads/mm-colour-palette.webm
-    caption: Palette animation created with AI assistance, from my direction
     hasAudio: false
   - type: text
     order: 8
