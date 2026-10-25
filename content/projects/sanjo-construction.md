@@ -18,6 +18,9 @@ services:
 studio: Amplifier Studio
 studioUrl: https://www.instagram.com/studio.amplifier/
 role: Concept, identity design, typography, colour, poster motion, motion direction
+credits:
+  - label: Letter animation
+    value: Freelance animator
 galleryBlocks:
   - type: text
     order: 1
@@ -91,7 +94,7 @@ galleryBlocks:
     label: 05 — Colour
     heading: Sanjo’s purple, made into a system
     body: >-
-      Purple was Sanjo’s own choice. I built it into a four-colour palette that
+      Purple was Sanjo’s own choice, built into a four-colour palette that
       works across print, motion and signage, and sets Sanjo apart from the
       orange and navy common in renovation branding.
   - type: single
@@ -105,14 +108,14 @@ galleryBlocks:
     heading: A name that builds itself
     body: >-
       The letters move like modules being placed on a plan, scattering and
-      snapping back into their squares. I storyboarded the sequence and tested
-      the timing frame by frame in Procreate before handing it to the animator.
+      snapping back into their squares. The sequence was storyboarded and its
+      timing tested frame by frame in Procreate before it went to the animator.
   - type: single
     order: 13
     mediaType: image
     file: /images/uploads/sanjo-storyboard.png
     alt: Hand-drawn storyboard frames for the SANJO letter animation
-    caption: Storyboard and motion direction by me
+    caption: Storyboard for the letter animation, drawn frame by frame
     hasAudio: false
   - type: sideBySide
     order: 14
@@ -122,9 +125,7 @@ galleryBlocks:
     rightType: video
     rightFile: /images/uploads/sanjo_letters.webm
     rightHasAudio: false
-    caption: >-
-      Left: frame-by-frame animatic, hand-drawn in Procreate · Right: final
-      animation by a collaborator, from my storyboard
+    caption: Procreate animatic (left) · Final animation (right)
   - type: text
     order: 15
     label: 07 — In use

@@ -15,12 +15,12 @@ services:
   - Campaign
   - Photo Manipulation
 studio: Humber Polytechnic
-role: Campaign concept (chosen from the team's pitches), photo manipulation and key visuals
+role: Campaign concept, photo manipulation and key visuals
 credits:
   - label: Team
     value: With Richa and Stephan (Team 04)
   - label: Photography
-    value: Stock images from Pexels and other sites, composited by me
+    value: Stock imagery (Pexels and others)
 galleryBlocks:
   - type: text
     order: 1
@@ -51,7 +51,7 @@ galleryBlocks:
     rightFile: /images/uploads/gg-key-underwater-pair.jpg
     rightAlt: Giants & Gentlemen gin bottle underwater among shoals of fish
     rightHasAudio: false
-    caption: Key visuals. Backgrounds from stock photography, composited by me.
+    caption: Key visuals, composited from stock photography
     aspect: 1458/2044
   - type: text
     order: 4
@@ -104,11 +104,11 @@ galleryBlocks:
   - type: text
     order: 10
     label: Looking back
-    heading: What I'd change
+    heading: In hindsight
     body: >-
       The visuals stop people, but the idea doesn't land on the brief: nothing
       in it points to drinking at home or to trying gin for the first time.
-      I'd also rethink the line. Canadian alcohol advertising rules don't allow
+      The line would also need rethinking. Canadian alcohol advertising rules don't allow
       a drink to be shown as an escape from life, and they restrict linking it
       with risky activities like mountaineering. Next time, the same surreal
       world, built around a night in.

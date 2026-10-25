@@ -5,7 +5,6 @@ category: Branding
 featuredImage: /images/uploads/cover.jpg
 featuredVideo: /images/uploads/teeta-logo-animation.webm
 featuredVideoHasAudio: false
-featuredVideoMobile: /images/uploads/teeta-logo-animation.webm
 summary: >-
   Naming and identity for a café in Kochi, built around one idea: food is the
   common factor.
@@ -22,7 +21,7 @@ studioUrl: https://www.instagram.com/studio.amplifier/
 role: Naming (with the client), logo, identity system, illustration, art direction, motion
 credits:
   - label: Logo animation
-    value: Created with AI assistance, from my direction
+    value: Produced with AI tools
 galleryBlocks:
   - type: text
     order: 1
@@ -52,9 +51,9 @@ galleryBlocks:
   - type: single
     order: 4
     mediaType: image
-    file: /images/uploads/teeta-logo-sheet.png
+    file: /images/uploads/teeta-logo-sheet.jpg
     alt: >-
-      Teeta wordmark in horizontal and stacked layouts, with two round seals
+      Teeta wordmark in horizontal and stacked layouts, with a round seal
       reading “cos teeta is a common factor”
     hasAudio: false
   - type: single
@@ -75,9 +74,9 @@ galleryBlocks:
     label: 03 — Where it started
     heading: From the café’s sign to a refined wordmark
     body: >-
-      Teeta opened with my original logo, which already had θ, here as the
-      “a”, and the looped “e”. For my portfolio, I refined it: θ moved into the
-      first “e”, the second “e” gained a smile, and the letterforms became
+      Teeta opened with the original logo, which already had θ, here as the
+      “a”, and the looped “e”. The wordmark was later refined: θ moved into
+      the first “e”, the second “e” gained a smile, and the letterforms became
       softer and friendlier.
   - type: sideBySide
     order: 8
@@ -203,9 +202,9 @@ galleryBlocks:
     order: 23
     label: Status
     body: >-
-      Teeta opened in Kochi in 2024 with my original logo and the “cos teeta
-      is…” line, and has since closed. The wordmark shown here is a refined
-      version I developed afterwards.
+      Teeta opened in Kochi in 2024 with the original logo and the “cos teeta
+      is…” line, and has since closed. The wordmark shown here is a later
+      refinement.
 featured: true
 homeThumbnail: /images/uploads/teeta-logo-portrait.webm
 homeRatio: 4/5
