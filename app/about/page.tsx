@@ -83,7 +83,7 @@ export default async function About() {
   const contactLinks = global.headerLinks ?? [];
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       {/* Hero Section */}
       <div className="relative w-full">
         {aboutData.profileImage && (

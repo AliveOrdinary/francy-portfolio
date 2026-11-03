@@ -33,7 +33,7 @@ export default function BottomNav() {
     <nav
       aria-label="Main"
       className={`fixed left-1/2 z-50 bottom-[calc(1rem+env(safe-area-inset-bottom))] md:bottom-6 flex gap-0.5 p-1 rounded-full
-        bg-white/70 backdrop-blur-xl backdrop-saturate-150 border border-black/10 shadow-[0_4px_16px_rgba(25,16,33,0.06)]
+        bg-[#202020]/75 backdrop-blur-xl backdrop-saturate-150 border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.3)]
         transition-all duration-300 ease-out
         ${hidden ? 'opacity-0 -translate-x-1/2 translate-y-[140%] pointer-events-none' : 'opacity-100 -translate-x-1/2 translate-y-0'}`}
     >
@@ -45,7 +45,7 @@ export default function BottomNav() {
             href={link.href}
             aria-current={active ? 'page' : undefined}
             className={`label px-3.5 md:px-4 py-2 rounded-full text-foreground transition-colors ${
-              active ? 'bg-black/[0.07]' : 'hover:bg-black/[0.04]'
+              active ? 'bg-white/[0.1]' : 'hover:bg-white/[0.06]'
             }`}
           >
             {link.label}

@@ -64,8 +64,8 @@
 }
 
 :root {
-  --background: #FFFFFF;
-  --foreground: #191021;
+  --background: #141414;
+  --foreground: #EDEDED;
 }
 
 body {
@@ -200,3 +200,20 @@ body {
 .motion [data-reveal='line'][data-in] {
   clip-path: inset(0 0 0 0);
 }
+
+/* ------------------------------------------------------------------
+   Dark theme: re-map the greys used across the site
+------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+  --color-gray-100: #232323;
+  --color-gray-200: #2b2b2b;
+  --color-gray-500: #8f8f8f;
+  --color-gray-600: #a6a6a6;
+  --color-neutral-100: #1d1d1d;
+  --color-neutral-200: #262626;
+  --color-neutral-300: #333333;
+  --color-neutral-500: #8f8f8f;
+  --color-neutral-900: #ededed;
+}
+::selection { background: #ededed; color: #141414; }

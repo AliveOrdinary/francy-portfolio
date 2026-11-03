@@ -34,7 +34,7 @@ export default function ProjectCard({
     <Link href={`/projects/${slug}`} aria-label={title} className="block group w-full">
       <div 
         className="relative w-full aspect-video overflow-hidden rounded-2xl transition-transform duration-500"
-        style={{ backgroundColor: isLoaded ? 'transparent' : '#f5f5f5' }}
+        style={{ backgroundColor: isLoaded ? 'transparent' : '#1d1d1d' }}
       >
         {/* Skeleton loader - shows while media is loading */}
         {!isLoaded && !hasError && (
@@ -43,7 +43,7 @@ export default function ProjectCard({
             <div 
               className="absolute inset-0 -translate-x-full animate-shimmer"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)',
               }}
             />
           </div>
