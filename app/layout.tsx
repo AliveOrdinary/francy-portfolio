@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
 import Header from "@/components/ui/Header";
@@ -10,6 +10,12 @@ import ScrollMotion from "@/components/motion/ScrollMotion";
 
 const SITE_DESCRIPTION =
   "Francis Xavier, art director and graphic designer in Toronto. Brand identities, naming, motion and web design, each built around one clear idea.";
+
+// Dark grey browser bar on phones, matching the site background
+export const viewport: Viewport = {
+  themeColor: "#141414",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://francisdes.com"),
